@@ -1,0 +1,66 @@
+{
+  "name": "qt-lan-chat-feiq-clone",
+  "version": "1.0.0",
+  "description": "C++ Qt 实现的局域网即时通讯入门项目，教程式学习开发规范、UI、网络等",
+  "main": "main.cpp",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p build && cd build && cmake .. && make",
+    "build-debug": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make",
+    "build-release": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make",
+    "clean": "rm -rf build",
+    "test": "cd build && ctest",
+    "format:cpp": "find . -name '*.cpp' -o -name '*.h' | xargs clang-format -i",
+    "lint:cpp": "find . -name '*.cpp' -o -name '*.h' | xargs cpplint",
+    "docs": "doxygen Doxyfile",
+    "lint:md": "markdownlint **/*.md --config .markdownlint.yaml --ignore node_modules",
+    "lint:md:fix": "markdownlint **/*.md --config .markdownlint.yaml --fix --ignore node_modules",
+    "format:md": "prettier --write '**/*.md'",
+    "format:check": "prettier --check .",
+    "format": "pnpm run format:cpp && pnpm run format:md",
+    "lint": "pnpm run lint:cpp && pnpm run lint:md",
+    "dev": "pnpm run build-debug",
+    "start": "pnpm run build && ./build/QtLanChat-FeiQClone"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.45.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-zh": "^0.6.0"
+  },
+  "systemDependencies": {
+    "description": "以下工具需要系统级安装，不在 npm 依赖中",
+    "tools": {
+      "clang-format": "C++ 代码格式化工具",
+      "cpplint": "C++ 代码风格检查工具",
+      "cmake": "跨平台构建系统",
+      "doxygen": "C++ 文档生成工具",
+      "qt6": "Qt 6.12+ 开发框架"
+    },
+    "install": {
+      "macOS": "brew install clang-format cpplint cmake doxygen qt6",
+      "Ubuntu": "sudo apt install clang-format cpplint cmake doxygen qt6-base-dev",
+      "Windows": "通过 Qt Installer 安装 Qt 6.12+，其他工具通过 vcpkg 或包管理器安装"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IdevebI/QtLanChat-FeiQClone.git"
+  },
+  "keywords": [
+    "qt",
+    "c++",
+    "lan-chat",
+    "p2p",
+    "tutorial",
+    "即时通讯",
+    "局域网",
+    "飞秋"
+  ],
+  "author": "IdevebI",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.15.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
