@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "davidanson.vscode-markdownlint",
+    "ms-vscode.cpptools",
+    "ms-vscode.cmake-tools"
+  ]
+}
