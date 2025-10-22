@@ -1,0 +1,69 @@
+# Prettier 忽略文件配置
+# QtLanChat-FeiQClone 项目
+
+# 依赖和缓存
+node_modules/
+.pnpm-store/
+.pnpm/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# 构建输出
+dist/
+build/
+cmake-build-*/
+*.exe
+*.app
+*.dmg
+*.deb
+*.rpm
+
+# Qt 相关文件
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qm
+*.qmlc
+
+# 临时文件
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# 日志文件
+*.log
+logs/
+
+# 环境变量
+.env*
+
+# IDE 文件
+.vscode/settings.json
+.idea/
+*.vcxproj.user
+*.vcxproj.filters
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 测试和覆盖率
+coverage/
+.nyc_output/
+*.gcov
+*.gcda
+*.gcno
+
+# 文档生成
+docs/html/
+docs/latex/
