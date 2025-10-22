@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug QtLanChat-FeiQClone",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/bin/QtLanChat-FeiQClone",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": true
+    }
+  ]
+}
