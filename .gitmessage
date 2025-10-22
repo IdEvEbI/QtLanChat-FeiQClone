@@ -1,0 +1,39 @@
+# QtLanChat-FeiQClone - Git 提交信息规范
+
+# 提交类型说明：
+# feat:     新功能
+# fix:      修复问题
+# docs:     文档更新
+# style:    代码格式调整（不影响功能）
+# refactor: 代码重构
+# test:     测试相关
+# chore:    构建过程或辅助工具的变动
+# perf:     性能优化
+# ui:       UI/UX 相关变更
+# network:  网络通信相关
+# build:    构建系统或外部依赖的变动
+
+# 提交格式：
+# <type>(<scope>): <subject>
+#
+# <body>
+
+# 示例：
+# feat(ui): 添加聊天界面
+#
+# - 实现消息输入框和发送按钮
+# - 添加消息显示区域
+# - 集成 Qt Designer 布局
+
+# fix(network): 修复文件传输中断问题
+#
+# - 修复 TCP 连接异常断开
+# - 添加重连机制
+# - 优化传输进度显示
+
+# 注意事项：
+# 1. 标题不超过 50 字符
+# 2. 使用中文描述，中英文间加空格
+# 3. 使用动词原形开头（添加、修复、更新等）
+# 4. 多个变更用列表形式描述
+# 5. scope 可选：ui, network, core, test, docs
