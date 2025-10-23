@@ -4,9 +4,9 @@
 [![Qt](https://img.shields.io/badge/Qt-6.12+-green.svg)](https://www.qt.io/)
 [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 [![CMake](https://img.shields.io/badge/CMake-3.20+-red.svg)](https://cmake.org/)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/your-username/QtLanChat-FeiQClone/actions)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/idevebi/QtLanChat-FeiQClone/actions)
 
-> **项目简介**：QtLanChat-FeiQClone: C++ Qt LAN IM 入门项目，2 周教程式掌握开发/UI/网络。开源 MIT，欢迎 Star！
+> **项目简介**：QtLanChat-FeiQClone: C++ Qt LAN IM 入门项目，3 周教程式掌握 C++基础/开发/UI/网络。开源 MIT，欢迎 Star！
 
 **关键词标签**：`#Qt` `#C++` `#LAN` `#IM` `#Tutorial` `#P2P` `#Network` `#Learning`
 
@@ -20,7 +20,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/QtLanChat-FeiQClone.git
+git clone https://github.com/idevebi/QtLanChat-FeiQClone.git
 cd QtLanChat-FeiQClone
 
 # 构建项目
@@ -38,7 +38,7 @@ make
 - [2. 项目背景与概述](#2-项目背景与概述)
 - [3. 核心功能与技术架构](#3-核心功能与技术架构)
 - [4. 快速开始](#4-快速开始)
-- [5. 教程结构](#5-教程结构)
+- [5. 教程结构（6 阶段递进，21 天）](#5-教程结构6-阶段递进21-天)
 - [6. 核心要点](#6-核心要点)
 - [7. 验收与度量](#7-验收与度量)
 - [8. 相关文档](#8-相关文档)
@@ -79,13 +79,13 @@ _¹ 数据来源：Stack Overflow Qt 标签、Qt 官方论坛、开源项目统�
 
 QtLanChat-FeiQClone 采用**教程式项目驱动学习**，以**局域网即时通讯软件**为核心，提供：
 
-1. **系统性学习路径**：5 个阶段递进式教程，从环境搭建到项目发布
-2. **实战项目驱动**：通过构建真实可用的 IM 软件学习 Qt 开发
+1. **系统性学习路径**：6 个阶段递进式教程，从 C++ 基础到项目发布
+2. **实战项目驱动**：通过构建真实可用的 IM 软件学习 C++ 和 Qt 开发
 3. **工程化实践**：涵盖开发规范、测试、文档、部署等完整工程流程
 4. **性能指标导向**：明确延迟 <200ms、支持 200 人并发等具体技术目标
 5. **开源协作学习**：GitHub 开源，支持社区贡献和知识分享
 
-**预期收获**：2 周后能够独立扩展屏幕共享功能，支持 200 人并发，掌握完整的 Qt 开发技能栈。
+**预期收获**：3 周后能够独立扩展屏幕共享功能，支持 200 人并发，掌握完整的 C++ Qt 开发技能栈。
 
 **效率提升数据**：通过 Cursor AI 辅助，开发效率提升 30%²，调试时间减少 50%³
 
@@ -96,7 +96,7 @@ _³ 来源：Qt 开发者社区调研_
 
 - **文档先行**：每个阶段先编写教程文档，定义目标、规范和设计
 - **以终为始**：明确最终产品目标，逆向设计学习路径
-- **递进式学习**：5 个阶段逐步深入，每个阶段都有明确的输出和验收标准
+- **递进式学习**：6 个阶段逐步深入，每个阶段都有明确的输出和验收标准
 - **实战驱动**：通过真实项目场景学习，而非单纯的语法练习
 - **AI 辅助开发**：结合 Cursor IDE 的 AI 能力，提升开发效率
 
@@ -239,7 +239,7 @@ QtLanChat-FeiQClone/
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/your-username/QtLanChat-FeiQClone.git
+git clone https://github.com/idevebi/QtLanChat-FeiQClone.git
 cd QtLanChat-FeiQClone
 
 # 2. 安装依赖工具
@@ -283,36 +283,41 @@ docker run -it qt-env:latest
 - **下午**：编写代码，实现功能
 - **晚上**：测试验证，反思总结
 
-## 5. 教程结构（5 阶段递进）
+## 5. 教程结构（6 阶段递进，21 天）
 
 ```mermaid
 gantt
-    title QtLanChat-FeiQClone 学习时间线
+    title QtLanChat-FeiQClone 学习时间线（21天）
     dateFormat  YYYY-MM-DD
-    section 阶段1：环境设置
-    环境搭建           :done, env1, 2025-10-22, 1d
-    开发规范           :done, env2, 2025-10-23, 1d
-    section 阶段2：UI设计
-    界面设计           :active, ui1, 2025-10-24, 2d
-    交互逻辑           :ui2, 2025-10-26, 1d
-    section 阶段3：网络通信
-    P2P通信            :net1, 2025-10-27, 2d
-    数据传输           :net2, 2025-10-29, 2d
-    section 阶段4：测试运维
-    单元测试           :test1, 2025-10-31, 2d
-    性能优化           :test2, 2025-11-02, 1d
-    section 阶段5：集成发布
-    功能集成           :int1, 2025-11-03, 1d
-    开源发布           :int2, 2025-11-04, 1d
+    section 阶段1：C++基础
+    C++语法回顾        :done, cpp1, 2025-10-22, 2d
+    面向对象编程        :done, cpp2, 2025-10-24, 2d
+    综合案例练习        :done, cpp3, 2025-10-26, 1d
+    section 阶段2：Qt环境
+    Qt环境搭建         :active, qt1, 2025-10-27, 1d
+    开发规范           :qt2, 2025-10-28, 1d
+    section 阶段3：UI设计
+    界面设计           :ui1, 2025-10-29, 2d
+    交互逻辑           :ui2, 2025-10-31, 1d
+    section 阶段4：网络通信
+    P2P通信            :net1, 2025-11-01, 3d
+    数据传输           :net2, 2025-11-04, 2d
+    section 阶段5：测试运维
+    单元测试           :test1, 2025-11-06, 2d
+    性能优化           :test2, 2025-11-08, 1d
+    section 阶段6：集成发布
+    功能集成           :int1, 2025-11-09, 1d
+    开源发布           :int2, 2025-11-10, 1d
 ```
 
-| 阶段       | 时间        | 难度   | 核心技能         | Cursor AI 提示            | 验收标准       | 所需技能 |
-| ---------- | ----------- | ------ | ---------------- | ------------------------- | -------------- | -------- |
-| **阶段 1** | 第 1-2 天   | 入门级 | C++基础、Qt 环境 | "Qt CMake project setup"  | 项目编译运行   | C++基础  |
-| **阶段 2** | 第 3-5 天   | 初级   | UI 设计、信号槽  | "Qt Designer chat UI"     | 界面响应流畅   | Qt 基础  |
-| **阶段 3** | 第 6-9 天   | 中级   | 网络编程、P2P    | "Qt UDP socket LAN chat"  | 延迟<200ms     | 网络基础 |
-| **阶段 4** | 第 10-12 天 | 中级   | 测试、性能优化   | "Qt Test unit testing"    | 测试覆盖率>80% | 测试基础 |
-| **阶段 5** | 第 13-14 天 | 高级   | 集成、部署       | "Qt cross-platform build" | 端到端测试通过 | 部署基础 |
+| 阶段       | 时间        | 难度   | 核心技能              | Cursor AI 提示                 | 验收标准       | 所需技能 |
+| ---------- | ----------- | ------ | --------------------- | ------------------------------ | -------------- | -------- |
+| **阶段 1** | 第 1-5 天   | 入门级 | C++语法、面向对象编程 | "C++ OOP example with classes" | 完成综合案例   | C++基础  |
+| **阶段 2** | 第 6-7 天   | 入门级 | Qt 环境、开发规范     | "Qt CMake project setup"       | 项目编译运行   | Qt 基础  |
+| **阶段 3** | 第 8-10 天  | 初级   | UI 设计、信号槽机制   | "Qt Designer chat UI"          | 界面响应流畅   | Qt 中级  |
+| **阶段 4** | 第 11-15 天 | 中级   | 网络编程、P2P 通信    | "Qt UDP socket LAN chat"       | 延迟<200ms     | 网络基础 |
+| **阶段 5** | 第 16-18 天 | 中级   | 测试、性能优化        | "Qt Test unit testing"         | 测试覆盖率>80% | 测试基础 |
+| **阶段 6** | 第 19-21 天 | 高级   | 集成、部署、开源发布  | "Qt cross-platform build"      | 端到端测试通过 | 部署基础 |
 
 **Cursor AI 使用指南**：
 
@@ -331,7 +336,7 @@ _⁵ 来源：Qt 开发者社区调研_
 3. **技术架构**：基于 Qt 6.12+ 的现代化 C++ 开发技术栈
 4. **目标用户**：以**C++ Qt 初学者为核心用户**，延展到网络通信开发者和教育应用开发者
 5. **开发原则**：教程式开发 + 工程化实践 + 性能导向
-6. **学习成果**：2 周内掌握 Qt 开发规范、UI 设计、网络通信、测试运维等核心技能
+6. **学习成果**：3 周内掌握 C++ 基础、Qt 开发规范、UI 设计、网络通信、测试运维等核心技能
 
 **学习成果量化**：
 
@@ -343,7 +348,7 @@ _⁵ 来源：Qt 开发者社区调研_
 
 ### 6.2 实践建议
 
-- 严格按照 5 阶段教程推进，每个阶段都有明确的输出和验收标准
+- 严格按照 6 阶段教程推进，每个阶段都有明确的输出和验收标准
 - 注重代码规范和工程化实践，培养良好的开发习惯
 - 通过真实项目场景学习，而非单纯的语法练习
 - 利用 Cursor IDE 的 AI 能力，提升开发效率和学习效果
@@ -459,11 +464,12 @@ _⁶ 来源：Qt 开发者社区调研_
 
 ## 11. 项目版本
 
-| 版本     | 状态      | 功能         | 发布时间   |
-| -------- | --------- | ------------ | ---------- |
-| **v0.1** | 🔄 开发中 | 基础 IM 功能 | 2025-11-04 |
-| **v0.2** | 📋 规划中 | 屏幕共享扩展 | 2025-12-01 |
-| **v1.0** | 📋 规划中 | 完整功能集   | 2026-01-01 |
+| 版本     | 状态      | 功能              | 发布时间   |
+| -------- | --------- | ----------------- | ---------- |
+| **v0.1** | 🔄 开发中 | C++基础 + Qt 环境 | 2025-11-11 |
+| **v0.2** | 📋 规划中 | 基础 IM 功能      | 2025-12-01 |
+| **v0.3** | 📋 规划中 | 屏幕共享扩展      | 2026-01-01 |
+| **v1.0** | 📋 规划中 | 完整功能集        | 2026-02-01 |
 
 ## 12. 路线图
 
@@ -472,10 +478,12 @@ timeline
     title QtLanChat-FeiQClone 发展路线图
 
     section 2025 Q4
+        C++基础学习     : 语法回顾、面向对象
+        Qt环境搭建      : 开发环境、规范建立
         基础 IM 功能    : 聊天、文件传输
-        网络通信优化    : P2P 通信、延迟优化
 
     section 2026 Q1
+        网络通信优化    : P2P 通信、延迟优化
         屏幕共享功能    : 低延迟共享
         性能优化        : 200 人并发支持
 
@@ -498,14 +506,14 @@ timeline
 
 **社交媒体分享**：
 
-- [Twitter 分享](https://twitter.com/intent/tweet?text=QtLanChat-FeiQClone%20-%20C%2B%2B%20Qt%20LAN%20IM%20Tutorial&url=https://github.com/your-username/QtLanChat-FeiQClone)
-- [LinkedIn 分享](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/your-username/QtLanChat-FeiQClone)
+- [Twitter 分享](https://twitter.com/intent/tweet?text=QtLanChat-FeiQClone%20-%20C%2B%2B%20Qt%20LAN%20IM%20Tutorial&url=https://github.com/idevebi/QtLanChat-FeiQClone)
+- [LinkedIn 分享](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/idevebi/QtLanChat-FeiQClone)
 
 ## 📞 联系我们
 
 - **项目维护者**：IdevebI
-- **GitHub Issues**：[提交问题](https://github.com/your-username/QtLanChat-FeiQClone/issues)
-- **讨论区**：[GitHub Discussions](https://github.com/your-username/QtLanChat-FeiQClone/discussions)
+- **GitHub Issues**：[提交问题](https://github.com/idevebi/QtLanChat-FeiQClone/issues)
+- **讨论区**：[GitHub Discussions](https://github.com/idevebi/QtLanChat-FeiQClone/discussions)
 - **Discord 群**：[加入讨论](https://discord.gg/qt-lan-chat)
 - **微信群**：扫码加入（待创建）
 
