@@ -240,20 +240,14 @@ graph TD
 
 ### 6.1 可用模板
 
-项目提供了完整的模板体系，位于 `docs/standard/template/` 目录：
+项目提供了统一的模板体系，位于 `docs/standard/template/` 目录：
 
-- **01-basic-tutorial-template.md** - 基础教程模板（完整结构）
-- **02-practice-application-template.md** - 实践应用结构
-- **03-exercises-tests-template.md** - 练习与测试结构
-- **04-extended-reading-template.md** - 扩展阅读结构
-- **05-homework-template.md** - 课后作业及参考答案结构
-- **06-resources-template.md** - 相关资源结构
-- **07-next-steps-template.md** - 下一步学习结构
+- **01-basic-tutorial-template.md** - 基础教程模板（完整结构，325 行）
 
 ### 6.2 使用建议
 
 - **新建文档**：复制 `01-basic-tutorial-template.md` 作为起点
-- **专用结构**：根据需要引用其他专用模板
+- **可选章节**：模板中标记"（可选）"的章节可根据需要选择使用
 - **占位符**：模板中的 `{ }` 占位符需要填写具体内容
 - **示例**：`{标题: 指针基础}` → `指针基础`
 
