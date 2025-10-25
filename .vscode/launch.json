@@ -9,6 +9,16 @@
       "args": [],
       "cwd": "${workspaceFolder}",
       "stopOnEntry": true
+    },
+    {
+      "name": "Debug Current File",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "cwd": "${fileDirname}",
+      "stopOnEntry": true,
+      "preLaunchTask": "build-current-file"
     }
   ]
 }

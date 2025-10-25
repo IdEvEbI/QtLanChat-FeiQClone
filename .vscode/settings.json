@@ -1,47 +1,31 @@
 {
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "files.encoding": "utf8",
-  "files.eol": "\n",
-  
-  // Markdown 配置
-  "[markdown]": {
-    "editor.wordWrap": "on",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.quickSuggestions": {
-      "comments": "off",
-      "strings": "off",
-      "other": "off"
-    }
-  },
-  
-  // C++ 配置
-  "[cpp]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true
-  },
-  
-  "[c]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true
-  },
-  
-  // 工具配置
-  "markdownlint.config": ".markdownlint.yaml",
-  "prettier.requireConfig": false,
-  "prettier.useEditorConfig": false,
-  
-  // 文件关联
-  "files.associations": {
-    "*.h": "cpp",
-    "*.hpp": "cpp",
-    "*.cpp": "cpp",
-    "*.cc": "cpp",
-    "*.cxx": "cpp"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": "explicit"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    },
+    "files.associations": {
+        "*.md": "markdown"
+    },
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ -std=c++17 -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.preserveFocus": false
 }

@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "davidanson.vscode-markdownlint",
     "anysphere.cpptools",
-    "ms-vscode.cmake-tools"
+    "ms-vscode.cmake-tools",
+    "formulahendry.code-runner"
   ]
 }

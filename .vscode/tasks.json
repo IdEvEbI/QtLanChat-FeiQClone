@@ -150,6 +150,27 @@
       },
       "problemMatcher": [],
       "detail": "Clean build directory"
+    },
+    {
+      "label": "build-current-file",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}",
+        "${file}"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Build current C++ file for debugging"
     }
   ]
 }
