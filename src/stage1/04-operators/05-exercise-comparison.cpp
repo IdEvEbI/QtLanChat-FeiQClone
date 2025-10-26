@@ -1,8 +1,9 @@
 #include <iostream>
 
 int main() {
-    int a = 15, b = 20;
-    
+    int a = 15;
+    int b = 20;
+
     std::cout << "=== 比较运算 ===" << std::endl;
     std::cout << "a = " << a << ", b = " << b << std::endl;
     

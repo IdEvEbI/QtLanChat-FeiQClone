@@ -2,9 +2,10 @@
 
 int main() {
     std::cout << "=== 综合练习：简单计算器 ===" << std::endl;
-    
-    int num1 = 15, num2 = 3;
-    
+
+    int num1 = 15;
+    int num2 = 3;
+
     // 算术运算
     int sum = num1 + num2;
     int product = num1 * num2;

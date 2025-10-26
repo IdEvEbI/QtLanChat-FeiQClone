@@ -127,7 +127,8 @@ C++ 提供了丰富的运算符类别：
 
 int main() {
     // 算术运算符
-    int a = 10, b = 3;
+    int a = 10;
+    int b = 3;
     std::cout << "=== 算术运算符 ===" << std::endl;
     std::cout << "a = " << a << ", b = " << b << std::endl;
     std::cout << "a + b = " << (a + b) << std::endl;
@@ -154,7 +155,8 @@ int main() {
 
     // 逻辑运算符
     std::cout << "\n=== 逻辑运算符 ===" << std::endl;
-    bool x = true, y = false;
+    bool x = true;
+    bool y = false;
     std::cout << "x = " << x << ", y = " << y << std::endl;
     std::cout << "x && y = " << (x && y) << std::endl;
     std::cout << "x || y = " << (x || y) << std::endl;
@@ -162,7 +164,8 @@ int main() {
 
     // 自增自减运算符
     std::cout << "\n=== 自增自减运算符 ===" << std::endl;
-    int d = 5, e = 5;
+    int d = 5;
+    int e = 5;
     std::cout << "d = " << d << ", e = " << e << std::endl;
     std::cout << "++d 后的值: " << (++d) << std::endl;  // 前置自增
     std::cout << "e++ 的值: " << (e++) << std::endl;    // 后置自增
@@ -394,7 +397,8 @@ int main() {
 #include <iostream>
 
 int main() {
-    int a = 25, b = 4;
+    int a = 25;
+    int b = 4;
 
     std::cout << "=== 算术运算 ===" << std::endl;
     std::cout << "a = " << a << ", b = " << b << std::endl;
@@ -477,7 +481,8 @@ int main() {
 #include <iostream>
 
 int main() {
-    int a = 15, b = 20;
+    int a = 15;
+    int b = 20;
 
     std::cout << "=== 比较运算 ===" << std::endl;
     std::cout << "a = " << a << ", b = " << b << std::endl;
@@ -545,7 +550,8 @@ int main() {
 int main() {
     std::cout << "=== 综合练习：简单计算器 ===" << std::endl;
 
-    int num1 = 15, num2 = 3;
+    int num1 = 15;
+    int num2 = 3;
 
     // 算术运算
     int sum = num1 + num2;
