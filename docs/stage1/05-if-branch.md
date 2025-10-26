@@ -248,7 +248,7 @@ int main() {
 
 ```cpp
 // 单分支
-if (temperature > 25) {
+if (temp > 25) {
     std::cout << "今天很热，建议少穿点" << std::endl;
 }
 
