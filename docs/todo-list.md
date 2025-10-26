@@ -36,27 +36,32 @@
 - [ ] 09-array-basics.md（数组基础 + C 风格数组）- 1.5h
 - [ ] 10-vector-stl.md（std::vector + 动态数组）- 1.5h
 - [ ] 11-string-advanced.md（字符串进阶 + 常用方法）- 1h
+- [ ] 11a-stl-containers.md（STL 容器大全 + map/set 选择指南）**新增** - 2h
+- [ ] 11b-stl-algorithms.md（STL 算法 + 迭代器使用）**新增** - 1.5h
 - [ ] 12-functions.md（函数基础 + 参数传递机制）- 2h
+- [ ] 12a-lambda.md（Lambda 表达式 + 函数式编程）**新增** - 1h
 - [ ] 13-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
 - [ ] 14-memory-management.md（RAII + 智能指针）- 2h
+- [ ] 15-exception-handling.md（异常处理 + 错误恢复）**新增** - 1.5h
 
 ### 自定义类型文档（0% 完成）
 
-- [ ] 15-struct.md（结构体基础 + 数据组织）**新增** - 1.5h
-- [ ] 16-enum.md（枚举类型 + 状态管理）**新增** - 1h
+- [ ] 16-struct.md（结构体基础 + 数据组织）- 1.5h
+- [ ] 17-enum.md（枚举类型 + 状态管理）- 1h
 
 ### 面向对象文档（0% 完成）
 
-- [ ] 17-classes-objects.md（类设计 + 对象生命周期）- 2h
-- [ ] 18-encapsulation.md（封装 + 接口设计）- 1.5h
-- [ ] 19-inheritance.md（继承 + 虚函数表）- 2h
-- [ ] 20-polymorphism.md（多态 + 动态绑定）- 2h
+- [ ] 18-classes-objects.md（类设计 + 对象生命周期）- 2h
+- [ ] 19-encapsulation.md（封装 + 接口设计）- 1.5h
+- [ ] 20-inheritance.md（继承 + 虚函数表）- 2h
+- [ ] 21-polymorphism.md（多态 + 动态绑定）- 2h
 
-### 综合实践（0% 完成）
+### 文件 I/O 和综合实践（0% 完成）
 
-- [ ] 21-oop-practice.md（OOP 综合练习）- 1.5h
-- [ ] 22-chat-system-design.md（系统设计 + 架构思维）- 2h
-- [ ] 23-practice-exercises.md（综合练习 + 项目实战）- 2h
+- [ ] 22-file-io.md（文件 I/O + 数据持久化）**新增最高优先级** - 1.5h
+- [ ] 23-oop-practice.md（OOP 综合练习）- 1.5h
+- [ ] 24-chat-system-design.md（系统设计 + 架构思维）- 2h
+- [ ] 25-practice-exercises.md（综合练习 + 项目实战）- 2h
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（0% 完成）
@@ -186,10 +191,11 @@
 
 ### ⏳ 待开始
 
-**新增核心文档**：0% 完成（预计 15.5h）
-**自定义类型文档**：0% 完成（预计 2.5h）**新增**
+**新增核心文档**：0% 完成（预计 24h）
+**STL 和现代 C++**：0% 完成（预计 6h）**新增**
+**自定义类型文档**：0% 完成（预计 2.5h）
 **面向对象文档**：0% 完成（预计 8h）
-**综合实践**：0% 完成（预计 6h）
+**文件 I/O 和综合实践**：0% 完成（预计 8h）**新增**
 **文档与代码开发**：0% 完成（预计 14h）
 **学习路径设计**：0% 完成（预计 8h）
 **开发环境配置**：0% 完成（预计 5h）
@@ -198,8 +204,8 @@
 ### 📈 时间规划
 
 **短期（1 周）**：完成阶段 1 核心文档（06-11）
-**中期（2 周）**：完成自定义类型（15-16）+ 面向对象（17-20）+ 综合实践（21-23）
-**长期（3 周）**：完成配套代码 + 质量保证 + v0.1 发布
+**中期（2 周）**：完成 STL 和现代 C++（11a-15）+ 自定义类型（16-17）+ 面向对象（18-21）
+**长期（3 周）**：完成文件 I/O（22）+ 综合实践（23-25）+ 配套代码 + 质量保证 + v0.1 发布
 
 ### 🎯 当前里程碑
 
@@ -223,14 +229,28 @@
 - ⏳ 13-pointers-references.md（指针和引用）
 - ⏳ 14-memory-management.md（内存管理）
 
-**里程碑 3**：自定义类型与面向对象（15-23）⏳ 0% 完成
+**里程碑 2.5**：STL 和现代 C++（11a-15）⏳ 0% 完成
 
-- ⏳ 15-struct.md（结构体）**新增**
-- ⏳ 16-enum.md（枚举）**新增**
-- ⏳ 17-classes-objects.md（类与对象）
-- ⏳ 18-encapsulation.md（封装）
-- ⏳ 19-inheritance.md（继承）
-- ⏳ 20-polymorphism.md（多态）
+- ⏳ 11a-stl-containers.md（STL 容器大全）**新增**
+- ⏳ 11b-stl-algorithms.md（STL 算法）**新增**
+- ⏳ 12a-lambda.md（Lambda 表达式）**新增**
+- ⏳ 15-exception-handling.md（异常处理）**新增**
+
+**里程碑 3**：自定义类型与面向对象（16-21）⏳ 0% 完成
+
+- ⏳ 16-struct.md（结构体）
+- ⏳ 17-enum.md（枚举）
+- ⏳ 18-classes-objects.md（类与对象）
+- ⏳ 19-encapsulation.md（封装）
+- ⏳ 20-inheritance.md（继承）
+- ⏳ 21-polymorphism.md（多态）
+
+**里程碑 4**：文件 I/O 和综合实践（22-25）⏳ 0% 完成
+
+- ⏳ 22-file-io.md（文件 I/O）**新增 - 最高优先级**
+- ⏳ 23-oop-practice.md（OOP 综合练习）
+- ⏳ 24-chat-system-design.md（系统设计）
+- ⏳ 25-practice-exercises.md（项目实战）
 
 ### ⚠️ 潜在风险
 
@@ -263,5 +283,7 @@
 ### 🎯 下一步目标
 
 **立即任务**：创建 06-while-loop.md（while 循环 + 重复控制）
-**本周目标**：完成里程碑 2（C++核心概念 04-14），补充数组知识
+**本周目标**：完成里程碑 2（C++核心概念 06-11）
+**中期目标**：完成 STL 和现代 C++（11a-15，6h）**新增**
+**重点文档**：22-file-io.md（文件 I/O，最高优先级）**新增**
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
