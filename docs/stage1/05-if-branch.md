@@ -450,7 +450,7 @@ int main() {
 
 int main() {
     int number;
-    
+
     std::cout << "请输入一个数字: ";
     std::cin >> number;
 
@@ -474,10 +474,12 @@ int main() {
 
 **要求**：
 
-- 定义两个数字和一个运算符
+- 提示用户输入第一个数字、运算符和第二个数字
+- 使用 `std::cin` 读取用户输入
 - 使用 if-else if-else 根据运算符执行不同运算
 - 支持 +、-、\*、/ 四种运算
 - 输出运算结果
+- 处理除零错误
 
 **参考答案**：
 
@@ -485,9 +487,18 @@ int main() {
 #include <iostream>
 
 int main() {
-    int num1 = 10;
-    int num2 = 3;
-    char operation = '+';
+    int num1;
+    int num2;
+    char operation;
+
+    std::cout << "请输入第一个数字: ";
+    std::cin >> num1;
+
+    std::cout << "请输入运算符 (+, -, *, /): ";
+    std::cin >> operation;
+
+    std::cout << "请输入第二个数字: ";
+    std::cin >> num2;
 
     std::cout << num1 << " " << operation << " " << num2 << " = ";
 
