@@ -36,6 +36,14 @@ int main() {
     std::cout << "x || y = " << (x || y) << std::endl;
     std::cout << "!x = " << (!x) << std::endl;
 
+    // 自增自减运算符
+    std::cout << "\n=== 自增自减运算符 ===" << std::endl;
+    int d = 5, e = 5;
+    std::cout << "d = " << d << ", e = " << e << std::endl;
+    std::cout << "++d 后的值: " << (++d) << std::endl;  // 前置自增
+    std::cout << "e++ 的值: " << (e++) << std::endl;    // 后置自增
+    std::cout << "e++ 后，e = " << e << std::endl;
+
     return 0;
 }
 
