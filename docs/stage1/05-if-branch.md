@@ -580,7 +580,7 @@ int main() {
 
 ### 5.2 多媒体学习
 
-- **视频资源**：[C++ 分支结构详解](https://www.youtube.com/watch?v=example)
+- **视频资源**：[C++ 分支结构详解](https://www.youtube.com/results?search_query=C%2B%2B+if+statements+tutorial)
 - **开发者资源**：[cppreference.com](https://en.cppreference.com/) - 权威参考
 
 ## 6. 课后作业及参考答案
