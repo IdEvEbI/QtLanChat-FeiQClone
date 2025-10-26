@@ -40,18 +40,23 @@
 - [ ] 13-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
 - [ ] 14-memory-management.md（RAII + 智能指针）- 2h
 
+### 自定义类型文档（0% 完成）
+
+- [ ] 15-struct.md（结构体基础 + 数据组织）**新增** - 1.5h
+- [ ] 16-enum.md（枚举类型 + 状态管理）**新增** - 1h
+
 ### 面向对象文档（0% 完成）
 
-- [ ] 15-classes-objects.md（类设计 + 对象生命周期）- 2h
-- [ ] 16-encapsulation.md（封装 + 接口设计）- 1.5h
-- [ ] 17-inheritance.md（继承 + 虚函数表）- 2h
-- [ ] 18-polymorphism.md（多态 + 动态绑定）- 2h
+- [ ] 17-classes-objects.md（类设计 + 对象生命周期）- 2h
+- [ ] 18-encapsulation.md（封装 + 接口设计）- 1.5h
+- [ ] 19-inheritance.md（继承 + 虚函数表）- 2h
+- [ ] 20-polymorphism.md（多态 + 动态绑定）- 2h
 
 ### 综合实践（0% 完成）
 
-- [ ] 19-oop-practice.md（OOP 综合练习）- 1.5h
-- [ ] 20-chat-system-design.md（系统设计 + 架构思维）- 2h
-- [ ] 21-practice-exercises.md（综合练习 + 项目实战）- 2h
+- [ ] 21-oop-practice.md（OOP 综合练习）- 1.5h
+- [ ] 22-chat-system-design.md（系统设计 + 架构思维）- 2h
+- [ ] 23-practice-exercises.md（综合练习 + 项目实战）- 2h
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（0% 完成）
@@ -181,8 +186,9 @@
 
 ### ⏳ 待开始
 
-**新增核心文档**：0% 完成（预计 7.5h）
-**面向对象文档**：0% 完成（预计 7.5h）
+**新增核心文档**：0% 完成（预计 15.5h）
+**自定义类型文档**：0% 完成（预计 2.5h）**新增**
+**面向对象文档**：0% 完成（预计 8h）
 **综合实践**：0% 完成（预计 6h）
 **文档与代码开发**：0% 完成（预计 14h）
 **学习路径设计**：0% 完成（预计 8h）
@@ -203,7 +209,7 @@
 - ✅ 02-variables-constants.md（100 分，733 行）
 - ✅ 03-data-types.md（100 分，970 行）
 
-**里程碑 2**：C++ 核心概念（04-14）🔄 25% 完成
+**里程碑 2**：C++ 核心概念（04-20）🔄 25% 完成
 
 - ✅ 04-operators.md（运算符，100 分）
 - ✅ 05-if-branch.md（if 分支，91 分）
@@ -216,6 +222,15 @@
 - ⏳ 12-functions.md（函数）
 - ⏳ 13-pointers-references.md（指针和引用）
 - ⏳ 14-memory-management.md（内存管理）
+
+**里程碑 3**：自定义类型与面向对象（15-23）⏳ 0% 完成
+
+- ⏳ 15-struct.md（结构体）**新增**
+- ⏳ 16-enum.md（枚举）**新增**
+- ⏳ 17-classes-objects.md（类与对象）
+- ⏳ 18-encapsulation.md（封装）
+- ⏳ 19-inheritance.md（继承）
+- ⏳ 20-polymorphism.md（多态）
 
 ### ⚠️ 潜在风险
 
