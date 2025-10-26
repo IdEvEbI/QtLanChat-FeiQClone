@@ -148,6 +148,7 @@ int main() {
 - **使用方法**：直接打开文件运行，无需手动创建
 
 > **运行提示**：具体的编译运行方法请参考 [C++ 简介和快速入门](./01-cpp-introduction.md) 中的 `2.2.3 编译运行` 部分
+> **完整代码**：所有配套源代码位于 `src/stage1/02-variables-constants/` 目录，包含基础示例、练习题和课后作业
 
 #### 2.2.3 运行预期结果
 
@@ -296,8 +297,8 @@ graph TD
 
 int main() {
     // 用户信息变量
-    std::string userName = "Alice";
-    int userAge = 25;
+    std::string userName = "小丽";
+    int userAge = 18;
     bool isOnline = true;
 
     // 系统配置常量
@@ -316,6 +317,9 @@ int main() {
     std::cout << "在线状态: " << isOnline << std::endl;
     std::cout << "服务器: " << SERVER_ADDRESS << ":" << DEFAULT_PORT << std::endl;
     std::cout << "消息: " << messageContent << std::endl;
+    std::cout << "消息长度: " << messageContent.length() << " 字符" << std::endl;
+    std::cout << "最大消息长度: " << MAX_MESSAGE_LENGTH << " 字符" << std::endl;
+    std::cout << "消息数量: " << messageCount << std::endl;
 
     return 0;
 }
@@ -344,13 +348,14 @@ int main() {
 **参考答案**：
 
 ```cpp
+// 练习 1：个人信息存储
 #include <iostream>
 #include <string>
 
 int main() {
     // 个人信息变量
-    std::string name = "李四";
-    int age = 22;
+    std::string name = "小美";
+    int age = 19;
     double height = 1.68;
 
     // 数学常量
@@ -368,6 +373,8 @@ int main() {
     return 0;
 }
 ```
+
+> **配套代码**：练习 1 的完整代码位于 `src/stage1/02-variables-constants/04-exercise-personal-info.cpp`
 
 #### 练习 2：变量操作
 
@@ -406,6 +413,8 @@ int main() {
 }
 ```
 
+> **配套代码**：练习 2 的完整代码位于 `src/stage1/02-variables-constants/05-exercise-math-calculator.cpp`
+
 #### 练习 3：变量命名规范
 
 **题目**：创建一个程序，使用规范的变量命名
@@ -425,7 +434,7 @@ int main() {
 
 int main() {
     // 使用规范的变量命名
-    std::string student_name = "王小明";
+    std::string student_name = "小明";
     int student_age = 20;
     double math_score = 85.5;
     double english_score = 78.0;
@@ -447,6 +456,8 @@ int main() {
     return 0;
 }
 ```
+
+> **配套代码**：练习 3 的完整代码位于 `src/stage1/02-variables-constants/06-exercise-naming-convention.cpp`
 
 #### 练习 4：常量使用
 
@@ -487,6 +498,8 @@ int main() {
     return 0;
 }
 ```
+
+> **配套代码**：练习 4 的完整代码位于 `src/stage1/02-variables-constants/07-exercise-constants.cpp`
 
 #### 练习 5：综合应用
 
@@ -533,6 +546,9 @@ int main() {
     return 0;
 }
 ```
+
+> **新知识点说明**：`std::setprecision` 是 C++ 中用于控制浮点数输出精度的函数。这里用于设置小数点后显示 2 位数字。这是格式化输出的基础功能，在后续的输入输出章节会详细讲解。
+> **配套代码**：练习 5 的完整代码位于 `src/stage1/02-variables-constants/08-exercise-calculator.cpp`
 
 ### 4.2 测试题
 
@@ -625,13 +641,12 @@ int main() {
 
 int main() {
     // 系统配置常量
-    const int MAX_STUDENTS = 100;
     const double PASSING_GRADE = 60.0;
     const std::string SCHOOL_NAME = "QtLanChat 学院";
 
     // 学生信息变量
-    std::string studentName = "王五";
-    int studentAge = 20;
+    std::string studentName = "小美";
+    int studentAge = 19;
     double mathScore = 85.5;
     double englishScore = 78.0;
     double averageScore = (mathScore + englishScore) / 2.0;
@@ -651,6 +666,8 @@ int main() {
     return 0;
 }
 ```
+
+> **配套代码**：课后作业的完整代码位于 `src/stage1/02-variables-constants/09-homework-student-system.cpp`
 
 **评分标准**：功能实现（40%）、代码质量（30%）、设计思路（30%）
 
