@@ -5,10 +5,10 @@
 > 责任人：IdevebI  
 > 首次创建：2025-10-23  
 > 最近更新：2025-10-23  
-> 版本：v1.5  
-> 变更影响：v1.5 基于实战优化新增代码示例规范、新知识点处理规则、练习设计要求，提升文档质量和学习效果
+> 版本：v1.6  
+> 变更影响：v1.6 基于 02-variables-constants.md 的优化，更新核心内容结构流程图，明确"先应用后原理"的教学顺序，增加命名原则和工作原理等可选章节
 
-![Version](https://img.shields.io/badge/Version-v1.5-blue) ![Status](https://img.shields.io/badge/Status-Active-green) ![Docs](https://img.shields.io/badge/Docs-Standard-orange)
+![Version](https://img.shields.io/badge/Version-v1.6-blue) ![Status](https://img.shields.io/badge/Status-Active-green) ![Docs](https://img.shields.io/badge/Docs-Standard-orange)
 
 ## 📋 文档流程概览
 
@@ -139,23 +139,48 @@ graph TD
 ```mermaid
 graph TD
     A[学习目标] --> B[核心内容]
+
+    subgraph "核心内容（先应用后原理）"
+        B1[2.1 概念理解]
+        B2[2.2 基础语法/知识认知]
+        B3[2.3 代码示例]
+        B4[2.4 命名原则 可选]
+        B5[2.5 关键特性与设计原理]
+        B6[2.6 工作原理 可选]
+    end
+
+    B --> B1
+    B1 --> B2
+    B2 --> B3
+    B3 --> B4
+    B3 --> B5
+    B5 --> B6
+
     B --> C[实践应用]
     C --> D[练习与测试]
+
+    subgraph "练习与测试"
+        D1[练习题]
+        D2[测试题]
+        D3[FAQ]
+    end
+
+    D --> D1
+    D --> D2
+    D --> D3
+
     D --> E[扩展阅读]
     E --> F[课后作业]
     F --> G[相关资源]
     G --> H[下一步学习]
 
-    B --> B1[概念理解]
-    B --> B2[代码示例]
-    B --> B3[原理解析可选]
-
-    D --> D1[练习题]
-    D --> D2[测试题]
-    D --> D3[FAQ]
-
     style A fill:#e1f5fe
-    style B fill:#fff3e0
+    style B1 fill:#fff3e0
+    style B2 fill:#fff3e0
+    style B3 fill:#fff3e0
+    style B4 fill:#f5f5f5
+    style B5 fill:#fff3e0
+    style B6 fill:#f5f5f5
     style D fill:#e8f5e8
     style F fill:#fce4ec
 ```
