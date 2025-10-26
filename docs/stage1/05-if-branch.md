@@ -403,7 +403,8 @@ int main() {
 
 **要求**：
 
-- 定义温度变量
+- 提示用户输入温度
+- 使用 `std::cin` 读取用户输入
 - 使用 if-else if-else 语句
 - 30 度以上输出"炎热"，20-30 度输出"温暖"，10-20 度输出"凉爽"，10 度以下输出"寒冷"
 - 输出对应建议
@@ -414,7 +415,10 @@ int main() {
 #include <iostream>
 
 int main() {
-    int temp = 25;
+    int temp;
+
+    std::cout << "请输入温度: ";
+    std::cin >> temp;
 
     if (temp >= 30) {
         std::cout << "炎热，注意防暑" << std::endl;

@@ -1,7 +1,10 @@
 #include <iostream>
 
 int main() {
-    int temp = 25;
+    int temp;
+
+    std::cout << "请输入温度: ";
+    std::cin >> temp;
 
     if (temp >= 30) {
         std::cout << "炎热，注意防暑" << std::endl;
