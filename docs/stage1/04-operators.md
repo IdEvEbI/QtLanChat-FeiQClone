@@ -332,7 +332,6 @@ int z = x++ + 5;                // 先算x++（使用6，x变为7），再算 6+
 ```cpp
 // 项目中的实际应用示例
 #include <iostream>
-#include <string>
 
 int main() {
     // 用户信息
