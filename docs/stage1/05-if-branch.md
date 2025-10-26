@@ -437,8 +437,9 @@ int main() {
 
 **要求**：
 
-- 定义数字变量
-- 使用 if-else if-else 语句
+- 提示用户输入数字
+- 使用 `std::cin` 读取用户输入
+- 使用 if-else if-else 语句判断
 - 正数输出"正数"，负数输出"负数"，零输出"零"
 - 输出判断结果
 
@@ -448,7 +449,10 @@ int main() {
 #include <iostream>
 
 int main() {
-    int number = -5;
+    int number;
+    
+    std::cout << "请输入一个数字: ";
+    std::cin >> number;
 
     if (number > 0) {
         std::cout << "正数" << std::endl;

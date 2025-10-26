@@ -1,7 +1,10 @@
 #include <iostream>
 
 int main() {
-    int number = -5;
+    int number;
+    
+    std::cout << "请输入一个数字: ";
+    std::cin >> number;
 
     if (number > 0) {
         std::cout << "正数" << std::endl;
