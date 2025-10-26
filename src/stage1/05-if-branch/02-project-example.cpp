@@ -3,9 +3,17 @@
 
 int main() {
     std::cout << "=== QtLanChat 权限控制 ===" << std::endl;
+    std::cout << "请输入年龄: ";
 
-    int userAge = 20;
-    bool isVip = true;
+    int userAge;
+    std::cin >> userAge;  // 用户输入年龄
+
+    std::cout << "请输入VIP状态（1=是，0=否）: ";
+
+    int vipStatus;
+    std::cin >> vipStatus;
+    bool isVip = (vipStatus == 1);
+
     int messageCount = 5;
 
     // 年龄判断

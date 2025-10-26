@@ -337,9 +337,17 @@ if (score >= 90) {
 
 int main() {
     std::cout << "=== QtLanChat 权限控制 ===" << std::endl;
+    std::cout << "请输入年龄: ";
 
-    int userAge = 20;
-    bool isVip = true;
+    int userAge;
+    std::cin >> userAge;  // 用户输入年龄
+
+    std::cout << "请输入VIP状态（1=是，0=否）: ";
+
+    int vipStatus;
+    std::cin >> vipStatus;
+    bool isVip = (vipStatus == 1);
+
     int messageCount = 5;
 
     // 年龄判断
@@ -370,6 +378,13 @@ int main() {
 ```
 
 > **配套代码**：实际应用示例的完整代码位于 `src/stage1/05-if-branch/02-project-example.cpp`
+>
+> **📌 新知识点 - 用户输入（`std::cin`）**：
+>
+> - **`std::cin >> userAge;`**：从键盘读取用户的输入，赋值给变量
+> - **类比**：就像在手机上输入密码，">>" 就像数据流向，从键盘（cin）流向变量
+> - **输入变量**：需要先定义变量（如 `int userAge;`），然后才能读取输入
+> - **使用场景**：让程序能够根据用户的输入做出不同的判断，增加交互性
 
 ### 3.3 设计思路
 
