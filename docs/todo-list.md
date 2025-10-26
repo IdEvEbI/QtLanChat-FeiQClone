@@ -20,31 +20,32 @@
 
 ## 🎯 阶段 1：C++ 基础学习文档完善（进行中 🔄）
 
-### 文档结构优化（67% 完成）
+### 文档结构优化（100% 完成）
 
 - [x] 重构 01-cpp-introduction.md（添加技能树、学习路径）- 1h
 - [x] 完善 02-variables-constants.md（知其所以然、练习题）- 1h
-- [ ] 完善 03-data-types.md（深度解析、实践应用）- 1h
+- [x] 完善 03-data-types.md（深度解析、实践应用）- 1h
 
 ### 新增核心文档（0% 完成）
 
-- [ ] 04-control-structures.md（控制流 + 算法思维）- 1.5h
-- [ ] 05-functions.md（函数基础 + 参数传递机制）- 2h
-- [ ] 06-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
-- [ ] 07-memory-management.md（RAII + 智能指针）- 2h
+- [ ] 04-operators.md（运算符 + 表达式求值）- 1.5h
+- [ ] 05-control-structures.md（控制流 + 算法思维）- 1.5h
+- [ ] 06-functions.md（函数基础 + 参数传递机制）- 2h
+- [ ] 07-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
+- [ ] 08-memory-management.md（RAII + 智能指针）- 2h
 
 ### 面向对象文档（0% 完成）
 
-- [ ] 08-classes-objects.md（类设计 + 对象生命周期）- 2h
-- [ ] 09-encapsulation.md（封装 + 接口设计）- 1.5h
-- [ ] 10-inheritance.md（继承 + 虚函数表）- 2h
-- [ ] 11-polymorphism.md（多态 + 动态绑定）- 2h
+- [ ] 09-classes-objects.md（类设计 + 对象生命周期）- 2h
+- [ ] 10-encapsulation.md（封装 + 接口设计）- 1.5h
+- [ ] 11-inheritance.md（继承 + 虚函数表）- 2h
+- [ ] 12-polymorphism.md（多态 + 动态绑定）- 2h
 
 ### 综合实践（0% 完成）
 
-- [ ] 12-oop-practice.md（OOP 综合练习）- 1.5h
-- [ ] 13-chat-system-design.md（系统设计 + 架构思维）- 2h
-- [ ] 14-practice-exercises.md（综合练习 + 项目实战）- 2h
+- [ ] 13-oop-practice.md（OOP 综合练习）- 1.5h
+- [ ] 14-chat-system-design.md（系统设计 + 架构思维）- 2h
+- [ ] 15-practice-exercises.md（综合练习 + 项目实战）- 2h
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（0% 完成）
@@ -137,25 +138,30 @@
 - ✅ 建立技能树可视化框架
 - ✅ 设计难度分级
 
-**阶段 1 核心文档**：33% 完成
+**阶段 1 核心文档**：50% 完成
 
-- ✅ 01-cpp-introduction.md（100 分质量，560 行，5 题练习）
-- ✅ 02-variables-constants.md（100 分质量，722 行，5 题练习）
-- ✅ 配套代码文件（src/stage1/01-cpp-introduction/ 和 src/stage1/02-variables-constants/）
+- ✅ 01-cpp-introduction.md（100 分，573 行，5 题练习）
+- ✅ 02-variables-constants.md（100 分，733 行，5 题练习）
+- ✅ 03-data-types.md（100 分，970 行，5 题练习）
+- ✅ 配套代码文件（src/stage1/01-cpp-introduction/、02-variables-constants/、03-data-types/）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
 
-**阶段 1 文档结构优化**：33% 完成
+**阶段 1 文档结构优化**：100% 完成
 
-- ✅ 重构 01-cpp-introduction.md（100 分质量，560 行，5 题练习）
-- ✅ 完善 02-variables-constants.md（100 分质量，722 行，5 题练习）
-- 🔄 完善 03-data-types.md（进行中）
-- ⏳ 04-control-structures.md（待创建）
-- ⏳ 05-functions.md（待创建）
-- ⏳ 06-pointers-references.md（待创建）
+- ✅ 重构 01-cpp-introduction.md（100 分，573 行，5 题练习）
+- ✅ 完善 02-variables-constants.md（100 分，733 行，5 题练习）
+- ✅ 完善 03-data-types.md（100 分，970 行，5 题练习）
+
+**新增核心文档**：待开始
+
+- ⏳ 04-operators.md（运算符 + 表达式求值）
+- ⏳ 05-control-structures.md（控制流 + 算法思维）
+- ⏳ 06-functions.md（函数基础 + 参数传递机制）
+- ⏳ 07-pointers-references.md（内存模型 + 指针原理）
 
 ### ⏳ 待开始
 
@@ -175,18 +181,19 @@
 
 ### 🎯 当前里程碑
 
-**里程碑 1**：C++ 基础教程（01-03）🔄 67% 完成
+**里程碑 1**：C++ 基础教程（01-03）✅ 100% 完成
 
-- ✅ 01-cpp-introduction.md（标杆级质量）
-- ✅ 02-variables-constants.md（标杆级质量）
-- 🔄 03-data-types.md（进行中）
+- ✅ 01-cpp-introduction.md（100 分，573 行）
+- ✅ 02-variables-constants.md（100 分，733 行）
+- ✅ 03-data-types.md（100 分，970 行）
 
-**里程碑 2**：C++ 核心概念（04-07）⏳ 0% 完成
+**里程碑 2**：C++ 核心概念（04-08）⏳ 0% 完成
 
-- ⏳ 04-control-structures.md
-- ⏳ 05-functions.md
-- ⏳ 06-pointers-references.md
-- ⏳ 07-memory-management.md
+- ⏳ 04-operators.md（运算符）
+- ⏳ 05-control-structures.md（控制流）
+- ⏳ 06-functions.md（函数）
+- ⏳ 07-pointers-references.md（指针和引用）
+- ⏳ 08-memory-management.md（内存管理）
 
 ### ⚠️ 潜在风险
 
@@ -204,16 +211,17 @@
 
 ### 📊 文档质量标准达成
 
-- ✅ **01-cpp-introduction.md**：100/100 分（标杆级）
-- ✅ **02-variables-constants.md**：100/100 分（标杆级）
-- ✅ **练习题数量**：5 题（符合初级标准）
+- ✅ **01-cpp-introduction.md**：100/100 分（标杆级，573 行）
+- ✅ **02-variables-constants.md**：100/100 分（标杆级，733 行）
+- ✅ **03-data-types.md**：100/100 分（标杆级，970 行）
+- ✅ **练习题数量**：每文档 5 题（符合标准）
 - ✅ **技能树可视化**：完整实现
 - ✅ **学习路径设计**：清晰明确
-- ✅ **配套代码**：可运行示例
+- ✅ **配套代码**：完整可运行示例
 - ✅ **远程备份**：feature/stage1-cpp-basics 分支
 
 ### 🎯 下一步目标
 
-**立即任务**：完善 03-data-types.md（深度解析、实践应用）
-**本周目标**：完成里程碑 1（C++基础教程 01-03）
+**立即任务**：创建 04-operators.md（运算符 + 表达式求值）
+**本周目标**：完成里程碑 2（C++核心概念 04-08）
 **质量目标**：保持 100 分标准，建立文档质量标杆
