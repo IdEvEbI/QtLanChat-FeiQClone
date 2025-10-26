@@ -230,6 +230,21 @@ std::string name = "张三";          // 字符串型，存储姓名
 - **布尔类型**：`bool` 只有 `true` 和 `false` 两个值，适合逻辑判断。就像开关只有开和关
 - **字符串类型**：`std::string` 是现代 C++ 推荐的字符串类型，功能强大且安全
 
+**浮点数输出格式说明**：
+
+```cpp
+std::cout << std::fixed << std::setprecision(2);
+std::cout << "价格: " << price << std::endl;
+std::cout << "圆周率: " << pi << std::endl;
+std::cout << "精确值: " << precise << std::endl;
+```
+
+> **重要提示**：
+>
+> 1. **`std::fixed` 和 `std::setprecision(2)`**：用于控制浮点数输出格式，设置小数点后显示 2 位数字
+> 2. **存储精度 vs 显示精度**：虽然 `double` 和 `long double` 内存中存储了更多小数位（如 `pi = 3.141592653589793` 和 `precise = 3.141592653589793238L`），但由于设置了 `setprecision(2)`，显示时只显示 2 位小数（3.14）
+> 3. **类比说明**：就像用尺子测量时选择了精确到厘米还是毫米，虽然实际值更精确，但显示时只显示所需的精度
+
 **sizeof() 操作符说明**：
 
 ```cpp
@@ -513,6 +528,7 @@ int main() {
 ```
 
 > **新知识点说明**：**时间戳**是计算机中表示时间的一种方式，通常是从 1970 年 1 月 1 日 00:00:00 UTC 开始到现在的秒数（或毫秒数）。就像给每个时刻贴上一个数字标签，方便计算机存储和比较时间。在聊天系统中，时间戳用于记录消息的发送时间，确保消息按时间顺序排列。这里使用 `long long` 类型是因为时间戳是一个很大的数字，需要足够的存储空间。
+> **配套代码**：实际应用示例的完整代码位于 `src/stage1/03-data-types/02-project-example.cpp`
 
 ### 3.3 设计思路
 
@@ -572,7 +588,7 @@ int main() {
 > **新知识点说明**：`INT_MIN` 和 `INT_MAX` 是 C++ 标准库中定义的常量，用于表示 `int` 类型的最小值和最大值。就像温度计的刻度范围，告诉你这个类型能存储的数值范围。这些常量定义在 `<climits>` 头文件中，是 C++ 标准库提供的便利工具，避免手动计算数值范围。
 > **类比教学**：就像汽车的速度表，`INT_MIN` 是最低速度，`INT_MAX` 是最高速度，告诉你这个"容器"能装多少"东西"。
 >
-> **配套代码**：练习 1 的完整代码位于 `src/stage1/03-data-types/04-exercise-type-exploration.cpp`
+> **配套代码**：练习 1 的完整代码位于 `src/stage1/03-data-types/03-exercise-type-exploration.cpp`
 
 #### 练习 2：类型转换
 
@@ -614,7 +630,7 @@ int main() {
 }
 ```
 
-> **配套代码**：练习 2 的完整代码位于 `src/stage1/03-data-types/05-exercise-type-conversion.cpp`
+> **配套代码**：练习 2 的完整代码位于 `src/stage1/03-data-types/04-exercise-type-conversion.cpp`
 
 #### 练习 3：auto 关键字
 
@@ -671,7 +687,7 @@ int main() {
 }
 ```
 
-> **配套代码**：练习 3 的完整代码位于 `src/stage1/03-data-types/06-exercise-auto-keyword.cpp`
+> **配套代码**：练习 3 的完整代码位于 `src/stage1/03-data-types/05-exercise-auto-keyword.cpp`
 
 #### 练习 4：字符串处理
 
@@ -707,7 +723,7 @@ int main() {
 ```
 
 > **新知识点说明**：字符串拼接使用 `+` 操作符，就像把两个文字卡片连接在一起。`std::string` 支持直接用 `+` 连接多个字符串，这是 C++ 字符串类型的重要特性。
-> **配套代码**：练习 4 的完整代码位于 `src/stage1/03-data-types/07-exercise-string-handling.cpp`
+> **配套代码**：练习 4 的完整代码位于 `src/stage1/03-data-types/06-exercise-string-handling.cpp`
 
 #### 练习 5：综合应用
 
@@ -754,7 +770,7 @@ int main() {
 }
 ```
 
-> **配套代码**：练习 5 的完整代码位于 `src/stage1/03-data-types/08-exercise-comprehensive.cpp`
+> **配套代码**：练习 5 的完整代码位于 `src/stage1/03-data-types/07-exercise-comprehensive.cpp`
 
 ### 4.2 测试题
 
@@ -897,7 +913,7 @@ int main() {
 }
 ```
 
-> **配套代码**：课后作业的完整代码位于 `src/stage1/03-data-types/09-homework-type-demo.cpp`
+> **配套代码**：课后作业的完整代码位于 `src/stage1/03-data-types/08-homework-type-demo.cpp`
 
 **评分标准**：功能实现（40%）、代码质量（30%）、设计思路（30%）
 
