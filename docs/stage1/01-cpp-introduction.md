@@ -106,7 +106,7 @@ int main() {
 
 项目提供了配套的源代码文件：
 
-- **文件位置**：`src/stage1/01-cpp-introduction/01-hello.cpp`
+- **文件位置**：`src/stage1/01-cpp-introduction/01-hello-world.cpp`
 - **文件内容**：与上面示例完全一致的 Hello World 程序
 - **使用方法**：直接打开文件运行，无需手动创建
 
@@ -125,7 +125,7 @@ g++ -std=c++17 -o hello 01-hello.cpp && ./hello
 **方法 2：使用 VSCode**
 
 1. **安装扩展**：安装 "Code Runner" 扩展（`formulahendry.code-runner`）
-2. **使用项目代码**：打开 `src/stage1/01-cpp-introduction/01-hello.cpp` 文件
+2. **使用项目代码**：打开 `src/stage1/01-cpp-introduction/01-hello-world.cpp` 文件
 3. **运行程序**：
    - **一键运行**：按 `Ctrl+Alt+N` 或点击右上角 ▶️ 按钮
    - **调试运行**：按 `F5` 键进行调试
@@ -173,6 +173,8 @@ int main() {
 ```
 
 > **性能提示**：`\n` 比 `std::endl` 性能更好，因为 `std::endl` 会强制刷新缓冲区。就像 `\n` 只是换行，而 `std::endl` 既要换行还要立即把内容"推"到屏幕上
+>
+> **配套代码**：优化版本代码位于 `src/stage1/01-cpp-introduction/03-hello-optimized.cpp`
 
 ### 2.4 原理解析（可选）
 
@@ -241,6 +243,8 @@ int main() {
     return 0;
 }
 ```
+
+> **配套代码**：项目应用示例位于 `src/stage1/01-cpp-introduction/04-project-welcome.cpp`
 
 **Qt 应用示例**：
 
@@ -559,3 +563,7 @@ graph TD
 > - **<50%**：建议复习基础概念，重新阅读文档核心内容
 > - **50-80%**：继续学习，完成练习题巩固理解
 > - **>80%**：可以进入下一阶段学习，开始变量和常量学习
+
+---
+
+> **配套资源**：完整的源代码示例和练习题位于 `src/stage1/01-cpp-introduction/` 目录，包含 10 个 C++ 文件和详细的使用说明
