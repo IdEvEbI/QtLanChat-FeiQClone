@@ -1,6 +1,5 @@
 // 项目中的实际应用示例
 #include <iostream>
-#include <string>
 
 int main() {
     // 用户信息
