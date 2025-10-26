@@ -172,8 +172,8 @@ if (分数 >= 90) {
 int main() {
     // 单分支 - if
     std::cout << "=== 单分支 if ===" << std::endl;
-    int temperature = 30;
-    if (temperature > 25) {
+    int temp = 30;
+    if (temp > 25) {
         std::cout << "今天很热，建议少穿点" << std::endl;
     }
 
