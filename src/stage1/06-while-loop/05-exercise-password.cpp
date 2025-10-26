@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 
 int main() {
-    int correctPassword = 123456;
-    int userPassword;
+    // 设置密码（实际项目中应加密存储）
+    std::string correctPassword = "Hello2025~";
+    std::string userPassword;
     int attempts = 0;
     int maxAttempts = 3;
 

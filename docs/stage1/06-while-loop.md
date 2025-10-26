@@ -127,7 +127,7 @@ int main() {
     int number;
     std::cout << "请输入一个正数（输入0退出）: ";
     std::cin >> number;
-    
+
     while (number != 0) {
         std::cout << "你输入的数字是: " << number << std::endl;
         std::cout << "请输入下一个数字（输入0退出）: ";
@@ -216,7 +216,7 @@ while (count <= 5) {
 - **条件检查**：`while (count <= 5)` 检查 count 是否小于等于 5
 - **循环体**：大括号内的代码会被重复执行
 - **条件更新**：`count++` 每执行一次循环，count 就加 1
-- **类比**：就像数数，从1数到5，每数一次就检查是否数完了
+- **类比**：就像数数，从 1 数到 5，每数一次就检查是否数完了
 
 ```cpp
 // 用户输入循环
@@ -231,7 +231,7 @@ while (number != 0) {
 
 - **用户控制**：用户输入 0 退出循环
 - **持续输入**：在循环体内读取新的输入
-- **类比**：就像自助取餐，不断拿食物，直到说"不要了"（输入0）才停止
+- **类比**：就像自助取餐，不断拿食物，直到说"不要了"（输入 0）才停止
 
 ```cpp
 // 求和循环
@@ -299,9 +299,9 @@ while (num <= 10) {
 
 int main() {
     std::cout << "=== QtLanChat 菜单系统 ===" << std::endl;
-    
+
     int choice = -1;  // 初始化选择
-    
+
     while (choice != 0) {
         // 显示菜单
         std::cout << "\n--- 主菜单 ---" << std::endl;
@@ -310,9 +310,9 @@ int main() {
         std::cout << "3. 用户设置" << std::endl;
         std::cout << "0. 退出程序" << std::endl;
         std::cout << "请选择: ";
-        
+
         std::cin >> choice;
-        
+
         if (choice == 1) {
             std::cout << ">>> 发送消息功能" << std::endl;
         } else if (choice == 2) {
@@ -325,9 +325,9 @@ int main() {
             std::cout << ">>> 无效选择，请重试" << std::endl;
         }
     }
-    
+
     std::cout << "程序已退出，再见！" << std::endl;
-    
+
     return 0;
 }
 ```
@@ -425,7 +425,7 @@ int main() {
 
 **要求**：
 
-- 设置一个正确密码（如 123456）
+- 设置一个正确密码（如 "Hello2025~"）
 - 提示用户输入密码
 - 使用 `std::cin` 读取用户输入
 - 如果密码错误，要求重新输入
@@ -437,10 +437,12 @@ int main() {
 
 ```cpp
 #include <iostream>
+#include <string>
 
 int main() {
-    int correctPassword = 123456;
-    int userPassword;
+    // 设置密码（实际项目中应加密存储）
+    std::string correctPassword = "Hello2025~";
+    std::string userPassword;
     int attempts = 0;
     int maxAttempts = 3;
 
@@ -467,6 +469,17 @@ int main() {
 }
 ```
 
+> **💡 密码设置小技巧**：
+>
+> - **强密码要素**：包含大小写字母、数字、特殊字符，长度至少 8 位
+>   - ✅ 好的密码：`Hello2025~`（包含大小写、数字、特殊字符）
+>   - ❌ 弱密码：`123456`、`password`、`abc`
+> - **密码强度**：密码越复杂，越难被破解。就像保险箱的密码锁，数字越多越安全
+> - **实际项目**：真实的密码验证系统会：
+>   - 加密存储密码（使用哈希算法如 SHA-256）
+>   - 支持密码找回机制
+>   - 防止暴力破解（限制尝试次数或添加验证码）
+>
 > **配套代码**：练习 3 的完整代码位于 `src/stage1/06-while-loop/05-exercise-password.cpp`
 
 ### 4.2 测试题（可选）
@@ -555,23 +568,23 @@ int main() {
 
 int main() {
     std::cout << "=== 简单计算器循环程序 ===" << std::endl;
-    
+
     int choice = 1;
     int num1, num2;
     char operation;
-    
+
     while (choice == 1) {
         std::cout << "\n请输入第一个数字: ";
         std::cin >> num1;
-        
+
         std::cout << "请输入运算符 (+, -, *, /): ";
         std::cin >> operation;
-        
+
         std::cout << "请输入第二个数字: ";
         std::cin >> num2;
-        
+
         std::cout << num1 << " " << operation << " " << num2 << " = ";
-        
+
         if (operation == '+') {
             std::cout << (num1 + num2) << std::endl;
         } else if (operation == '-') {
@@ -587,13 +600,13 @@ int main() {
         } else {
             std::cout << "不支持的运算符！" << std::endl;
         }
-        
+
         std::cout << "\n继续计算（输入1）还是退出（输入0）? ";
         std::cin >> choice;
     }
-    
+
     std::cout << "程序已退出，再见！" << std::endl;
-    
+
     return 0;
 }
 ```
