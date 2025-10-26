@@ -32,7 +32,7 @@
 - [x] 05-if-branch.md（if 分支 + 条件判断）- 1h
 - [x] 06-while-loop.md（while 循环 + 重复控制）- 1h
 - [x] 07-for-loop.md（for 循环 + 嵌套循环）- 1.5h
-- [ ] 08-switch.md（switch 分支 + break 应用）- 1h
+- [x] 08-switch.md（switch 分支 + break 应用）- 1h
 - [ ] 09-array-basics.md（数组基础 + C 风格数组）- 1.5h
 - [ ] 10-vector-stl.md（std::vector + 动态数组）- 1.5h
 - [ ] 11-string-advanced.md（字符串进阶 + 常用方法）- 1h
