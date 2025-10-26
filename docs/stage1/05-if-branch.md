@@ -598,7 +598,8 @@ int main() {
 
 **要求**：
 
-- 定义学生的三门科目成绩
+- 提示用户输入三门科目成绩（数学、英语、语文）
+- 使用 `std::cin` 读取用户输入
 - 计算平均分
 - 使用 if-else if-else 根据平均分评定等级：90-100 为优秀，80-89 为良好，60-79 为及格，60 以下为不及格
 - 输出所有科目成绩、平均分和等级
@@ -613,11 +614,20 @@ int main() {
 int main() {
     std::cout << "=== 学生等级评定系统 ===" << std::endl;
 
-    int math = 85;
-    int english = 78;
-    int chinese = 92;
+    int math;
+    int english;
+    int chinese;
 
-    std::cout << "数学: " << math << " 分" << std::endl;
+    std::cout << "请输入数学成绩: ";
+    std::cin >> math;
+
+    std::cout << "请输入英语成绩: ";
+    std::cin >> english;
+
+    std::cout << "请输入语文成绩: ";
+    std::cin >> chinese;
+
+    std::cout << "\n数学: " << math << " 分" << std::endl;
     std::cout << "英语: " << english << " 分" << std::endl;
     std::cout << "语文: " << chinese << " 分" << std::endl;
 
