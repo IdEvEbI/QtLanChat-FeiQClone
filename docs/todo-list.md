@@ -26,29 +26,32 @@
 - [x] 完善 02-variables-constants.md（知其所以然、练习题）- 1h
 - [x] 完善 03-data-types.md（深度解析、实践应用）- 1h
 
-### 新增核心文档（20% 完成）
+### 新增核心文档（25% 完成）
 
 - [x] 04-operators.md（运算符 + 表达式求值）- 1.5h
-- [ ] 05-if-branch.md（if 分支 + 条件判断）- 1h
+- [x] 05-if-branch.md（if 分支 + 条件判断）- 1h
 - [ ] 06-while-loop.md（while 循环 + 重复控制）- 1h
 - [ ] 07-for-loop.md（for 循环 + 嵌套循环）- 1.5h
 - [ ] 08-switch.md（switch 分支 + break 应用）- 1h
-- [ ] 09-functions.md（函数基础 + 参数传递机制）- 2h
-- [ ] 10-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
-- [ ] 11-memory-management.md（RAII + 智能指针）- 2h
+- [ ] 09-array-basics.md（数组基础 + C 风格数组）- 1.5h
+- [ ] 10-vector-stl.md（std::vector + 动态数组）- 1.5h
+- [ ] 11-string-advanced.md（字符串进阶 + 常用方法）- 1h
+- [ ] 12-functions.md（函数基础 + 参数传递机制）- 2h
+- [ ] 13-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
+- [ ] 14-memory-management.md（RAII + 智能指针）- 2h
 
 ### 面向对象文档（0% 完成）
 
-- [ ] 12-classes-objects.md（类设计 + 对象生命周期）- 2h
-- [ ] 13-encapsulation.md（封装 + 接口设计）- 1.5h
-- [ ] 14-inheritance.md（继承 + 虚函数表）- 2h
-- [ ] 15-polymorphism.md（多态 + 动态绑定）- 2h
+- [ ] 15-classes-objects.md（类设计 + 对象生命周期）- 2h
+- [ ] 16-encapsulation.md（封装 + 接口设计）- 1.5h
+- [ ] 17-inheritance.md（继承 + 虚函数表）- 2h
+- [ ] 18-polymorphism.md（多态 + 动态绑定）- 2h
 
 ### 综合实践（0% 完成）
 
-- [ ] 16-oop-practice.md（OOP 综合练习）- 1.5h
-- [ ] 17-chat-system-design.md（系统设计 + 架构思维）- 2h
-- [ ] 18-practice-exercises.md（综合练习 + 项目实战）- 2h
+- [ ] 19-oop-practice.md（OOP 综合练习）- 1.5h
+- [ ] 20-chat-system-design.md（系统设计 + 架构思维）- 2h
+- [ ] 21-practice-exercises.md（综合练习 + 项目实战）- 2h
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（0% 完成）
@@ -141,15 +144,17 @@
 - ✅ 建立技能树可视化框架
 - ✅ 设计难度分级
 
-**阶段 1 核心文档**：60% 完成
+**阶段 1 核心文档**：70% 完成
 
 - ✅ 01-cpp-introduction.md（100 分，573 行，5 题练习）
 - ✅ 02-variables-constants.md（100 分，733 行，5 题练习）
 - ✅ 03-data-types.md（100 分，970 行，5 题练习）
 - ✅ 04-operators.md（100 分，743 行，5 题练习）
-- ✅ 配套代码文件（src/stage1/01-cpp-introduction/、02-variables-constants/、03-data-types/）
+- ✅ 05-if-branch.md（91 分，711 行，3 题练习）
+- ✅ 配套代码文件（src/stage1/01-05/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**新增**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -160,15 +165,19 @@
 - ✅ 完善 02-variables-constants.md（100 分，733 行，5 题练习）
 - ✅ 完善 03-data-types.md（100 分，970 行，5 题练习）
 
-**新增核心文档**：待细化
+**新增核心文档**：20% 完成（已补充缺失知识点）
 
 - ✅ 04-operators.md（运算符 + 表达式求值，743 行，5 题练习）
-- ⏳ 05-if-branch.md（if 分支 + 条件判断）
+- ✅ 05-if-branch.md（if 分支 + 条件判断，711 行，3 题练习）
 - ⏳ 06-while-loop.md（while 循环 + 重复控制）
 - ⏳ 07-for-loop.md（for 循环 + 嵌套循环）
 - ⏳ 08-switch.md（switch 分支 + break 应用）
-- ⏳ 09-functions.md（函数基础 + 参数传递机制）
-- ⏳ 10-pointers-references.md（内存模型 + 指针原理）
+- ⏳ 09-array-basics.md（数组基础 + C 风格数组）**新增**
+- ⏳ 10-vector-stl.md（std::vector + 动态数组）**新增**
+- ⏳ 11-string-advanced.md（字符串进阶 + 常用方法）**新增**
+- ⏳ 12-functions.md（函数基础 + 参数传递机制）
+- ⏳ 13-pointers-references.md（内存模型 + 指针原理）
+- ⏳ 14-memory-management.md（RAII + 智能指针）
 
 ### ⏳ 待开始
 
@@ -194,13 +203,19 @@
 - ✅ 02-variables-constants.md（100 分，733 行）
 - ✅ 03-data-types.md（100 分，970 行）
 
-**里程碑 2**：C++ 核心概念（04-08）🔄 20% 完成
+**里程碑 2**：C++ 核心概念（04-14）🔄 25% 完成
 
 - ✅ 04-operators.md（运算符，100 分）
-- ⏳ 05-control-structures.md（控制流）
-- ⏳ 06-functions.md（函数）
-- ⏳ 07-pointers-references.md（指针和引用）
-- ⏳ 08-memory-management.md（内存管理）
+- ✅ 05-if-branch.md（if 分支，91 分）
+- ⏳ 06-while-loop.md（while 循环）
+- ⏳ 07-for-loop.md（for 循环）
+- ⏳ 08-switch.md（switch 分支）
+- ⏳ 09-array-basics.md（数组基础）**新增**
+- ⏳ 10-vector-stl.md（std::vector）**新增**
+- ⏳ 11-string-advanced.md（字符串进阶）**新增**
+- ⏳ 12-functions.md（函数）
+- ⏳ 13-pointers-references.md（指针和引用）
+- ⏳ 14-memory-management.md（内存管理）
 
 ### ⚠️ 潜在风险
 
@@ -222,14 +237,16 @@
 - ✅ **02-variables-constants.md**：100/100 分（标杆级，733 行）
 - ✅ **03-data-types.md**：100/100 分（标杆级，970 行）
 - ✅ **04-operators.md**：100/100 分（标杆级，743 行）
+- ✅ **05-if-branch.md**：91/100 分（优秀，711 行）
 - ✅ **练习题数量**：每文档 5 题（符合标准）
 - ✅ **技能树可视化**：完整实现
-- ✅ **学习路径设计**：清晰明确
+- ✅ **技能树文档**：知识点完整记录 **新增**
+- ✅ **学习路径设计**：清晰明确（已补充缺失知识点）
 - ✅ **配套代码**：完整可运行示例
 - ✅ **远程备份**：feature/stage1-cpp-basics 分支
 
 ### 🎯 下一步目标
 
-**立即任务**：创建 05-control-structures.md（控制流 + 算法思维）
-**本周目标**：完成里程碑 2（C++核心概念 04-08）
-**质量目标**：保持 100 分标准，建立文档质量标杆
+**立即任务**：创建 06-while-loop.md（while 循环 + 重复控制）
+**本周目标**：完成里程碑 2（C++核心概念 04-14），补充数组知识
+**质量目标**：保持 90+ 分标准，建立文档质量标杆
