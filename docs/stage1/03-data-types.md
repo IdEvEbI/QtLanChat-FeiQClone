@@ -123,7 +123,6 @@ int main() {
 
     // 字符类型 - 像单个字母卡片
     char grade = 'A';                               // 1字节，单个字符
-    char symbol = 65;                               // ASCII码
 
     // 布尔类型 - 像开关
     bool isStudent = true;                          // 1字节，真/假
@@ -145,7 +144,6 @@ int main() {
     std::cout << "精确值: " << precise << std::endl;
 
     std::cout << "等级: " << grade << std::endl;
-    std::cout << "符号: " << symbol << std::endl;
 
     std::cout << std::boolalpha;
     std::cout << "是学生: " << isStudent << std::endl;
@@ -195,7 +193,6 @@ int main() {
 圆周率: 3.14
 精确值: 3.14
 等级: A
-符号: A
 是学生: true
 在工作: false
 姓名: 张三
