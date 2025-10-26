@@ -557,7 +557,6 @@ int main() {
 // 练习 1：类型探索
 #include <iostream>
 #include <climits>
-#include <iomanip>
 
 int main() {
     std::cout << "=== 数据类型探索 ===" << std::endl;
@@ -605,7 +604,6 @@ int main() {
 
 ```cpp
 #include <iostream>
-#include <iomanip>
 
 int main() {
     std::cout << "=== 类型转换示例 ===" << std::endl;
@@ -722,7 +720,11 @@ int main() {
 }
 ```
 
-> **新知识点说明**：字符串拼接使用 `+` 操作符，就像把两个文字卡片连接在一起。`std::string` 支持直接用 `+` 连接多个字符串，这是 C++ 字符串类型的重要特性。
+> **新知识点说明**：
+>
+> 1. **字符串拼接**：使用 `+` 操作符，就像把两个文字卡片连接在一起。`std::string` 支持直接用 `+` 连接多个字符串，这是 C++ 字符串类型的重要特性。
+> 2. **中文字符长度**：在 UTF-8 编码中，每个中文字符占用 3 个字节，"张"和"三"各占用 3 字节，所以 `fullName.length()` 返回 6（3+3）。这就像存储一个中文字符需要 3 个英文字母的空间。
+>
 > **配套代码**：练习 4 的完整代码位于 `src/stage1/03-data-types/06-exercise-string-handling.cpp`
 
 #### 练习 5：综合应用
@@ -868,7 +870,6 @@ int main() {
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <climits>
 
 int main() {
     std::cout << "=== 数据类型演示系统 ===" << std::endl;
