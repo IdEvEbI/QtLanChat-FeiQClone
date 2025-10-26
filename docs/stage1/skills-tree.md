@@ -350,19 +350,19 @@
 
 ### 🟡 中优先级（建议补充）
 
-1. **字符数组（C 风格字符串）** - 建议位置：数组章节
-   - 以 `\0` 结尾
-   - `char str[]`
+- **字符数组（C 风格字符串）** - 建议位置：数组章节
+  - 以 `\0` 结尾
+  - `char str[]`
 
-2. **类型别名** - 建议位置：类型转换之后
-   - `using` 关键字
-   - `typedef` 关键字
+- **类型别名** - 建议位置：类型转换之后
+  - `using` 关键字
+  - `typedef` 关键字
 
 ### 🟢 低优先级（可选补充）
 
-1. **枚举类型（enum）** - 建议位置：OOP 之前
-   - `enum` 定义
-   - 命名常量
+- **枚举类型（enum）** - 建议位置：OOP 之前
+  - `enum` 定义
+  - 命名常量
 
 ---
 
@@ -408,21 +408,21 @@
 
 ### 立即补充（优先级最高）
 
-1. **06-while-loop.md** - 在分支之后，为数组做准备
-2. **07-for-loop.md** - 循环的进阶形式
-3. **08-switch.md** - 多分支的另一种形式
+- **06-while-loop.md** - 在分支之后，为数组做准备
+- **07-for-loop.md** - 循环的进阶形式
+- **08-switch.md** - 多分支的另一种形式
 
 ### 准备补充（学习路径需要）
 
-1. **09-array-basics.md** - 数组基础（C 风格）
-2. **10-vector-stl.md** - 现代 C++ 数组（std::vector）
-3. **11-string-advanced.md** - 字符串进阶操作
+- **09-array-basics.md** - 数组基础（C 风格）
+- **10-vector-stl.md** - 现代 C++ 数组（std::vector）
+- **11-string-advanced.md** - 字符串进阶操作
 
 ### 继续按计划
 
-1. **12-functions.md** - 函数基础
-2. **13-pointers-references.md** - 指针和引用
-3. **14-memory-management.md** - 内存管理
+- **12-functions.md** - 函数基础
+- **13-pointers-references.md** - 指针和引用
+- **14-memory-management.md** - 内存管理
 
 ---
 
