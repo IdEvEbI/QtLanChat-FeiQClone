@@ -29,10 +29,10 @@
 ### 新增核心文档（20% 完成）
 
 - [x] 04-operators.md（运算符 + 表达式求值）- 1.5h
-- [ ] 05-if-branch.md（if分支 + 条件判断）- 1h
-- [ ] 06-while-loop.md（while循环 + 重复控制）- 1h
-- [ ] 07-for-loop.md（for循环 + 嵌套循环）- 1.5h
-- [ ] 08-switch.md（switch分支 + break应用）- 1h
+- [ ] 05-if-branch.md（if 分支 + 条件判断）- 1h
+- [ ] 06-while-loop.md（while 循环 + 重复控制）- 1h
+- [ ] 07-for-loop.md（for 循环 + 嵌套循环）- 1.5h
+- [ ] 08-switch.md（switch 分支 + break 应用）- 1h
 - [ ] 09-functions.md（函数基础 + 参数传递机制）- 2h
 - [ ] 10-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
 - [ ] 11-memory-management.md（RAII + 智能指针）- 2h
@@ -163,10 +163,10 @@
 **新增核心文档**：待细化
 
 - ✅ 04-operators.md（运算符 + 表达式求值，743 行，5 题练习）
-- ⏳ 05-if-branch.md（if分支 + 条件判断）
-- ⏳ 06-while-loop.md（while循环 + 重复控制）
-- ⏳ 07-for-loop.md（for循环 + 嵌套循环）
-- ⏳ 08-switch.md（switch分支 + break应用）
+- ⏳ 05-if-branch.md（if 分支 + 条件判断）
+- ⏳ 06-while-loop.md（while 循环 + 重复控制）
+- ⏳ 07-for-loop.md（for 循环 + 嵌套循环）
+- ⏳ 08-switch.md（switch 分支 + break 应用）
 - ⏳ 09-functions.md（函数基础 + 参数传递机制）
 - ⏳ 10-pointers-references.md（内存模型 + 指针原理）
 
