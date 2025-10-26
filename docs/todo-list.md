@@ -29,23 +29,26 @@
 ### 新增核心文档（20% 完成）
 
 - [x] 04-operators.md（运算符 + 表达式求值）- 1.5h
-- [ ] 05-control-structures.md（控制流 + 算法思维）- 1.5h
-- [ ] 06-functions.md（函数基础 + 参数传递机制）- 2h
-- [ ] 07-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
-- [ ] 08-memory-management.md（RAII + 智能指针）- 2h
+- [ ] 05-if-branch.md（if分支 + 条件判断）- 1h
+- [ ] 06-while-loop.md（while循环 + 重复控制）- 1h
+- [ ] 07-for-loop.md（for循环 + 嵌套循环）- 1.5h
+- [ ] 08-switch.md（switch分支 + break应用）- 1h
+- [ ] 09-functions.md（函数基础 + 参数传递机制）- 2h
+- [ ] 10-pointers-references.md（内存模型 + 指针原理 + 常见坑）- 2h
+- [ ] 11-memory-management.md（RAII + 智能指针）- 2h
 
 ### 面向对象文档（0% 完成）
 
-- [ ] 09-classes-objects.md（类设计 + 对象生命周期）- 2h
-- [ ] 10-encapsulation.md（封装 + 接口设计）- 1.5h
-- [ ] 11-inheritance.md（继承 + 虚函数表）- 2h
-- [ ] 12-polymorphism.md（多态 + 动态绑定）- 2h
+- [ ] 12-classes-objects.md（类设计 + 对象生命周期）- 2h
+- [ ] 13-encapsulation.md（封装 + 接口设计）- 1.5h
+- [ ] 14-inheritance.md（继承 + 虚函数表）- 2h
+- [ ] 15-polymorphism.md（多态 + 动态绑定）- 2h
 
 ### 综合实践（0% 完成）
 
-- [ ] 13-oop-practice.md（OOP 综合练习）- 1.5h
-- [ ] 14-chat-system-design.md（系统设计 + 架构思维）- 2h
-- [ ] 15-practice-exercises.md（综合练习 + 项目实战）- 2h
+- [ ] 16-oop-practice.md（OOP 综合练习）- 1.5h
+- [ ] 17-chat-system-design.md（系统设计 + 架构思维）- 2h
+- [ ] 18-practice-exercises.md（综合练习 + 项目实战）- 2h
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（0% 完成）
@@ -157,12 +160,15 @@
 - ✅ 完善 02-variables-constants.md（100 分，733 行，5 题练习）
 - ✅ 完善 03-data-types.md（100 分，970 行，5 题练习）
 
-**新增核心文档**：20% 完成
+**新增核心文档**：待细化
 
-- ✅ 04-operators.md（运算符 + 表达式求值，743行，5题练习）
-- ⏳ 05-control-structures.md（控制流 + 算法思维）
-- ⏳ 06-functions.md（函数基础 + 参数传递机制）
-- ⏳ 07-pointers-references.md（内存模型 + 指针原理）
+- ✅ 04-operators.md（运算符 + 表达式求值，743 行，5 题练习）
+- ⏳ 05-if-branch.md（if分支 + 条件判断）
+- ⏳ 06-while-loop.md（while循环 + 重复控制）
+- ⏳ 07-for-loop.md（for循环 + 嵌套循环）
+- ⏳ 08-switch.md（switch分支 + break应用）
+- ⏳ 09-functions.md（函数基础 + 参数传递机制）
+- ⏳ 10-pointers-references.md（内存模型 + 指针原理）
 
 ### ⏳ 待开始
 
@@ -190,7 +196,7 @@
 
 **里程碑 2**：C++ 核心概念（04-08）🔄 20% 完成
 
-- ✅ 04-operators.md（运算符，100分）
+- ✅ 04-operators.md（运算符，100 分）
 - ⏳ 05-control-structures.md（控制流）
 - ⏳ 06-functions.md（函数）
 - ⏳ 07-pointers-references.md（指针和引用）
