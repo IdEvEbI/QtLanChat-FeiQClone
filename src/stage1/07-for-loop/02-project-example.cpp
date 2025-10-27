@@ -6,7 +6,7 @@ int main() {
     std::cout << "=== QtLanChat 消息广播系统 ===" << std::endl;
     
     // 模拟用户列表
-    std::string users[5] = {"Alice", "Bob", "Charlie", "Diana", "Eve"};
+    std::string users[5] = {"小丽", "小美", "小明", "小伟", "小强"};
     std::string message = "Hello from QtLanChat!";
     
     std::cout << "向所有在线用户发送广播：" << std::endl;
