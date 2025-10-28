@@ -45,6 +45,26 @@ int main() {
         std::cout << std::endl;  // 换行
     }
 
+    // 示例 7：break 示例 - 找到5就停止
+    std::cout << "\n=== for break 示例 ===" << std::endl;
+    for (int i = 1; i <= 10; i++) {
+        if (i == 5) {
+            break;  // 当 i=5 时，立即跳出循环
+        }
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    // 示例 8：continue 示例 - 跳过奇数
+    std::cout << "\n=== for continue 示例 ===" << std::endl;
+    for (int i = 1; i <= 10; i++) {
+        if (i % 2 == 1) {
+            continue;  // 跳过奇数，继续下一次循环
+        }
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }
 
