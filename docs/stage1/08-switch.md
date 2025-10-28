@@ -79,7 +79,7 @@ graph TD
 
 C++ 中的 switch 语法相对简单：
 
-#### 2.2.1 switch 循环基本语法
+#### 2.2.1 switch 分支基本语法
 
 ```cpp
 switch (表达式) {
@@ -119,12 +119,14 @@ switch (点的菜) {
 }
 ```
 
-#### 2.2.2 switch 循环的特点
+#### 2.2.2 switch 分支的特点
 
 - **表达式的类型**：switch 的表达式只能是整数类型（int、char）或枚举类型
 - **case 标签**：每个 case 后面跟一个常量值，不能使用变量
 - **break 语句**：每个 case 后面通常要有 break，否则会"穿透"到下一个 case
 - **default 可选**：default 不是必须的，但建议始终包含
+
+> **📌 枚举类型提示**：枚举类型（enum）将在后续的进阶内容中详细展开讲解。枚举类型可以定义一组命名的常量，非常适合与 switch 语句配合使用，实现清晰的状态机或多选项处理。
 
 ### 2.3 代码示例
 
@@ -285,7 +287,7 @@ switch (choice) {
 - **case 标签**：`case 1:`、`case 2:`、`case 3:` 是标签，当 choice 等于这些值时就跳转执行
 - **break 语句**：执行完代码后，break 跳出 switch，否则会继续执行下一个 case（case 穿透）
 - **default 分支**：如果所有的 case 都不匹配，就执行 default 代码块
-- **类比**：就像按遥控器，按 1 调到频道1，按 2 调到频道2，没有匹配的键就显示"无效"
+- **类比**：就像按遥控器，按 1 调到频道 1，按 2 调到频道 2，没有匹配的键就显示"无效"
 
 **执行流程**：
 
@@ -371,11 +373,11 @@ switch (num) {
 
 int main() {
     std::cout << "=== QtLanChat 消息类型处理 ===" << std::endl;
-    
+
     char messageType;
     std::cout << "请输入消息类型（t=文本, i=图片, f=文件, v=语音）: ";
     std::cin >> messageType;
-    
+
     switch (messageType) {
         case 't':
         case 'T':
@@ -404,7 +406,7 @@ int main() {
             std::cout << ">>> 无法处理此消息" << std::endl;
             break;
     }
-    
+
     return 0;
 }
 ```
@@ -443,7 +445,7 @@ int main() {
     std::cin >> score;
 
     char grade;
-    
+
     // 将分数转换为等级
     switch (score / 10) {
         case 10:
@@ -481,7 +483,7 @@ int main() {
 - 提示用户输入两个数字和运算符
 - 使用 `std::cin` 读取用户输入
 - 使用 switch 根据运算符执行不同的运算
-- 支持 +、-、*、/ 四种运算
+- 支持 +、-、\*、/ 四种运算
 - 输出运算结果
 
 **参考答案**：
@@ -680,7 +682,7 @@ int main() {
     std::cin >> lightColor;
 
     std::cout << "\n=== 交通灯状态 ===" << std::endl;
-    
+
     switch (lightColor) {
         case 'r':
         case 'R':
