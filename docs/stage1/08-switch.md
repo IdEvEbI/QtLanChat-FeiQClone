@@ -711,6 +711,8 @@ int main() {
 
 **评分标准**：功能实现（40%）、代码质量（30%）、用户体验（30%）
 
+> **配套代码**：综合练习的完整代码位于 `src/stage1/08-switch/06-homework-traffic-light.cpp`
+
 ## 7. 下一步学习
 
 **下一篇**：[09-array-basics.md](./09-array-basics.md)

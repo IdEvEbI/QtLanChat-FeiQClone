@@ -23,7 +23,7 @@ int main() {
             grade = 'D';
             break;
         default:
-            grade = 'F';
+            grade = 'E';
             break;
     }
 
