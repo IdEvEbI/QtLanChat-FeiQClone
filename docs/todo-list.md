@@ -154,14 +154,17 @@
 - ✅ 建立技能树可视化框架
 - ✅ 设计难度分级
 
-**阶段 1 核心文档**：70% 完成
+**阶段 1 核心文档**：80% 完成
 
 - ✅ 01-cpp-introduction.md（100 分，573 行，5 题练习）
 - ✅ 02-variables-constants.md（100 分，733 行，5 题练习）
 - ✅ 03-data-types.md（100 分，970 行，5 题练习）
 - ✅ 04-operators.md（100 分，743 行，5 题练习）
 - ✅ 05-if-branch.md（91 分，711 行，3 题练习）
-- ✅ 配套代码文件（src/stage1/01-05/ 目录完整）
+- ✅ 06-while-loop.md（100 分，687 行，3 题练习）
+- ✅ 07-for-loop.md（100 分，916 行，5 题练习）
+- ✅ 08-switch.md（100 分，772 行，3 题练习）
+- ✅ 配套代码文件（src/stage1/01-08/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
 - ✅ 技能树文档记录（docs/stage1/skills-tree.md）**新增**
@@ -175,13 +178,13 @@
 - ✅ 完善 02-variables-constants.md（100 分，733 行，5 题练习）
 - ✅ 完善 03-data-types.md（100 分，970 行，5 题练习）
 
-**新增核心文档**：20% 完成（已补充缺失知识点）
+**新增核心文档**：50% 完成（已补充缺失知识点）
 
 - ✅ 04-operators.md（运算符 + 表达式求值，743 行，5 题练习）
 - ✅ 05-if-branch.md（if 分支 + 条件判断，711 行，3 题练习）
-- ⏳ 06-while-loop.md（while 循环 + 重复控制）
-- ⏳ 07-for-loop.md（for 循环 + 嵌套循环）
-- ⏳ 08-switch.md（switch 分支 + break 应用）
+- ✅ 06-while-loop.md（while 循环 + 重复控制，687 行，3 题练习）
+- ✅ 07-for-loop.md（for 循环 + 嵌套循环，916 行，5 题练习）
+- ✅ 08-switch.md（switch 分支 + break 应用，772 行，3 题练习）
 - ⏳ 09-array-basics.md（数组基础 + C 风格数组）**新增**
 - ⏳ 10-vector-stl.md（std::vector + 动态数组）**新增**
 - ⏳ 11-string-advanced.md（字符串进阶 + 常用方法）**新增**
@@ -215,13 +218,13 @@
 - ✅ 02-variables-constants.md（100 分，733 行）
 - ✅ 03-data-types.md（100 分，970 行）
 
-**里程碑 2**：C++ 核心概念（04-20）🔄 25% 完成
+**里程碑 2**：C++ 核心概念（04-20）🔄 38% 完成
 
-- ✅ 04-operators.md（运算符，100 分）
-- ✅ 05-if-branch.md（if 分支，91 分）
-- ⏳ 06-while-loop.md（while 循环）
-- ⏳ 07-for-loop.md（for 循环）
-- ⏳ 08-switch.md（switch 分支）
+- ✅ 04-operators.md（运算符，100 分，743 行，5 题）
+- ✅ 05-if-branch.md（if 分支，91 分，711 行，3 题）
+- ✅ 06-while-loop.md（while 循环，100 分，687 行，3 题）
+- ✅ 07-for-loop.md（for 循环，100 分，916 行，5 题）
+- ✅ 08-switch.md（switch 分支，100 分，772 行，3 题）
 - ⏳ 09-array-basics.md（数组基础）**新增**
 - ⏳ 10-vector-stl.md（std::vector）**新增**
 - ⏳ 11-string-advanced.md（字符串进阶）**新增**
@@ -282,7 +285,7 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：创建 06-while-loop.md（while 循环 + 重复控制）
+**立即任务**：审核并优化 06-08 文档质量
 **本周目标**：完成里程碑 2（C++核心概念 06-11）
 **中期目标**：完成 STL 和现代 C++（11a-15，6h）**新增**
 **重点文档**：22-file-io.md（文件 I/O，最高优先级）**新增**
