@@ -153,7 +153,7 @@ int main() {
 
     // 示例 2：遍历 vector
     std::cout << "\n=== 遍历 vector ===" << std::endl;
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -161,7 +161,7 @@ int main() {
     // 示例 3：访问和修改元素
     std::cout << "\n=== 修改元素 ===" << std::endl;
     vec[0] = 100;                   // 修改第一个元素
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -170,7 +170,7 @@ int main() {
     std::cout << "\n=== 删除元素 ===" << std::endl;
     vec.pop_back();                 // 删除最后一个元素
     std::cout << "删除后的大小: " << vec.size() << std::endl;
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -277,13 +277,14 @@ std::cout << vec.size() << std::endl;   // 输出大小
 
 ```cpp
 // 遍历 vector
-for (int i = 0; i < vec.size(); i++) {
+for (size_t i = 0; i < vec.size(); i++) {
     std::cout << vec[i] << " ";
 }
 ```
 
 **详细说明**：
 
+- **循环变量类型**：使用 `size_t i` 而不是 `int i`，因为 `vec.size()` 返回 `size_t` 类型，这样可以避免类型不匹配的警告
 - **循环条件**：`i < vec.size()` - 从 0 到大小减 1
 - **访问方式**：`vec[i]` - 使用索引访问元素
 - **动态大小**：`vec.size()` 会随着添加/删除元素而变化
@@ -401,8 +402,8 @@ int main() {
 
     // 显示所有用户
     std::cout << "在线用户列表：" << std::endl;
-    for (int i = 0; i < users.size(); i++) {
-        std::cout << (i + 1) << ". " << users[i] << std::endl;
+    for (size_t i = 0; i < users.size(); i++) {
+        std::cout << (static_cast<int>(i) + 1) << ". " << users[i] << std::endl;
     }
 
     // 用户下线（简化为删除最后一个）
@@ -411,8 +412,8 @@ int main() {
 
     std::cout << "当前在线用户数: " << users.size() << std::endl;
     std::cout << "剩余用户：" << std::endl;
-    for (int i = 0; i < users.size(); i++) {
-        std::cout << (i + 1) << ". " << users[i] << std::endl;
+    for (size_t i = 0; i < users.size(); i++) {
+        std::cout << (static_cast<int>(i) + 1) << ". " << users[i] << std::endl;
     }
 
     return 0;
@@ -461,8 +462,8 @@ int main() {
     // 遍历并计算平均分
     int sum = 0;
     std::cout << "成绩列表：" << std::endl;
-    for (int i = 0; i < scores.size(); i++) {
-        std::cout << "学生" << (i + 1) << ": " << scores[i] << std::endl;
+    for (size_t i = 0; i < scores.size(); i++) {
+        std::cout << "学生" << (static_cast<int>(i) + 1) << ": " << scores[i] << std::endl;
         sum += scores[i];
     }
 
@@ -503,7 +504,7 @@ int main() {
     }
 
     std::cout << "原始数据: ";
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -518,7 +519,7 @@ int main() {
     }
 
     std::cout << "删除偶数后: ";
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -559,7 +560,7 @@ int main() {
         std::cout << "位置非法，未进行插入" << std::endl;
     }
 
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -599,7 +600,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         std::cout << vec[i] << " ";
     }
     std::cout << std::endl;
@@ -761,7 +762,7 @@ int main() {
     do {
         // 显示菜单
         std::cout << "\n当前成绩列表：";
-        for (int i = 0; i < scores.size(); i++) {
+        for (size_t i = 0; i < scores.size(); i++) {
             std::cout << scores[i] << " ";
         }
         std::cout << std::endl;
@@ -844,7 +845,7 @@ int main() {
             int max = scores[0];
             int min = scores[0];
 
-            for (int i = 0; i < scores.size(); i++) {
+            for (size_t i = 0; i < scores.size(); i++) {
                 sum += scores[i];
                 if (scores[i] > max) max = scores[i];
                 if (scores[i] < min) min = scores[i];
@@ -864,8 +865,8 @@ int main() {
             if (scores.empty()) {
                 std::cout << "成绩列表为空！" << std::endl;
             } else {
-                for (int i = 0; i < scores.size(); i++) {
-                    std::cout << "学生" << (i + 1) << ": " << scores[i] << "分" << std::endl;
+                for (size_t i = 0; i < scores.size(); i++) {
+                    std::cout << "学生" << (static_cast<int>(i) + 1) << ": " << scores[i] << "分" << std::endl;
                 }
             }
         }
