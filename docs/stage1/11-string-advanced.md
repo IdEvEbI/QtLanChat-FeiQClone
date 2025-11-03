@@ -1,10 +1,10 @@
 # 字符串进阶操作
 
 > **学习目标**：掌握 C++ 字符串的常用方法和操作，能够高效处理字符串数据  
-> **前置知识**：C++ std::string 基础、vector 基础  
+> **前置知识**：C++ std::string 基础  
 > **预计时间**：40 分钟  
 > **难度等级**：⭐⭐⭐  
-> **技能收获**：字符串方法、字符串处理、字符串转换、字符串搜索  
+> **技能收获**：字符串方法、字符串处理、字符串搜索、子串提取  
 > **文档版本**：v1.0  
 > **最后更新**：2025-10-26
 
@@ -148,8 +148,8 @@ int main() {
     std::cout << "第一个字符: " << text[0] << std::endl;
     std::cout << "最后一个字符: " << text[text.length() - 1] << std::endl;
 
-    // 遍历所有字符
-    for (int i = 0; i < text.length(); i++) {
+    // 遍历所有字符（注意：这种方式对于英文字符正常，对于中文字符需要特殊处理）
+    for (size_t i = 0; i < text.length(); i++) {
         std::cout << text[i] << " ";
     }
     std::cout << std::endl;
@@ -158,7 +158,7 @@ int main() {
     std::cout << "\n=== 字符串查找 ===" << std::endl;
     std::string message = "Hello World";
 
-    int pos = message.find("World");
+    size_t pos = message.find("World");  // find() 返回 size_t 类型
     if (pos != std::string::npos) {
         std::cout << "找到了 'World'，位置: " << pos << std::endl;
     } else {
@@ -208,6 +208,30 @@ H e l l o
 以下代码片段展示了基础示例中的核心用法：
 
 ```cpp
+// 字符串基础操作
+std::string name = "张三";
+std::cout << "长度: " << name.length() << std::endl;  // 输出 6
+```
+
+**详细说明**：
+
+- **字符串长度**：`length()` 方法返回字符串的**字节数**，不是字符个数
+- **编码说明**：
+  - **ASCII 编码**：用于英文字母、数字和基本符号，每个字符占 1 个字节（如 'A'、'1'）
+  - **Unicode 编码**：用于表示世界上所有语言的字符，包括中文、日文、韩文等
+  - **UTF-8 编码**：Unicode 的一种编码方式，兼容 ASCII（英文 1 字节，中文 3 字节）
+- **"张三" 为什么是 6？**：
+  - 中文字符在 UTF-8 编码中，每个字符占 3 个字节
+  - "张三" 有 2 个中文字符，所以 `length()` 返回 6（2 × 3 = 6）
+- **类比**：
+  - ASCII 字符像小盒子（1 字节），中文字符像大盒子（3 字节）
+  - `length()` 数的是所有盒子的总大小，而不是盒子个数
+- **实际例子**：
+  - `"Hello"` 的长度是 5（5 个 ASCII 字符，每个 1 字节）
+  - `"张三"` 的长度是 6（2 个中文字符，每个 3 字节）
+  - `"Hello张三"` 的长度是 11（5 + 6 = 11）
+
+```cpp
 // 字符串拼接
 std::string fullName = firstName + lastName;
 ```
@@ -227,17 +251,19 @@ std::cout << text[0] << std::endl;  // 输出第一个字符
 
 - **`text[0]`**：访问第 0 个字符（第一个字符）
 - **索引规则**：从 0 开始，与数组相同
+- **重要提示**：`str[i]` 访问的是第 i 个**字节**，不是第 i 个**字符**。对于英文字符（1 字节）没问题，但对于中文字符（UTF-8 编码中占 3 字节），直接用索引访问会得到字节值，不是完整的中文字符。中文字符的正确遍历需要按 UTF-8 编码规则处理，这是进阶内容
 - **类比**：就像从盒子里取东西，需要知道位置
 
 ```cpp
 // 字符串查找
-int pos = message.find("World");
+size_t pos = message.find("World");  // find() 返回 size_t 类型
 ```
 
 **详细说明**：
 
 - **`find()` 方法**：在字符串中查找子串
-- **返回值**：找到返回位置（索引），未找到返回 `std::string::npos`
+- **返回值类型**：`size_t`（`std::string::size_type`），找到返回位置（索引），未找到返回 `std::string::npos`
+- **类型说明**：虽然可以使用 `int` 接收返回值（会自动转换），但为了类型安全和准确性，建议使用 `size_t` 类型
 - **类比**：就像在文章里找某个词，找到就告诉你位置
 
 **重要语法规则**：
@@ -297,7 +323,7 @@ int main() {
     std::cout << "原始消息: " << rawMessage << std::endl;
 
     // 查找冒号位置（分割用户名和消息内容）
-    int colonPos = rawMessage.find(":");
+    size_t colonPos = rawMessage.find(":");  // find() 返回 size_t 类型
     if (colonPos != std::string::npos) {
         std::string sender = rawMessage.substr(0, colonPos);
         std::string content = rawMessage.substr(colonPos + 2);
@@ -318,6 +344,28 @@ int main() {
 ```
 
 > **配套代码**：实际应用示例的完整代码位于 `src/stage1/11-string-advanced/02-project-example.cpp`
+>
+> **📌 新知识点 - `substr()` 方法（提取子串）**：
+>
+> - **语法**：`str.substr(起始位置, 长度)` 或 `str.substr(起始位置)`
+> - **功能**：从字符串中提取一部分（子串）
+> - **参数说明**：
+>   - **起始位置**：从哪个位置开始提取（从 0 开始计数）
+>   - **长度**：可选，提取多少个字符。如果不提供，则从起始位置提取到字符串末尾
+> - **返回值**：返回一个新的字符串，包含提取的子串
+> - **示例说明**：
+>
+> ```cpp
+> std::string str = "Hello World";
+> str.substr(0, 5);      // 返回 "Hello"（从位置 0 开始，取 5 个字符）
+> str.substr(6);         // 返回 "World"（从位置 6 开始，取到末尾）
+> str.substr(6, 3);      // 返回 "Wor"（从位置 6 开始，取 3 个字符）
+> ```
+>
+> - **代码中的应用**：
+>   - `rawMessage.substr(0, colonPos)`：从位置 0 开始，提取 `colonPos` 个字符（提取用户名部分）
+>   - `rawMessage.substr(colonPos + 2)`：从位置 `colonPos + 2` 开始，提取到末尾（跳过冒号和空格，提取消息内容）
+> - **类比**：就像从一本书中剪下一段文字，`substr()` 告诉你从哪一页（起始位置）开始，剪多长（长度）
 
 ### 3.3 设计思路
 
@@ -351,7 +399,7 @@ int main() {
     std::string username;
 
     std::cout << "请输入用户名: ";
-    std::cin >> username;
+    std::cin >> username;  // 注意：std::cin >> 无法读取包含空格的字符串，会在空格处停止
 
     // 检查长度
     if (username.length() < 3) {
@@ -373,6 +421,138 @@ int main() {
 
 > **配套代码**：练习 1 的完整代码位于 `src/stage1/11-string-advanced/03-exercise-validate.cpp`
 
+#### 练习 2：字符串提取
+
+**题目**：从邮箱地址中提取用户名和域名
+
+**要求**：
+
+- 提示用户输入邮箱地址
+- 使用 `std::cin` 读取用户输入
+- 使用 `find()` 查找 `@` 符号的位置
+- 使用 `substr()` 提取用户名部分（@ 之前）和域名部分（@ 之后）
+- 输出用户名和域名
+
+**参考答案**：
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string email;
+
+    std::cout << "请输入邮箱地址: ";
+    std::cin >> email;
+
+    // 查找 @ 符号位置
+    size_t atPos = email.find("@");  // find() 返回 size_t 类型
+    if (atPos != std::string::npos) {
+        // 提取用户名（@ 之前的部分）
+        std::string username = email.substr(0, atPos);
+        // 提取域名（@ 之后的部分）
+        std::string domain = email.substr(atPos + 1);
+
+        std::cout << "用户名: " << username << std::endl;
+        std::cout << "域名: " << domain << std::endl;
+    } else {
+        std::cout << "无效的邮箱格式" << std::endl;
+    }
+
+    return 0;
+}
+```
+
+> **配套代码**：练习 2 的完整代码位于 `src/stage1/11-string-advanced/04-exercise-extract.cpp`
+
+#### 练习 3：字符串反转
+
+**题目**：将字符串反转输出
+
+**要求**：
+
+- 提示用户输入一个字符串
+- 使用 `std::cin` 读取用户输入
+- 使用循环从后往前遍历字符串
+- 将反转后的字符串输出
+
+**参考答案**：
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str;
+
+    std::cout << "请输入一个字符串: ";
+    std::cin >> str;
+
+    std::cout << "原字符串: " << str << std::endl;
+
+    // 反转字符串
+    std::string reversed = "";
+    for (int i = str.length() - 1; i >= 0; i--) {
+        reversed += str[i];  // 从后往前拼接
+    }
+
+    std::cout << "反转后: " << reversed << std::endl;
+
+    return 0;
+}
+```
+
+> **配套代码**：练习 3 的完整代码位于 `src/stage1/11-string-advanced/05-exercise-reverse.cpp`
+
+#### 练习 4：统计字符出现次数
+
+**题目**：统计一个字符在字符串中出现的次数
+
+**要求**：
+
+- 提示用户输入一个字符串和一个要查找的字符
+- 使用 `std::cin` 读取用户输入
+- 使用 `find()` 方法查找字符出现的位置
+- 循环查找，统计出现次数
+- 输出统计结果
+
+**参考答案**：
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str;
+    char target;
+
+    std::cout << "请输入一个字符串: ";
+    std::cin >> str;
+
+    std::cout << "请输入要查找的字符: ";
+    std::cin >> target;
+
+    // 将字符转换为字符串
+    std::string targetStr = "";
+    targetStr += target;
+
+    int count = 0;
+    size_t pos = 0;
+
+    // 循环查找所有出现的位置
+    while ((pos = str.find(targetStr, pos)) != std::string::npos) {
+        count++;
+        pos++;  // 从下一个位置继续查找
+    }
+
+    std::cout << "字符 '" << target << "' 出现了 " << count << " 次" << std::endl;
+
+    return 0;
+}
+```
+
+> **配套代码**：练习 4 的完整代码位于 `src/stage1/11-string-advanced/06-exercise-count.cpp`
+
 ### 4.2 测试题（可选）
 
 1. **关于字符串方法，下列说法正确的是：**
@@ -380,21 +560,84 @@ int main() {
 
    B. `str[i]` 返回长度
 
-   C. `str.find()` 返回位置或 `-1`
+   C. `str.find()` 返回位置（`size_t` 类型），未找到返回 `std::string::npos`
 
    D. 字符串不能使用 `+` 拼接
    **答案**：C
 
    **解析**：
-   - **正确答案 C**：`find()` 找到返回位置（索引），未找到返回 `std::string::npos`
-   - **错误答案 A**：`length()` 返回字符数量
-   - **错误答案 B**：`str[i]` 返回第 i 个字符
+   - **正确答案 C**：`find()` 找到返回位置（索引，`size_t` 类型），未找到返回 `std::string::npos`（注意：不是 `-1`，而是特殊值 `npos`）
+   - **错误答案 A**：`length()` 返回字符数量（字节数）
+   - **错误答案 B**：`str[i]` 返回第 i 个字符（实际上是第 i 个字节）
    - **错误答案 D**：字符串可以使用 `+` 拼接
+
+2. **关于 `substr()` 方法，下列说法正确的是：**
+   A. `substr(0)` 会提取整个字符串
+
+   B. `substr(5, 3)` 从位置 5 开始提取 5 个字符
+
+   C. `substr()` 只能提取 3 个字符
+
+   D. `substr()` 会修改原字符串
+   **答案**：A
+
+   **解析**：
+   - **正确答案 A**：`substr(起始位置)` 如果只提供一个参数，会从起始位置提取到字符串末尾
+   - **错误答案 B**：`substr(5, 3)` 从位置 5 开始提取 3 个字符，不是 5 个
+   - **错误答案 C**：`substr()` 可以提取任意长度的子串，由第二个参数决定
+   - **错误答案 D**：`substr()` 不会修改原字符串，它返回一个新的字符串
+
+3. **关于字符串长度，下列说法正确的是：**
+   A. `"Hello"` 和 `"张三"` 的长度都是 5
+
+   B. `"Hello"` 的长度是 5，`"张三"` 的长度是 2
+
+   C. `"Hello"` 的长度是 5，`"张三"` 的长度是 6
+
+   D. 中文字符和英文字符长度计算方式相同
+   **答案**：C
+
+   **解析**：
+   - **正确答案 C**：`length()` 返回字节数，英文字符在 UTF-8 编码中占 1 字节，中文字符占 3 字节。所以 `"Hello"` 是 5 字节，`"张三"` 是 6 字节
+   - **错误答案 A**：中文字符和英文字符的字节数不同
+   - **错误答案 B**：`"张三"` 的长度是 6（字节数），不是 2
+   - **错误答案 D**：在 UTF-8 编码中，中文字符（3 字节）和英文字符（1 字节）的编码方式不同
+
+4. **关于字符串查找，下列说法正确的是：**
+   A. `find()` 只能查找单个字符
+
+   B. `find()` 返回 -1 表示未找到
+
+   C. `find()` 可以查找子串，返回第一个匹配的位置
+
+   D. `find()` 返回找到的字符数量
+   **答案**：C
+
+   **解析**：
+   - **正确答案 C**：`find()` 可以查找子串（字符串），返回第一个匹配的位置（索引）
+   - **错误答案 A**：`find()` 可以查找单个字符和子串，例如 `str.find("abc")` 或 `str.find('a')`
+   - **错误答案 B**：`find()` 未找到时返回 `std::string::npos`，不是 -1
+   - **错误答案 D**：`find()` 返回位置（索引），不是字符数量
 
 ### 4.3 常见问题 FAQ
 
 - Q1：字符串什么时候用单引号，什么时候用双引号？
   - **A：**单引号用于单个字符（`'A'`），双引号用于字符串（`"Hello"`）。类比：单引号像一个苹果，双引号像一篮子苹果
+
+- Q2：为什么 `"Hello"` 的长度是 5，而 `"张三"` 的长度是 6？
+  - **A：**`length()` 返回的是字节数，不是字符个数。在 UTF-8 编码中，英文字符占 1 字节，中文字符占 3 字节。`"Hello"` 有 5 个英文字符（5 字节），`"张三"` 有 2 个中文字符（6 字节）。类比：英文像小盒子（1 字节），中文像大盒子（3 字节），`length()` 数的是所有盒子的总大小
+
+- Q3：`find()` 返回什么值？如何判断是否找到？
+  - **A：**`find()` 找到时返回子串的起始位置（索引），未找到时返回 `std::string::npos`（一个特殊值）。判断方法：`if (str.find("text") != std::string::npos)` 表示找到了。类比：就像在地图上找位置，找到了告诉你坐标，找不到返回"未找到"标记
+
+- Q4：`substr()` 会修改原字符串吗？
+  - **A：**不会。`substr()` 返回一个新的字符串，原字符串保持不变。例如：`std::string result = str.substr(0, 5);` 后，`str` 的值不会改变。类比：就像复印文件，`substr()` 是复印，原文件不变
+
+- Q5：访问字符串时索引越界会怎样？
+  - **A：**访问越界（如 `str[str.length()]`）会导致未定义行为，可能程序崩溃或返回垃圾值。正确访问范围是 `[0, length()-1]`。安全做法：先检查索引是否有效。类比：就像去银行取钱，只能从 1 号到 10 号窗口，去 11 号窗口会出错
+
+- Q6：`length()` 和 `size()` 有什么区别？
+  - **A：**对于 `std::string`，`length()` 和 `size()` 完全一样，都返回字符串的字节数。它们是同义词，可以互换使用。`size()` 是为了与其他容器（如 `vector`）保持一致而提供的。建议：使用 `length()` 更直观（因为说的是长度），但 `size()` 也可以
 
 ## 5. 资源与扩展
 
@@ -413,9 +656,10 @@ int main() {
 
 ### 6.1 学习检查清单
 
-- [ ] 掌握字符串的常用方法
+- [ ] 掌握字符串的常用方法（`length()`、`empty()`、`find()`、`substr()`）
 - [ ] 能够进行字符串拼接和比较
 - [ ] 理解字符串的查找和访问
+- [ ] 理解 UTF-8 编码中中英文字符的字节数差异
 - [ ] 能够编写字符串处理程序
 
 ### 6.2 综合练习
@@ -441,6 +685,15 @@ int main() {
     std::string message;
 
     std::cout << "请输入消息: ";
+    // 📌 新知识点 - std::getline() 函数
+    // 功能：读取一整行输入（包括空格），直到遇到换行符
+    // 语法：std::getline(std::cin, 字符串变量)
+    // 与 std::cin >> 的区别：
+    //   - std::cin >> message：只能读取到第一个空格或换行符之前的内容
+    //   - std::getline(std::cin, message)：读取一整行，包括空格
+    // 示例：如果输入 "Hello World"
+    //   - std::cin >> message：message = "Hello"（只读取到空格前）
+    //   - std::getline(std::cin, message)：message = "Hello World"（读取整行）
     std::getline(std::cin, message);
 
     // 添加时间戳前缀（简化版）
