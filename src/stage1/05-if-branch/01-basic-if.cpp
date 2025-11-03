@@ -1,5 +1,6 @@
 // 现代 C++ 示例 - 分支结构基础
 #include <iostream>
+#include <string>
 
 int main() {
     // 单分支 - if
@@ -44,6 +45,17 @@ int main() {
     } else {
         std::cout << "未成年用户，访问受限" << std::endl;
     }
+
+    // 三元运算符
+    std::cout << "\n=== 三元运算符 ===" << std::endl;
+    int a = 10;
+    int b = 20;
+    int maxValue = (a > b) ? a : b;  // 如果 a > b 返回 a，否则返回 b
+    std::cout << "a = " << a << ", b = " << b << std::endl;
+    std::cout << "最大值: " << maxValue << std::endl;
+
+    std::string status = (userAge >= 18) ? "已成年" : "未成年";  // 字符串三元表达式
+    std::cout << "状态: " << status << std::endl;
 
     return 0;
 }
