@@ -186,17 +186,24 @@ const int MAX_USERS = 100;          // 声明整型常量，值不能修改
 
 **推荐命名风格**：
 
-- **变量和函数**：使用 `snake_case`（下划线分隔）或 `camelCase`（驼峰命名）
-- **常量**：使用 `UPPER_CASE`（全大写，下划线分隔）
-- **类名**：使用 `PascalCase`（帕斯卡命名法）
+- **变量命名**：推荐使用 `camelCase`（小驼峰命名法），第一个单词首字母小写，后续单词首字母大写
+  - 示例：`userName`、`messageCount`、`totalScore`
+  - 说明：与 Qt 框架命名风格一致，便于后续 Qt 开发
+  - 注意：C++ 标准库使用 `snake_case`（如 `std::string::find_first_of`），但自定义变量建议使用 `camelCase`
+- **函数命名**：推荐使用 `camelCase`（小驼峰命名法），第一个单词首字母小写，后续单词首字母大写
+  - 示例：`calculateSum()`、`getUserName()`、`printMessage()`
+- **常量命名**：使用 `UPPER_CASE`（全大写，下划线分隔）
+  - 示例：`MAX_USERS`、`PI_VALUE`、`DEFAULT_TIMEOUT`
+- **类名命名**：使用 `PascalCase`（帕斯卡命名法，大驼峰），每个单词首字母大写
+  - 示例：`Student`、`UserManager`、`ChatWindow`
 
 ```cpp
-// ✅ 推荐的命名方式
-int user_age = 25;              // snake_case：用户年龄
-int userAge = 25;               // camelCase：用户年龄
+// ✅ 推荐的命名方式（camelCase）
+int userName = 25;              // camelCase：用户年龄（推荐）
+int messageCount = 100;         // camelCase：消息数量
 const int MAX_USERS = 100;      // 常量：全大写
 const double PI_VALUE = 3.14;   // 常量：全大写
-std::string user_name = "张三";  // 字符串变量
+std::string userName = "张三";   // 字符串变量
 
 // ❌ 不推荐的命名方式（语法正确但不符合规范）
 int a = 25;                     // 无意义：太简短
@@ -432,7 +439,7 @@ int main() {
 
 **要求**：
 
-- 使用 `snake_case` 命名变量
+- 使用 `camelCase` 命名变量（推荐规范）
 - 使用 `UPPER_CASE` 命名常量
 - 变量名要见名知义
 - 输出所有变量和常量的值
