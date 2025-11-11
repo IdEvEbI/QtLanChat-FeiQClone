@@ -259,4 +259,5 @@ src/**
 !src/**/
 # 取消忽略 src 目录下所有 .cpp 和 .md 文件（递归）
 !src/**/*.cpp
+!src/**/*.h
 !src/**/*.md
