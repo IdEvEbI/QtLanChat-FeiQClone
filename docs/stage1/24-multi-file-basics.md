@@ -760,17 +760,43 @@ clang++ user.o main.o -o program
 
 **问题**：
 
-- Cursor（基于 VS Code）默认只能编译单个文件
-- 多文件项目需要配置编译任务和调试配置
-- 手动编译多个文件很麻烦
+- Cursor（基于 VS Code）默认只能编译单个文件（使用 Run Code 扩展）
+- 多文件项目需要手动输入多个文件的编译命令，很麻烦
+- 调试多文件项目需要配置调试器，否则无法设置断点、查看变量
 
 **解决方案**：
 
-- 配置 `tasks.json`：定义编译任务
-- 配置 `launch.json`：定义调试配置
-- 一键编译和调试多文件项目
+- 配置 `tasks.json`：定义编译任务，一键编译多文件项目
+- 配置 `launch.json`：定义调试配置，支持断点调试、单步执行、查看变量
 
-#### 2.7.2 创建配置文件
+> **📌 什么是 tasks.json 和 launch.json？**
+>
+> - **`tasks.json`**：定义"任务"（Task），比如编译、运行、测试等。就像定义一系列自动化脚本，按快捷键就能执行。
+>   - 作用：把复杂的编译命令保存起来，按 `Cmd+Shift+B` 就能执行
+>   - 类比：就像把常用的命令做成快捷方式，不用每次都手动输入
+> - **`launch.json`**：定义"启动配置"（Launch Configuration），告诉调试器如何启动和调试程序。
+>   - 作用：配置调试器，支持断点、单步执行、查看变量等调试功能
+>   - 类比：就像配置调试工具的参数，告诉它要调试哪个程序、从哪里开始
+
+#### 2.7.2 tasks.json 详解
+
+**什么是 tasks.json？**
+
+`tasks.json` 是 VS Code/Cursor 的任务配置文件，用于定义可以在编辑器中执行的命令（如编译、运行、测试等）。
+
+**为什么需要 tasks.json？**
+
+- **手动编译麻烦**：每次都要在终端输入 `clang++ main.cpp user.cpp -o program`
+- **命令容易出错**：文件名、路径容易写错
+- **无法一键执行**：需要手动输入，效率低
+
+**tasks.json 的作用**：
+
+- 把编译命令保存为"任务"
+- 按 `Cmd+Shift+B`（macOS）或 `Ctrl+Shift+B`（Windows/Linux）就能执行
+- 编译错误会显示在"问题"面板中，点击可以直接跳转到错误位置
+
+**如何创建 tasks.json？**
 
 **步骤 1：创建 `.vscode` 目录**
 
@@ -780,19 +806,19 @@ clang++ user.o main.o -o program
 mkdir -p .vscode
 ```
 
-**步骤 2：创建 `tasks.json`**
+**步骤 2：创建 `tasks.json` 文件**
 
-在 `.vscode` 目录下创建 `tasks.json` 文件：
+在 `.vscode` 目录下创建 `tasks.json` 文件，内容如下：
 
 ```json
 {
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build-multi-file",
+      "label": "build-current-dir",
       "type": "shell",
       "command": "clang++",
-      "args": ["-std=c++17", "-g", "-Wall", "main.cpp", "user.cpp", "-o", "${workspaceFolder}/build/program"],
+      "args": ["-std=c++17", "-g", "-Wall", "${fileDirname}/*.cpp", "-o", "${fileDirname}/program"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -804,90 +830,194 @@ mkdir -p .vscode
         "panel": "shared"
       },
       "problemMatcher": ["$gcc"],
-      "detail": "编译多文件 C++ 项目"
+      "detail": "编译当前目录下的所有 .cpp 文件"
     }
   ]
 }
 ```
 
-**配置说明**：
+**配置项详解**：
 
-- `label`：任务名称，用于在其他地方引用
-- `command`：编译命令（`clang++` 或 `g++`）
-- `args`：编译参数
-  - `-std=c++17`：使用 C++17 标准
-  - `-g`：生成调试信息
-  - `-Wall`：显示所有警告
-  - 后面是源文件列表和输出文件
-- `group.isDefault`：设为默认构建任务
-- `problemMatcher`：错误匹配器，用于显示编译错误
+| 配置项                     | 说明                                           | 类比           |
+| -------------------------- | ---------------------------------------------- | -------------- |
+| `label`                    | 任务名称，用于在其他地方引用（如 launch.json） | 任务的"名字"   |
+| `type: "shell"`            | 任务类型，`shell` 表示在终端中执行命令         | 在终端中运行   |
+| `command`                  | 要执行的命令（`clang++` 或 `g++`）             | 命令本身       |
+| `args`                     | 命令的参数（编译选项、源文件、输出文件）       | 命令的"参数"   |
+| `group.isDefault: true`    | 设为默认构建任务，按 `Cmd+Shift+B` 直接执行    | 设为"默认任务" |
+| `problemMatcher: ["$gcc"]` | 错误匹配器，用于解析编译错误并显示在"问题"面板 | 自动识别错误   |
+| `presentation`             | 控制任务输出在终端中的显示方式                 | 控制显示效果   |
 
-**步骤 3：创建 `launch.json`**
+**变量说明**（VS Code/Cursor 提供的特殊变量）：
 
-在 `.vscode` 目录下创建 `launch.json` 文件：
+| 变量                         | 说明                               | 示例                             |
+| ---------------------------- | ---------------------------------- | -------------------------------- |
+| `${fileDirname}`             | 当前打开文件所在的目录             | `/Users/.../01-basic-example`    |
+| `${fileBasename}`            | 当前打开文件的文件名               | `main.cpp`                       |
+| `${fileBasenameNoExtension}` | 当前打开文件的文件名（不含扩展名） | `main`                           |
+| `${workspaceFolder}`         | 工作区根目录                       | `/Users/.../QtLanChat-FeiQClone` |
+
+**为什么使用 `${fileDirname}/*.cpp`？**
+
+- **适应不同目录**：无论你在哪个目录（`01-basic-example`、`02-project-example` 等），都能编译当前目录下的所有 `.cpp` 文件
+- **自动包含所有文件**：使用通配符 `*.cpp`，不需要手动列出每个文件
+- **一个配置通用**：不需要为每个目录创建不同的配置
+
+**如何使用 tasks.json？**
+
+1. **执行任务**：
+   - **方法 1（推荐）**：按 `Cmd+Shift+B`（macOS）或 `Ctrl+Shift+B`（Windows/Linux），直接执行默认构建任务
+   - **方法 2**：`Cmd+Shift+P`（macOS）或 `Ctrl+Shift+P`（Windows/Linux）→ 输入 "Tasks: Run Task" → 选择 "build-current-dir" 任务
+
+2. **查看输出**：
+   - 编译结果会显示在终端中
+   - 编译错误会显示在"问题"面板（`Cmd+Shift+M`）中，点击可以直接跳转到错误位置
+   - 编译成功后，会在当前目录下生成 `program` 可执行文件
+
+#### 2.7.3 launch.json 详解
+
+**什么是 launch.json？**
+
+`launch.json` 是 VS Code/Cursor 的调试配置文件，用于配置调试器如何启动和调试程序。
+
+**为什么需要 launch.json？**
+
+- **Run Code 扩展的限制**：只能运行单文件，不支持多文件项目的调试
+- **无法设置断点**：没有调试配置，断点不会生效
+- **无法查看变量**：无法在运行时查看变量的值
+- **无法单步执行**：无法逐行执行代码，观察程序执行过程
+
+**launch.json 的作用**：
+
+- 配置调试器（LLDB 或 GDB）
+- 支持断点调试：在代码中设置断点，程序会在断点处停止
+- 支持单步执行：逐行执行代码，观察每一步的变化
+- 支持查看变量：在调试过程中查看变量的值
+- 支持调用栈：查看函数调用关系
+
+**如何创建 launch.json？**
+
+在 `.vscode` 目录下创建 `launch.json` 文件，内容如下：
 
 ```json
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Multi-File",
+      "name": "Debug Current Directory",
       "type": "lldb",
       "request": "launch",
-      "program": "${workspaceFolder}/build/program",
+      "program": "${fileDirname}/program",
       "args": [],
-      "cwd": "${workspaceFolder}",
-      "preLaunchTask": "build-multi-file",
-      "stopOnEntry": false
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "build-current-dir",
+      "stopOnEntry": false,
+      "console": "integratedTerminal"
     }
   ]
 }
 ```
 
-**配置说明**：
+**配置项详解**：
 
-- `name`：调试配置名称
-- `type`：调试器类型（macOS 使用 `lldb`，Linux 使用 `cppdbg`）
-- `program`：可执行文件路径
-- `preLaunchTask`：调试前执行的任务（自动编译）
-- `stopOnEntry`：是否在入口处停止（设为 `false` 直接运行）
+| 配置项               | 说明                                                 | 类比             |
+| -------------------- | ---------------------------------------------------- | ---------------- |
+| `name`               | 调试配置名称，在调试面板中显示                       | 配置的"名字"     |
+| `type: "lldb"`       | 调试器类型（macOS 使用 `lldb`，Linux 使用 `cppdbg`） | 使用的调试工具   |
+| `request: "launch"`  | 启动方式，`launch` 表示启动新程序                    | 启动新程序       |
+| `program`            | 要调试的可执行文件路径                               | 要调试的程序     |
+| `args`               | 程序启动时的命令行参数                               | 程序的"参数"     |
+| `cwd`                | 程序运行的工作目录                                   | 程序的"工作目录" |
+| `preLaunchTask`      | 调试前执行的任务（自动编译）                         | 调试前先编译     |
+| `stopOnEntry: false` | 是否在 `main()` 函数入口处停止（`false` 表示不停止） | 是否在入口停止   |
+| `console`            | 控制台类型，`integratedTerminal` 表示使用集成终端    | 输出位置         |
 
-#### 2.7.3 使用配置
+**为什么使用 `${fileDirname}/program`？**
 
-**编译项目**：
+- **适应不同目录**：无论你在哪个目录，都能调试当前目录下的程序
+- **自动匹配**：与 `tasks.json` 中的输出文件路径一致
+- **一个配置通用**：不需要为每个目录创建不同的配置
 
-1. 按 `Cmd+Shift+B`（macOS）或 `Ctrl+Shift+B`（Windows/Linux）
-2. 选择 `build-multi-file` 任务
-3. 查看终端输出，确认编译成功
+**调试功能详解**：
 
-**调试项目**：
+**1. 设置断点**：
 
-1. 在代码中设置断点（点击行号左侧）
-2. 按 `F5` 开始调试
-3. 程序会自动编译（如果 `preLaunchTask` 已配置）
-4. 在断点处停止，可以查看变量值、单步执行等
+- **方法**：在代码行号左侧点击，会出现红色圆点
+- **作用**：程序运行到断点处会自动停止
+- **取消断点**：再次点击红色圆点
 
-**运行项目**：
+**2. 开始调试**：
 
-1. 编译成功后，在终端运行：
+- **方法**：按 `F5` 或点击调试面板的"开始调试"按钮
+- **过程**：
+  1. 自动执行 `preLaunchTask`（编译程序）
+  2. 如果编译成功，启动调试器
+  3. 程序开始运行，遇到断点会停止
 
-   ```bash
-   ./build/program
-   ```
+**3. 调试控制**：
 
-#### 2.7.4 通用配置模板
+| 操作         | 快捷键         | 说明                                       |
+| ------------ | -------------- | ------------------------------------------ |
+| **继续执行** | `F5`           | 继续运行，直到下一个断点                   |
+| **单步跳过** | `F10`          | 执行当前行，不进入函数内部                 |
+| **单步进入** | `F11`          | 执行当前行，如果遇到函数调用，进入函数内部 |
+| **单步跳出** | `Shift+F11`    | 跳出当前函数，返回到调用处                 |
+| **重启调试** | `Cmd+Shift+F5` | 重新开始调试                               |
+| **停止调试** | `Shift+F5`     | 停止调试                                   |
 
-**适用于多个源文件的通用配置**：
+**4. 查看变量**：
+
+- **变量面板**：左侧"变量"面板显示当前作用域的所有变量
+- **监视面板**：可以添加表达式，实时查看其值
+- **悬停查看**：在代码中悬停在变量上，会显示变量的值
+- **调用栈**：显示函数调用关系，可以看到程序是如何到达当前位置的
+
+**5. 调试输出**：
+
+- **调试控制台**：显示程序的输出（`std::cout`）
+- **终端**：如果使用 `integratedTerminal`，输出会显示在终端中
+
+**调试示例**：
+
+假设你在 `main.cpp` 中设置了断点：
+
+```cpp
+// main.cpp
+#include <iostream>
+#include "user.h"
+
+int main() {
+    User user1("张三", 25);  // ← 在这里设置断点
+    user1.printInfo();
+    return 0;
+}
+```
+
+**调试过程**：
+
+1. **设置断点**：在第 5 行左侧点击，出现红色圆点
+2. **开始调试**：按 `F5`
+3. **程序停止**：程序在第 5 行停止，此时 `user1` 还未创建
+4. **单步执行**：按 `F10`，执行第 5 行，`user1` 被创建
+5. **查看变量**：在"变量"面板中可以看到 `user1` 的成员变量值
+6. **继续执行**：按 `F5`，程序继续运行，执行 `printInfo()`
+7. **观察输出**：在终端中看到程序输出
+
+#### 2.7.4 完整配置示例
+
+**适用于不同目录的通用配置**：
+
+**`.vscode/tasks.json`**：
 
 ```json
 {
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build-multi-file",
+      "label": "build-current-dir",
       "type": "shell",
       "command": "clang++",
-      "args": ["-std=c++17", "-g", "-Wall", "${workspaceFolder}/src/stage1/24-multi-file-basics/01-basic-example/*.cpp", "-o", "${workspaceFolder}/build/program"],
+      "args": ["-std=c++17", "-g", "-Wall", "${fileDirname}/*.cpp", "-o", "${fileDirname}/program"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -899,17 +1029,94 @@ mkdir -p .vscode
         "panel": "shared"
       },
       "problemMatcher": ["$gcc"],
-      "detail": "编译多文件 C++ 项目（自动包含目录下所有 .cpp 文件）"
+      "detail": "编译当前目录下的所有 .cpp 文件"
     }
   ]
 }
 ```
 
-**说明**：
+**`.vscode/launch.json`**：
 
-- 使用通配符 `*.cpp` 自动包含目录下所有 `.cpp` 文件
-- 适合源文件较多的项目
-- 注意：通配符在某些系统上可能需要调整
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Current Directory",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/program",
+      "args": [],
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "build-current-dir",
+      "stopOnEntry": false,
+      "console": "integratedTerminal"
+    }
+  ]
+}
+```
+
+**配置说明**：
+
+- **`${fileDirname}/*.cpp`**：编译当前打开文件所在目录下的所有 `.cpp` 文件
+- **`${fileDirname}/program`**：可执行文件输出到当前目录
+- **`preLaunchTask: "build-current-dir"`**：调试前自动执行编译任务
+- **一个配置通用**：无论你在 `01-basic-example`、`02-project-example` 还是其他目录，都能使用
+
+**使用步骤**：
+
+1. **打开任意目录下的 `.cpp` 文件**（如 `01-basic-example/main.cpp`）
+2. **编译**：
+   - 按 `Cmd+Shift+B`（macOS）或 `Ctrl+Shift+B`（Windows/Linux），自动编译当前目录下的所有 `.cpp` 文件
+   - 或者：`Cmd+Shift+P` → "Tasks: Run Task" → 选择 "build-current-dir"
+3. **设置断点**：在代码行号左侧点击，出现红色圆点
+4. **开始调试**：
+   - 按 `F5`，如果弹出选择配置，选择 "Debug Current Directory"
+   - 程序会自动编译（如果 `preLaunchTask` 已配置）并启动调试
+5. **调试操作**：
+   - 使用 `F10`（单步跳过）、`F11`（单步进入）等快捷键进行单步调试
+   - 在左侧"变量"面板查看变量值
+   - 在终端中查看程序输出
+
+#### 2.7.5 常见问题
+
+**Q1：编译失败怎么办？**
+
+- 检查终端输出的错误信息
+- 检查"问题"面板（`Cmd+Shift+M`）中的错误
+- 确保所有源文件都在同一目录下
+- 确保头文件路径正确
+
+**Q2：断点不生效怎么办？**
+
+- 确保编译时使用了 `-g` 选项（生成调试信息）
+- 确保 `preLaunchTask` 配置正确
+- 确保可执行文件路径正确
+
+**Q3：如何调试其他目录的项目？**
+
+- 打开目标目录下的任意 `.cpp` 文件（如 `02-project-example/main.cpp`）
+- 使用相同的快捷键（`Cmd+Shift+B` 编译，`F5` 调试）
+- 配置会自动适应当前目录，无需修改配置文件
+- 已验证：`01-basic-example`、`02-project-example` 等目录都能正常工作
+
+**Q4：如何查看变量的值？**
+
+- **变量面板**：左侧"运行和调试"面板中的"变量"部分
+- **悬停查看**：在代码中悬停在变量名上
+- **监视面板**：添加表达式，实时查看其值
+
+**Q5：如何单步执行？**
+
+- **`F10`**：单步跳过（Step Over），执行当前行，不进入函数内部
+- **`F11`**：单步进入（Step Into），如果遇到函数调用，进入函数内部
+- **`Shift+F11`**：单步跳出（Step Out），跳出当前函数，返回到调用处
+
+**Q6：按 `Cmd+Shift+B` 没有执行编译任务怎么办？**
+
+- 确保 `tasks.json` 中的 `group.isDefault` 设置为 `true`
+- 如果有多个构建任务，VS Code 会弹出选择菜单，选择 "build-current-dir"
+- 也可以使用 `Cmd+Shift+P` → "Tasks: Run Task" → 选择 "build-current-dir"
 
 ### 2.8 关键特性与设计原理
 
