@@ -2,159 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build Debug",
-      "type": "shell",
-      "command": "mkdir",
-      "args": ["-p", "build"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Create build directory"
-    },
-    {
-      "label": "CMake Configure",
-      "type": "shell",
-      "command": "cmake",
-      "args": ["-B", "build", "-DCMAKE_BUILD_TYPE=Debug"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": ["$gcc"],
-      "detail": "Configure CMake project"
-    },
-    {
-      "label": "CMake Build",
-      "type": "shell",
-      "command": "cmake",
-      "args": ["--build", "build"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": ["$gcc"],
-      "detail": "Build the project"
-    },
-    {
-      "label": "Run Tests",
-      "type": "shell",
-      "command": "cmake",
-      "args": ["--build", "build", "--target", "test"],
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Run C++ tests"
-    },
-    {
-      "label": "Format C++",
-      "type": "shell",
-      "command": "pnpm",
-      "args": ["run", "format:cpp"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Format C++ code with clang-format"
-    },
-    {
-      "label": "Lint C++",
-      "type": "shell",
-      "command": "pnpm",
-      "args": ["run", "lint:cpp"],
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Lint C++ code with cpplint"
-    },
-    {
-      "label": "Lint Markdown",
-      "type": "shell",
-      "command": "pnpm",
-      "args": ["run", "lint:md"],
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Check Markdown files for linting issues"
-    },
-    {
-      "label": "Fix Markdown",
-      "type": "shell",
-      "command": "pnpm",
-      "args": ["run", "lint:md:fix"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Fix Markdown linting issues automatically"
-    },
-    {
-      "label": "Format All",
-      "type": "shell",
-      "command": "pnpm",
-      "args": ["run", "format"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Format all code (C++ and Markdown)"
-    },
-    {
-      "label": "Clean Build",
-      "type": "shell",
-      "command": "rm",
-      "args": ["-rf", "build"],
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      },
-      "problemMatcher": [],
-      "detail": "Clean build directory"
-    },
-    {
       "label": "build-current-file",
       "type": "shell",
-      "command": "g++",
+      "command": "clang++",
       "args": [
         "-std=c++17",
         "-g",
@@ -170,7 +20,32 @@
         "panel": "shared"
       },
       "problemMatcher": ["$gcc"],
-      "detail": "Build current C++ file for debugging"
+      "detail": "编译当前单个 C++ 文件（单文件项目）"
+    },
+    {
+      "label": "build-current-dir",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Wall",
+        "${fileDirname}/*.cpp",
+        "-o",
+        "${fileDirname}/program"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "编译当前目录下的所有 .cpp 文件（多文件项目，默认任务）"
     }
   ]
 }

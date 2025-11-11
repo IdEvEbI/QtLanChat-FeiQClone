@@ -2,15 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug QtLanChat-FeiQClone",
-      "type": "lldb",
-      "request": "launch",
-      "program": "${workspaceFolder}/build/bin/QtLanChat-FeiQClone",
-      "args": [],
-      "cwd": "${workspaceFolder}",
-      "stopOnEntry": true
-    },
-    {
       "name": "Debug Current File",
       "type": "lldb",
       "request": "launch",
@@ -18,7 +9,19 @@
       "args": [],
       "cwd": "${fileDirname}",
       "stopOnEntry": true,
-      "preLaunchTask": "build-current-file"
+      "preLaunchTask": "build-current-file",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Current Directory",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/program",
+      "args": [],
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "build-current-dir",
+      "stopOnEntry": false,
+      "console": "integratedTerminal"
     }
   ]
 }
