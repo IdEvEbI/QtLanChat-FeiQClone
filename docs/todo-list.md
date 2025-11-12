@@ -63,11 +63,11 @@
   - 在 Cursor 中编译、执行、调试多文件项目（tasks.json、launch.json）
   - 基础示例：简单的多文件项目
 
-### C++ 进阶语法（0% 完成）**新增 - 阶段 1 扩展**
+### C++ 进阶语法（33% 完成）**新增 - 阶段 1 扩展**
 
-- [ ] 25-stl-containers-advanced.md（STL 容器进阶：map、set、unordered_map 等）- 2h
-  - 在多文件环境中学习
-  - 立即应用多文件开发知识
+- [x] 25-stl-containers-advanced.md（STL 容器进阶：map、set、unordered_map 等）- 2h ✅
+  - ✅ 在多文件环境中学习
+  - ✅ 立即应用多文件开发知识
 - [ ] 26-lambda-expressions.md（Lambda 表达式 + 函数式编程）- 1h
   - 在多文件环境中学习
   - 立即应用多文件开发知识
@@ -207,10 +207,11 @@
 - ✅ 22-file-io.md（文件 I/O 详解，1585 行，3 题练习）
 - ✅ 23-oop-practice.md（OOP 综合练习，894 行，2 题练习）
 - ✅ 24-multi-file-basics.md（多文件开发基础，1897 行，3 题练习）
-- ✅ 配套代码文件（src/stage1/01-24/ 目录完整）
+- ✅ 25-stl-containers-advanced.md（STL 容器进阶，1825 行，3 题练习）
+- ✅ 配套代码文件（src/stage1/01-25/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-24**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-25**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -242,7 +243,7 @@
 
 **新增核心文档**：100% 完成基础部分
 **多文件开发基础**：100% 完成（24-multi-file-basics.md 已完成）**新增 - 阶段 1 扩展，最高优先级**
-**C++ 进阶语法**：0% 完成（预计 4.5h）**新增 - 阶段 1 扩展**
+**C++ 进阶语法**：33% 完成（25-stl-containers-advanced.md 已完成，预计剩余 2.5h）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：0% 完成（预计 1.5h）**新增 - 阶段 1 扩展**
 **系统设计和项目实战**：0% 完成（预计 5h）**新增 - 阶段 1 扩展**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
@@ -255,7 +256,7 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：完成多文件开发基础（24，1.5h）+ C++ 进阶语法（25-27，4.5h）
+**短期（1 周）**：完成 C++ 进阶语法剩余部分（26-27，2.5h）
 **中期（2 周）**：完成多文件开发进阶（28，1.5h）+ 系统设计和项目实战（29-30，4.5h）+ 进入阶段 2（Qt 环境搭建）
 **长期（3 周）**：配套代码 + 质量保证 + v0.1 发布
 
@@ -302,9 +303,9 @@
 
 - ✅ 24-multi-file-basics.md（多文件开发基础）**已完成**
 
-**里程碑 6**：C++ 进阶语法（25-27）⏳ 0% 完成**新增 - 阶段 1 扩展**
+**里程碑 6**：C++ 进阶语法（25-27）🔄 33% 完成**新增 - 阶段 1 扩展**
 
-- ⏳ 25-stl-containers-advanced.md（STL 容器进阶）
+- ✅ 25-stl-containers-advanced.md（STL 容器进阶）
 - ⏳ 26-lambda-expressions.md（Lambda 表达式）
 - ⏳ 27-exception-handling.md（异常处理）
 
@@ -359,8 +360,8 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 25-stl-containers-advanced.md（STL 容器进阶）**最高优先级**
-**本周目标**：完成 25-stl-containers-advanced.md（STL 容器进阶，2h）+ 26-lambda-expressions.md（Lambda 表达式，1h）
+**立即任务**：开始编写 26-lambda-expressions.md（Lambda 表达式）**最高优先级**
+**本周目标**：完成 26-lambda-expressions.md（Lambda 表达式，1h）+ 27-exception-handling.md（异常处理，1.5h）
 **中期目标**：完成 C++ 进阶语法（25-27，4.5h）+ 多文件开发进阶（28，1.5h）+ 系统设计和项目实战（29-30，4.5h）
 **重点文档**：25-stl-containers-advanced.md（STL 容器进阶，最高优先级，在多文件环境中学习）
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
@@ -389,6 +390,7 @@
 - ✅ 面向对象（类、封装、继承、多态）
 - ✅ 文件 I/O
 - ✅ STL 基础（vector、string）
+- ✅ STL 容器进阶（map、set、unordered_map）
 - ✅ 类型转换（static_cast）
 
 **已在 24-multi-file-basics.md 中补充的知识点：**
