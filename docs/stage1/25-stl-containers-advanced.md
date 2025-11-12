@@ -993,6 +993,7 @@ private:
 public:
     void addUser(const std::string& name, int age);
     User* findUser(const std::string& name);
+    const User* findUser(const std::string& name) const;
     void setUserOnline(const std::string& name, bool status);
     void printAllUsers() const;
     void printOnlineUsers() const;
@@ -1014,6 +1015,14 @@ void UserManager::addUser(const std::string& name, int age) {
 }
 
 User* UserManager::findUser(const std::string& name) {
+    auto it = users.find(name);
+    if (it != users.end()) {
+        return &(it->second);  // 返回用户对象的引用
+    }
+    return nullptr;  // 未找到
+}
+
+const User* UserManager::findUser(const std::string& name) const {
     auto it = users.find(name);
     if (it != users.end()) {
         return &(it->second);  // 返回用户对象的引用
@@ -1043,7 +1052,7 @@ void UserManager::printAllUsers() const {
 void UserManager::printOnlineUsers() const {
     std::cout << "\n=== Online Users ===" << std::endl;
     for (const auto& name : onlineUsers) {
-        User* user = findUser(name);
+        const User* user = findUser(name);
         if (user != nullptr) {
             user->printInfo();
         }
@@ -1089,13 +1098,13 @@ int main() {
     // 查找用户
     User* user = manager.findUser("小美");
     if (user != nullptr) {
-        std::cout << "\nFound user: ";
+        std::cout << "\n找到用户: ";
         user->printInfo();
     }
 
     // 统计信息
-    std::cout << "\nTotal users: " << manager.getTotalUsers() << std::endl;
-    std::cout << "Online users: " << manager.getOnlineUsersCount() << std::endl;
+    std::cout << "\n总用户数: " << manager.getTotalUsers() << std::endl;
+    std::cout << "在线用户数: " << manager.getOnlineUsersCount() << std::endl;
 
     return 0;
 }
@@ -1106,9 +1115,8 @@ int main() {
 ```
 === All Users ===
 Name: 小丽, Age: 30, Status: Online
-Name: 小华, Age: 25, Status: Online
-Name: 小美, Age: 25, Status: Online
 Name: 小明, Age: 22, Status: Offline
+Name: 小美, Age: 25, Status: Online
 Name: 阿伟, Age: 28, Status: Offline
 
 === Online Users ===
@@ -1117,7 +1125,7 @@ Name: 小美, Age: 25, Status: Online
 
 找到用户: Name: 小美, Age: 25, Status: Online
 
-总用户数: 5
+总用户数: 4
 在线用户数: 2
 ```
 
@@ -1618,6 +1626,7 @@ private:
 public:
     void addBook(const Book& book);
     Book* findBook(const std::string& isbn);
+    const Book* findBook(const std::string& isbn) const;
     bool borrowBook(const std::string& isbn);
     bool returnBook(const std::string& isbn);
     void printAllBooks() const;
@@ -1637,6 +1646,14 @@ void Library::addBook(const Book& book) {
 }
 
 Book* Library::findBook(const std::string& isbn) {
+    auto it = books.find(isbn);
+    if (it != books.end()) {
+        return &(it->second);
+    }
+    return nullptr;
+}
+
+const Book* Library::findBook(const std::string& isbn) const {
     auto it = books.find(isbn);
     if (it != books.end()) {
         return &(it->second);
@@ -1671,7 +1688,7 @@ void Library::printAllBooks() const {
 void Library::printBorrowedBooks() const {
     std::cout << "\n=== Borrowed Books ===" << std::endl;
     for (const auto& isbn : borrowedBooks) {
-        Book* book = findBook(isbn);
+        const Book* book = findBook(isbn);
         if (book != nullptr) {
             book->printInfo();
         }
