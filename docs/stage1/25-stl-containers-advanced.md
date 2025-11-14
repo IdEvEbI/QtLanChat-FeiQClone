@@ -211,12 +211,34 @@ scores["小美"] = 95;                    // 如果键不存在，自动创建
 scores["小丽"] = 87;
 
 // 方法 2：使用 insert 方法
-scores.insert({"阿伟", 92});
-scores.insert(std::make_pair("小明", 88));
+scores.insert({"阿伟", 92});  // 列表初始化（C++11，推荐）
+scores.insert(std::make_pair("小明", 88));  // 使用 make_pair 创建键值对
 
 // 方法 3：使用 emplace 方法（C++11，推荐，更高效）
 scores.emplace("小华", 90);
 ```
+
+> **📌 新知识点：`emplace` 方法**
+>
+> `emplace` 是 C++11 引入的方法，用于直接在容器中构造元素，避免先创建对象再复制。
+>
+> **语法**：`容器.emplace(参数1, 参数2, ...)`
+>
+> - **作用**：直接在容器中构造元素，传递构造函数的参数
+> - **优势**：比 `insert` 更高效，避免不必要的复制或移动操作
+> - **适用场景**：添加元素到容器时，推荐使用 `emplace` 而不是 `insert`
+>
+> **类比**：`insert` 就像先在外面做好一个盒子，然后放进仓库；`emplace` 就像直接在仓库里制作盒子，省去了搬运的过程。
+>
+> **示例对比**：
+>
+> ```cpp
+> // insert 方式：先创建对象，再插入（可能涉及复制）
+> scores.insert({"小华", 90});
+>
+> // emplace 方式：直接在容器中构造（更高效）
+> scores.emplace("小华", 90);
+> ```
 
 **2. 访问元素**
 
@@ -308,7 +330,24 @@ for (auto it = scores.begin(); it != scores.end(); ++it) {
 }
 ```
 
-> **📌 说明**：`pair.first` 是键（key），`pair.second` 是值（value）。`std::pair` 是 C++ 标准库中的模板类，用于存储两个值。
+> **📌 新知识点：`std::pair`**
+>
+> `std::pair` 是 C++ 标准库中的模板类，用于存储两个值（键值对）。
+>
+> **语法**：`std::pair<类型1, 类型2>`
+>
+> - **访问第一个值**：`pair.first`（键）
+> - **访问第二个值**：`pair.second`（值）
+> - **创建 pair**：`std::make_pair(值1, 值2)` 或 `{值1, 值2}`（C++11）
+>
+> **类比**：`std::pair` 就像一个盒子，里面装着两个东西，第一个是键，第二个是值。
+>
+> **示例**：
+>
+> ```cpp
+> std::pair<std::string, int> p = {"小美", 95};
+> std::cout << p.first << ": " << p.second << std::endl;  // 输出：小美: 95
+> ```
 >
 > **📌 为什么推荐使用范围 for 循环？**
 >
@@ -1304,8 +1343,7 @@ std::map<Point, int> points;            // 可以工作
 - 显示所有学生成绩（按姓名排序）
 - 计算平均成绩
 
-<details>
-<summary>▶ 参考答案</summary>
+**参考答案**：
 
 ```cpp
 // 04-exercise-grade-manager.cpp
@@ -1365,7 +1403,7 @@ int main() {
 }
 ```
 
-</details>
+> **配套代码**：练习 1 的完整代码位于 `src/stage1/25-stl-containers-advanced/04-exercise-grade-manager.cpp`
 
 #### 练习 2：去重操作
 
@@ -1377,8 +1415,7 @@ int main() {
 - 使用 set 去重和排序
 - 显示去重后的结果
 
-<details>
-<summary>▶ 参考答案</summary>
+**参考答案**：
 
 ```cpp
 // 05-exercise-deduplicate.cpp
@@ -1408,7 +1445,7 @@ int main() {
 }
 ```
 
-</details>
+> **配套代码**：练习 2 的完整代码位于 `src/stage1/25-stl-containers-advanced/05-exercise-deduplicate.cpp`
 
 #### 练习 3：单词统计
 
@@ -1420,8 +1457,28 @@ int main() {
 - 统计每个单词的出现次数
 - 显示统计结果
 
-<details>
-<summary>▶ 参考答案</summary>
+> **📌 新知识点：`std::istringstream`**
+>
+> `std::istringstream` 是 C++ 标准库中的输入字符串流类（需要 `#include <sstream>`），用于将字符串当作输入流来处理，可以像从文件或键盘读取数据一样从字符串中读取数据。
+>
+> **语法**：`std::istringstream 变量名(字符串)`
+>
+> - **作用**：将字符串转换为输入流，可以使用 `>>` 操作符从中读取数据
+> - **自动跳过空格**：`>>` 操作符会自动跳过空格和换行符
+> - **应用场景**：字符串分割、解析文本数据
+>
+> **类比**：就像把一段文字放在一个"读取器"里，可以像从键盘输入一样逐个读取单词。
+>
+> **示例**：
+>
+> ```cpp
+> std::string text = "hello world";
+> std::istringstream iss(text);
+> std::string word1, word2;
+> iss >> word1 >> word2;  // word1 = "hello", word2 = "world"
+> ```
+
+**参考答案**：
 
 ```cpp
 // 06-exercise-word-count.cpp
@@ -1434,10 +1491,10 @@ int main() {
     std::string text = "hello world hello cpp world cpp";
     std::map<std::string, int> wordCount;
 
-    // 使用 stringstream 分割单词
-    std::istringstream iss(text);
+    // 使用 istringstream 分割单词
+    std::istringstream iss(text);  // 将字符串转换为输入流
     std::string word;
-    while (iss >> word) {
+    while (iss >> word) {  // 从流中读取单词（自动跳过空格）
         wordCount[word]++;  // 如果键不存在，自动创建并初始化为 0，然后自增
     }
 
@@ -1451,7 +1508,16 @@ int main() {
 }
 ```
 
-</details>
+**输出**：
+
+```
+=== Word Count ===
+cpp: 2
+hello: 2
+world: 2
+```
+
+> **配套代码**：练习 3 的完整代码位于 `src/stage1/25-stl-containers-advanced/06-exercise-word-count.cpp`
 
 ### 4.2 测试题
 
@@ -1523,10 +1589,22 @@ int main() {
 
 ## 5. 资源与扩展
 
-- **官方文档**：[std::map](https://en.cppreference.com/w/cpp/container/map)、[std::set](https://en.cppreference.com/w/cpp/container/set)、[std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)
-- **推荐书籍**：《C++ Primer》- 第 11 章关联容器、《Effective STL》- 条款 23-25
-- **在线资源**：[learncpp.com](https://www.learncpp.com/) - STL 容器教程
-- **视频资源**：C++ STL 容器进阶教程
+### 5.1 基础资源
+
+- **官方文档**：[std::map](https://en.cppreference.com/w/cpp/container/map)、[std::set](https://en.cppreference.com/w/cpp/container/set)、[std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)、[cppreference.com](https://en.cppreference.com/)
+- **权威书籍**：《C++ Primer》- 第 11 章关联容器、《Effective STL》- 条款 23-25
+- **在线教程**：[learncpp.com](https://www.learncpp.com/) - STL 容器教程
+
+### 5.2 多媒体学习
+
+- **视频资源**：[C++ STL 容器进阶教程](https://www.youtube.com/results?search_query=C%2B%2B+STL+container+tutorial)
+- **开发者资源**：[cppreference.com](https://en.cppreference.com/) - 权威参考
+
+### 5.3 扩展阅读
+
+- **其他 STL 容器**：可以学习更多 STL 容器（如 `std::deque`、`std::list`、`std::unordered_set` 等）
+- **STL 算法**：学习 STL 算法（如 `std::sort`、`std::find`、`std::count` 等）与容器配合使用
+- **性能优化**：了解不同容器的性能特点，选择合适的容器优化程序性能
 
 ## 6. 课后作业及参考答案
 
@@ -1757,10 +1835,30 @@ ISBN: 978-0-987654-32-1, Title: Effective C++, Author: Scott Meyers, Price: 49.9
 
 **学习路径**：
 
-1. ✅ STL 容器进阶 - 已完成
-2. 🔄 Lambda 表达式 - 下一步
-3. ⏳ 异常处理 - 待学习
-4. ⏳ 多文件开发进阶 - 待学习
+1. ✅ C++ 简介和快速入门 - 已完成
+2. ✅ 变量和常量 - 已完成
+3. ✅ 数据类型详解 - 已完成
+4. ✅ 运算符详解 - 已完成
+5. ✅ if 分支详解 - 已完成
+6. ✅ while 循环 - 已完成
+7. ✅ for 循环 - 已完成
+8. ✅ switch 分支 - 已完成
+9. ✅ 数组基础 - 已完成
+10. ✅ std::vector - 已完成
+11. ✅ 字符串进阶 - 已完成
+12. ✅ 函数基础 - 已完成
+13. ✅ 指针详解 - 已完成
+14. ✅ 引用详解 - 已完成
+15. ✅ 结构体详解 - 已完成
+16. ✅ 类和对象 - 已完成
+17. ✅ 封装 - 已完成
+18. ✅ 继承 - 已完成
+19. ✅ 多态 - 已完成
+20. ✅ STL 容器基础 - 已完成
+21. ✅ STL 容器进阶 - 已完成
+22. 🔄 Lambda 表达式 - 下一步
+23. ⏳ 异常处理 - 待学习
+24. ⏳ 多文件开发进阶 - 待学习
 
 **技能树更新**：
 
@@ -1808,7 +1906,11 @@ graph TD
 - **应用到项目**：能够在实际项目中选择合适的容器
 - **掌握度自评**：85%
 
-> **指导建议**：<50% 建议复习 vector 和容器基础概念，50-80% 继续学习，>80% 可以进入下一阶段学习（Lambda 表达式）
+> **自评指导**：
+>
+> - **<50%**：建议复习 vector 和容器基础概念，重新阅读文档核心内容，完成练习题
+> - **50-80%**：继续学习，完成综合练习巩固理解，尝试在多文件项目中使用这些容器
+> - **>80%**：可以进入下一阶段学习，开始 Lambda 表达式详解
 
 ---
 
@@ -1821,4 +1923,8 @@ graph TD
 - [x] 抽象概念配有生活化比喻
 - [x] 比喻体系一致，避免概念混乱
 - [x] 文档长度符合难度等级要求
+- [x] 包含常见问题 FAQ
+- [x] 包含资源与扩展
+- [x] 包含课后作业及参考答案
+- [x] 包含完整的学习路径和技能树更新
 - [x] 多文件应用示例完整
