@@ -785,6 +785,8 @@ int main() {
 └── main.cpp            # 主程序
 ```
 
+> **配套代码**：多文件项目示例位于 `src/stage1/26-lambda-expressions/02-project-example/` 目录
+
 **user.h**：
 
 ```cpp
@@ -1221,6 +1223,8 @@ int main() {
 奇数乘以 2 后: 6 14 2 18 10 8 2 6 4 10
 ```
 
+> **配套代码**：编程题 1 的完整代码位于 `src/stage1/26-lambda-expressions/06-test-find-count.cpp`
+
 #### 编程题 2：使用 Lambda 表达式实现复杂排序和过滤
 
 **题目**：编写程序，使用 Lambda 表达式实现以下功能：
@@ -1320,6 +1324,8 @@ int main() {
 
 价格 < 5.0 的产品数量: 2
 ```
+
+> **配套代码**：编程题 2 的完整代码位于 `src/stage1/26-lambda-expressions/07-test-sort-filter.cpp`
 
 ## 4. 总结
 
@@ -1495,6 +1501,8 @@ int main() {
 分数 >= 60 的学生数量: 5
 平均分: 83.4
 ```
+
+> **配套代码**：综合练习的完整代码位于 `src/stage1/26-lambda-expressions/06-homework-student-system.cpp`
 
 **评分标准**：功能实现（40%）、Lambda 表达式使用正确（30%）、代码质量（30%）
 
