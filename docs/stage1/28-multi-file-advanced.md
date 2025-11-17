@@ -1915,6 +1915,9 @@ int main() {
 namespace StudentSystem {
     class StudentManager;               // 前向声明
 
+    // 前向声明友元函数
+    double calculateAverageAge(const StudentManager& manager);
+
     class Student {
     private:
         std::string name;
@@ -1922,6 +1925,7 @@ namespace StudentSystem {
         static int totalStudents;       // 静态成员变量
 
         friend class StudentManager;    // 友元类
+        friend double calculateAverageAge(const StudentManager& manager);  // 友元函数
 
     public:
         Student(const std::string& name, int age);
@@ -1974,6 +1978,7 @@ namespace StudentSystem {
 
 namespace StudentSystem {
     class Student;                      // 前向声明
+    class StudentManager;               // 前向声明
 
     // 友元函数声明
     double calculateAverageAge(const StudentManager& manager);
