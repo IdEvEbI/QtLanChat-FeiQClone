@@ -1,6 +1,6 @@
 # QtLanChat-FeiQClone 项目开发 TODO
 
-> **项目周期**：3 周（21 天）| **当前阶段**：Stage 1 C++基础 | **责任人**：IdevebI | **更新记录**：基于 01-28 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶知识点）
+> **项目周期**：3 周（21 天）| **当前阶段**：Stage 1 补充阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-28 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶知识点），采用方案 C（混合路径）规划后续学习路径
 
 ## 📋 文档基础设施（已完成 ✅）
 
@@ -18,7 +18,9 @@
 - [x] 建立技能树可视化框架
 - [x] 设计难度分级（初级/中级/高级）
 
-## 🎯 阶段 1：C++ 基础学习文档完善（进行中 🔄）
+## 🎯 阶段 1：C++ 基础学习文档完善（100% 完成 ✅）
+
+**说明**：阶段 1 核心文档（01-28）已全部完成，当前进入 Stage 1 补充阶段（方案 C：混合路径）
 
 ### 文档结构优化（100% 完成）
 
@@ -85,10 +87,55 @@
   - ✅ 依赖管理最佳实践
   - ✅ 进阶示例：复杂多文件项目
 
-### 系统设计和项目实战（0% 完成）**新增 - 阶段 1 扩展**
+### Stage 1 补充阶段（0% 完成）**新增 - 方案 C：混合路径**
 
-- [ ] 29-chat-system-design.md（系统设计：整合所有 C++ 知识，设计聊天系统架构）- 2h
-- [ ] 30-terminal-chat-project.md（终端版聊天程序：多文件开发实战）- 2.5h
+- [ ] 29-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h
+  - Socket 编程概念（类比：Socket 像电话插座）
+  - TCP vs UDP 协议对比（可靠传输 vs 快速传输）
+  - 客户端/服务器模型
+  - 网络编程基本流程
+  - **说明**：只讲概念，不深入系统 API，为 Qt Network 学习做准备
+- [ ] 30-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h
+  - CMake 链接外部库（find_package）
+  - Qt 项目配置（Qt6::Core、Qt6::Network）
+  - 跨平台构建配置
+  - 依赖管理最佳实践
+  - 实践：配置一个简单的 Qt 项目
+
+### Stage 2：Qt 开发阶段（0% 完成）**新增 - 方案 C：混合路径**
+
+- [ ] 31-qt-environment-setup.md（Qt 环境搭建：Qt 6.12+ 安装、CMake 配置、Qt Creator 使用）- 1h
+  - Qt 6.12+ 安装和配置
+  - CMake 配置 Qt 项目（应用 30-cmake-advanced.md 的知识）
+  - Qt Creator 使用
+  - 实践：创建第一个 Qt 项目
+- [ ] 32-qt-signals-slots.md（Qt 信号槽机制：信号槽概念、连接、Qt 对象模型）- 1.5h
+  - 信号槽概念（类比：信号像广播，槽像接收器）
+  - 信号槽连接（connect）
+  - Qt 对象模型
+  - 事件循环
+  - 实践：信号槽示例项目
+- [ ] 33-qt-network-programming.md（Qt 网络编程：Qt Network 模块、QUdpSocket、QTcpSocket）- 2.5h
+  - Qt Network 模块介绍
+  - QUdpSocket 使用（UDP 多播、广播）
+  - QTcpSocket 使用（TCP 连接、文件传输）
+  - 网络事件处理（readyRead、connected、disconnected）
+  - 实践：简单的 UDP/TCP 通信示例
+
+### Stage 3：项目实战阶段（0% 完成）**新增 - 方案 C：混合路径**
+
+- [ ] 34-chat-system-design.md（系统设计：整合所有 C++ 和 Qt 知识，设计聊天系统架构）- 2h
+  - 设计聊天系统架构
+  - 整合所有 C++ 和 Qt 知识
+  - 设计类结构、模块划分
+- [ ] 35-terminal-chat-project.md（终端版聊天程序：使用 Qt Network 实现无界面聊天系统）- 2.5h
+  - 实现无界面的聊天系统
+  - 使用 Qt Network 实现 UDP/TCP 通信
+  - 实现基本的消息收发功能
+- [ ] 36-qt-ui-chat-project.md（Qt UI 聊天程序：实现带 GUI 的聊天系统）- 3h
+  - 实现带 GUI 的聊天系统
+  - 使用 Qt Widgets 设计界面
+  - 实现文件传输、群组聊天等功能
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（93% 完成）
@@ -248,7 +295,9 @@
 **多文件开发基础**：100% 完成（24-multi-file-basics.md 已完成）**新增 - 阶段 1 扩展，最高优先级**
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
-**系统设计和项目实战**：0% 完成（预计 5h）**新增 - 阶段 1 扩展**
+**Stage 1 补充阶段**：0% 完成（预计 2.5h）**新增 - 方案 C：混合路径**
+**Stage 2 Qt 开发阶段**：0% 完成（预计 5h）**新增 - 方案 C：混合路径**
+**Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
 **文件 I/O 和综合实践**：100% 完成（22-file-io.md 和 23-oop-practice.md 已完成）
@@ -259,9 +308,19 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：完成系统设计（29，2h）
-**中期（2 周）**：完成系统设计和项目实战（29-30，4.5h）+ 进入阶段 2（Qt 环境搭建）
-**长期（3 周）**：配套代码 + 质量保证 + v0.1 发布
+**短期（1 周）**：完成 Stage 1 补充阶段（29-30，2.5h）
+**中期（2 周）**：完成 Stage 2 Qt 开发阶段（31-33，5h）+ 开始 Stage 3 项目实战
+**长期（3 周）**：完成 Stage 3 项目实战（34-36，7.5h）+ 配套代码 + 质量保证 + v0.1 发布
+
+**详细时间规划**：
+
+- **第 1 天**：29-network-programming-concepts.md（1h）+ 30-cmake-advanced.md（1.5h）
+- **第 2-3 天**：复习和巩固 Stage 1 补充阶段
+- **第 4 天**：31-qt-environment-setup.md（1h）+ 32-qt-signals-slots.md（1.5h）
+- **第 5-6 天**：33-qt-network-programming.md（2.5h）
+- **第 7 天**：34-chat-system-design.md（2h）
+- **第 8-9 天**：35-terminal-chat-project.md（2.5h）
+- **第 10-12 天**：36-qt-ui-chat-project.md（3h）
 
 ### 🎯 当前里程碑
 
@@ -312,11 +371,26 @@
 - ✅ 26-lambda-expressions.md（Lambda 表达式）
 - ✅ 27-exception-handling.md（异常处理）
 
-**里程碑 7**：多文件开发进阶和项目实战（28-30）🔄 33% 完成**新增 - 阶段 1 扩展**
+**里程碑 7**：多文件开发进阶（28）✅ 100% 完成**新增 - 阶段 1 扩展**
 
 - ✅ 28-multi-file-advanced.md（多文件开发进阶）
-- ⏳ 29-chat-system-design.md（系统设计）
-- ⏳ 30-terminal-chat-project.md（终端版聊天程序）
+
+**里程碑 8**：Stage 1 补充阶段（29-30）⏳ 0% 完成**新增 - 方案 C：混合路径**
+
+- ⏳ 29-network-programming-concepts.md（网络编程概念）
+- ⏳ 30-cmake-advanced.md（CMake 进阶）
+
+**里程碑 9**：Stage 2 Qt 开发阶段（31-33）⏳ 0% 完成**新增 - 方案 C：混合路径**
+
+- ⏳ 31-qt-environment-setup.md（Qt 环境搭建）
+- ⏳ 32-qt-signals-slots.md（Qt 信号槽机制）
+- ⏳ 33-qt-network-programming.md（Qt 网络编程）
+
+**里程碑 10**：Stage 3 项目实战阶段（34-36）⏳ 0% 完成**新增 - 方案 C：混合路径**
+
+- ⏳ 34-chat-system-design.md（系统设计）
+- ⏳ 35-terminal-chat-project.md（终端版聊天程序）
+- ⏳ 36-qt-ui-chat-project.md（Qt UI 聊天程序）
 
 ### ⚠️ 潜在风险
 
@@ -326,7 +400,7 @@
 
 ---
 
-**优先级**：文档基础设施 ✅ > 阶段 1 核心文档 🔄 > 面向对象文档 ⏳ > 配套代码 ⏳ > 质量保证 ⏳ > 版本发布 ⏳
+**优先级**：文档基础设施 ✅ > 阶段 1 核心文档 ✅ > Stage 1 补充阶段 🔄（方案 C）> Stage 2 Qt 开发 ⏳ > Stage 3 项目实战 ⏳ > 配套代码 ⏳ > 质量保证 ⏳ > 版本发布 ⏳
 
 ---
 
@@ -363,11 +437,12 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 29-chat-system-design.md（系统设计）**最高优先级**
-**本周目标**：完成 29-chat-system-design.md（系统设计，2h）
-**中期目标**：完成系统设计和项目实战（29-30，4.5h）
-**重点文档**：29-chat-system-design.md（系统设计，最高优先级）
+**立即任务**：开始编写 29-network-programming-concepts.md（网络编程概念）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 1 补充阶段（29-network-programming-concepts.md + 30-cmake-advanced.md，2.5h）
+**中期目标**：完成 Stage 2 Qt 开发阶段（31-33，5h）+ 开始 Stage 3 项目实战
+**重点文档**：29-network-programming-concepts.md（网络编程概念，最高优先级）
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
+**学习路径**：采用方案 C（混合路径），平衡学习深度和速度
 
 ### 📋 阶 段1完成标准
 
@@ -379,8 +454,24 @@
 - ✅ **进行多文件开发（头文件、源文件分离）**
 - ✅ **在 Cursor 中编译、执行、调试多文件项目**
 - ✅ **使用命名空间、静态成员、友元函数、前向声明等高级特性**
-- ✅ 设计并实现终端版聊天程序
-- ✅ 为进入阶段 2（Qt 开发）做好准备
+
+**Stage 1 补充阶段完成后，学生应能够：**
+
+- ✅ 理解网络编程基本概念（Socket、TCP/UDP、客户端/服务器模型）
+- ✅ 使用 CMake 链接外部库（find_package、target_link_libraries）
+- ✅ 配置和构建 Qt 项目（Qt6::Core、Qt6::Network）
+
+**Stage 2 Qt 开发阶段完成后，学生应能够：**
+
+- ✅ 搭建 Qt 开发环境（Qt 6.12+、CMake、Qt Creator）
+- ✅ 理解和使用 Qt 信号槽机制
+- ✅ 使用 Qt Network 模块实现 UDP/TCP 通信（QUdpSocket、QTcpSocket）
+
+**Stage 3 项目实战阶段完成后，学生应能够：**
+
+- ✅ 设计聊天系统架构（整合所有 C++ 和 Qt 知识）
+- ✅ 实现终端版聊天程序（无界面，使用 Qt Network）
+- ✅ 实现 Qt UI 聊天程序（带 GUI，文件传输、群组聊天）
 
 ### 🔍 知识点完整性检查清单
 
@@ -413,6 +504,17 @@
 - ✅ **友元函数（friend function）**：基础概念、使用场景、访问私有成员
 - ✅ **前向声明（forward declaration）**：减少头文件依赖、加快编译
 - ✅ **依赖管理最佳实践**：如何组织头文件和源文件，减少编译依赖
+
+**Stage 1 补充阶段将补充的知识点：**
+
+- ⏳ **网络编程概念**：Socket 编程概念、TCP/UDP 协议对比、客户端/服务器模型、网络编程基本流程
+- ⏳ **CMake 进阶**：链接外部库（find_package）、Qt 项目配置（Qt6::Core、Qt6::Network）、跨平台构建配置、依赖管理
+
+**Stage 2 Qt 开发阶段将补充的知识点：**
+
+- ⏳ **Qt 环境搭建**：Qt 6.12+ 安装和配置、CMake 配置 Qt 项目、Qt Creator 使用
+- ⏳ **Qt 信号槽机制**：信号槽概念、连接（connect）、Qt 对象模型、事件循环
+- ⏳ **Qt 网络编程**：Qt Network 模块、QUdpSocket（UDP 多播、广播）、QTcpSocket（TCP 连接、文件传输）、网络事件处理
 
 **可选补充（根据实际需要）：**
 
