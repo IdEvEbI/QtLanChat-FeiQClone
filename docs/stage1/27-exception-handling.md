@@ -402,12 +402,13 @@ int main() {
 **输出**：
 
 ```
-错误: map::at
+错误: map::at:  key not found
 未找到学生: 小明
-错误: vector::at
+错误: vector
 索引越界
 ```
 
+> **注意**：`e.what()` 的具体输出可能因编译器/标准库版本而异，但异常类型和程序行为是一致的。  
 > **配套代码**：容器异常处理的完整代码位于 `src/stage1/27-exception-handling/02-container-exception.cpp`
 
 #### 2.5.2 多个 catch 块
