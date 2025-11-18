@@ -257,7 +257,8 @@ Doxyfile.bak
 src/**
 # 取消忽略 src 目录下的所有子目录（确保 Git 可以递归进入）
 !src/**/
-# 取消忽略 src 目录下所有 .cpp 和 .md 文件（递归）
+# 取消忽略 src 目录下所有 .cpp、.h、.md 和 CMakeLists.txt 文件（递归）
 !src/**/*.cpp
 !src/**/*.h
 !src/**/*.md
+!src/**/CMakeLists.txt
