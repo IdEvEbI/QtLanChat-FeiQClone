@@ -36,6 +36,24 @@
       ],
       "group": {
         "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "编译当前目录下的所有 .cpp 文件（多文件项目，非 CMake 项目）"
+    },
+    {
+      "label": "build-smart",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/build-smart.sh",
+      "args": ["${fileDirname}"],
+      "group": {
+        "kind": "build",
         "isDefault": true
       },
       "presentation": {
@@ -45,7 +63,7 @@
         "panel": "shared"
       },
       "problemMatcher": ["$gcc"],
-      "detail": "编译当前目录下的所有 .cpp 文件（多文件项目，默认任务）"
+      "detail": "智能构建：自动向上查找 CMakeLists.txt，有则用 CMake，无则用普通编译（默认任务）"
     }
   ]
 }
