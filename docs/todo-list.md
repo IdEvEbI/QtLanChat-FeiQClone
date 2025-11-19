@@ -87,7 +87,7 @@
   - ✅ 依赖管理最佳实践
   - ✅ 进阶示例：复杂多文件项目
 
-### Stage 1 补充阶段（50% 完成）**新增 - 方案 C：混合路径**
+### Stage 1 补充阶段（100% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 29-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h ✅
   - ✅ Socket 编程概念（类比：Socket 像电话插座）
@@ -98,12 +98,13 @@
   - ✅ 概念到实现的映射（Socket → QUdpSocket/QTcpSocket）
   - ✅ 学习路径说明（明确后续学习路径）
   - ✅ **说明**：只讲概念，不深入系统 API，为 Qt Network 学习做准备
-- [ ] 30-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h
-  - CMake 链接外部库（find_package）
-  - Qt 项目配置（Qt6::Core、Qt6::Network）
-  - 跨平台构建配置
-  - 依赖管理最佳实践
-  - 实践：配置一个简单的 Qt 项目
+- [x] 30-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h ✅
+  - ✅ CMake 链接外部库（find_package）
+  - ✅ Qt 项目配置（Qt6::Core、Qt6::Network）
+  - ✅ 跨平台构建配置
+  - ✅ 依赖管理最佳实践
+  - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
+  - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
 ### Stage 2：Qt 开发阶段（0% 完成）**新增 - 方案 C：混合路径**
 
@@ -262,10 +263,11 @@
 - ✅ 27-exception-handling.md（异常处理，1300 行，3 题练习）
 - ✅ 28-multi-file-advanced.md（多文件开发进阶，2212 行，3 题练习）
 - ✅ 29-network-programming-concepts.md（网络编程概念，866 行，3 题练习 + 3 题测试题）
-- ✅ 配套代码文件（src/stage1/01-28/ 目录完整）
+- ✅ 30-cmake-advanced.md（CMake 进阶，1465 行，3 题练习 + 3 题测试题）
+- ✅ 配套代码文件（src/stage1/01-30/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-29**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-30**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -299,7 +301,7 @@
 **多文件开发基础**：100% 完成（24-multi-file-basics.md 已完成）**新增 - 阶段 1 扩展，最高优先级**
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
-**Stage 1 补充阶段**：50% 完成（预计 2.5h，已完成 1h）**新增 - 方案 C：混合路径**
+**Stage 1 补充阶段**：100% 完成（预计 2.5h，已完成 2.5h）**新增 - 方案 C：混合路径**
 **Stage 2 Qt 开发阶段**：0% 完成（预计 5h）**新增 - 方案 C：混合路径**
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
@@ -312,15 +314,15 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，开始 Stage 2 Qt 开发阶段
 **中期（2 周）**：完成 Stage 2 Qt 开发阶段（31-33，5h）+ 开始 Stage 3 项目实战
 **长期（3 周）**：完成 Stage 3 项目实战（34-36，7.5h）+ 配套代码 + 质量保证 + v0.1 发布
 
 **详细时间规划**：
 
 - **第 1 天**：✅ 29-network-programming-concepts.md（1h）- 已完成
-- **第 2 天**：30-cmake-advanced.md（1.5h）
-- **第 3 天**：复习和巩固 Stage 1 补充阶段
+- **第 2 天**：✅ 30-cmake-advanced.md（1.5h）- 已完成
+- **第 3 天**：✅ 复习和巩固 Stage 1 补充阶段 - 已完成
 - **第 4 天**：31-qt-environment-setup.md（1h）+ 32-qt-signals-slots.md（1.5h）
 - **第 5-6 天**：33-qt-network-programming.md（2.5h）
 - **第 7 天**：34-chat-system-design.md（2h）
@@ -380,10 +382,10 @@
 
 - ✅ 28-multi-file-advanced.md（多文件开发进阶）
 
-**里程碑 8**：Stage 1 补充阶段（29-30）🔄 50% 完成**新增 - 方案 C：混合路径**
+**里程碑 8**：Stage 1 补充阶段（29-30）✅ 100% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 29-network-programming-concepts.md（网络编程概念）
-- ⏳ 30-cmake-advanced.md（CMake 进阶）
+- ✅ 30-cmake-advanced.md（CMake 进阶）
 
 **里程碑 9**：Stage 2 Qt 开发阶段（31-33）⏳ 0% 完成**新增 - 方案 C：混合路径**
 
@@ -442,10 +444,10 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 30-cmake-advanced.md（CMake 进阶）**最高优先级 - 方案 C**
-**本周目标**：完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）
+**立即任务**：开始编写 31-qt-environment-setup.md（Qt 环境搭建）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 2 Qt 开发阶段（31-qt-environment-setup.md，1h）
 **中期目标**：完成 Stage 2 Qt 开发阶段（31-33，5h）+ 开始 Stage 3 项目实战
-**重点文档**：30-cmake-advanced.md（CMake 进阶，最高优先级）
+**重点文档**：31-qt-environment-setup.md（Qt 环境搭建，最高优先级）
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
 **学习路径**：采用方案 C（混合路径），平衡学习深度和速度
 
@@ -465,6 +467,7 @@
 - ✅ 理解网络编程基本概念（Socket、TCP/UDP、客户端/服务器模型）
 - ✅ 使用 CMake 链接外部库（find_package、target_link_libraries）
 - ✅ 配置和构建 Qt 项目（Qt6::Core、Qt6::Network）
+- ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
 
 **Stage 2 Qt 开发阶段完成后，学生应能够：**
 
@@ -513,7 +516,7 @@
 **Stage 1 补充阶段将补充的知识点：**
 
 - ✅ **网络编程概念**：Socket 编程概念、TCP/UDP 协议对比、客户端/服务器模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射（Socket → QUdpSocket/QTcpSocket）
-- ⏳ **CMake 进阶**：链接外部库（find_package）、Qt 项目配置（Qt6::Core、Qt6::Network）、跨平台构建配置、依赖管理
+- ✅ **CMake 进阶**：链接外部库（find_package）、Qt 项目配置（Qt6::Core、Qt6::Network）、跨平台构建配置、依赖管理最佳实践、在 Cursor 中调试 CMake 项目
 
 **Stage 2 Qt 开发阶段将补充的知识点：**
 

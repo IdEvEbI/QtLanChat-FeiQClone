@@ -1,8 +1,8 @@
 # C++ 技能树 - 知识点详细记录
 
-> **目的**：记录 01-29 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
+> **目的**：记录 01-30 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
 > **创建日期**：2025-10-26  
-> **更新记录**：基于 01-29 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念知识点）
+> **更新记录**：基于 01-30 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶知识点）
 
 ## 📊 文档进度
 
@@ -35,6 +35,7 @@
 - ✅ 27-exception-handling.md - 已完成
 - ✅ 28-multi-file-advanced.md - 已完成
 - ✅ 29-network-programming-concepts.md - 已完成
+- ✅ 30-cmake-advanced.md - 已完成
 
 ---
 
@@ -1982,6 +1983,117 @@
 
 ---
 
+### 30-cmake-advanced.md - CMake 进阶
+
+#### 🔑 核心知识点
+
+- **CMake 链接外部库概念**
+  - CMake 链接外部库定义：使用 CMake 的 `find_package` 命令自动查找和链接外部库（如 Qt6），无需手动指定路径
+  - 类比：CMake 链接外部库就像"自动连接水电"，告诉 CMake"我需要 Qt 库"，CMake 会自动找到并连接，不需要知道具体位置
+  - 应用场景：Qt 项目开发、链接第三方库、跨平台构建、大型项目管理
+
+- **为什么需要 CMake 链接外部库**
+  - **问题 1：Qt 库不是 C++ 标准库**：C++ 标准库没有网络编程功能，Qt 库需要单独安装和链接
+  - **问题 2：不同平台路径不同**：Windows、macOS、Linux 的库路径不同，手动配置困难
+  - **问题 3：手动配置困难**：需要手动查找库的位置、手动指定头文件路径和库文件路径、库更新后需要修改配置
+  - **解决方案：使用 CMake 的 `find_package`**：自动查找库的位置、跨平台支持、自动处理头文件路径和库文件路径、维护简单
+
+- **find_package 详解**
+  - **find_package 基本语法**：`find_package(包名 [REQUIRED] [COMPONENTS 组件1 组件2 ...])`
+  - **参数说明**：
+    - 包名：要查找的库名称（如 `Qt6`、`Boost`、`OpenCV`）
+    - REQUIRED：可选，如果找不到库，CMake 会报错并停止配置
+    - COMPONENTS：可选，指定需要的库组件（如 `Core`、`Network`）
+  - **find_package 工作原理**：
+    1. 查找配置文件：CMake 会在系统路径中查找 `<包名>Config.cmake` 或 `Find<包名>.cmake` 文件
+    2. 加载配置：找到配置文件后，加载库的配置信息（头文件路径、库文件路径、编译选项等）
+    3. 设置变量：设置 `<包名>_FOUND`、`<包名>_INCLUDE_DIRS`、`<包名>_LIBRARIES` 等变量
+    4. 创建目标：现代 CMake（3.0+）会创建 `<包名>::<组件>` 目标，可以直接链接
+  - **检查库是否找到**：使用 `if(<包名>_FOUND)` 检查，或使用 `REQUIRED` 参数确保依赖存在
+  - **类比**：`find_package` 就像告诉 CMake"我需要 Qt6 库的 Core 和 Network 模块"，CMake 会自动查找并配置
+
+- **Qt6 项目配置**
+  - **Qt6 模块介绍**：
+    - `Qt6::Core`：Qt 核心功能（字符串、容器、信号槽），所有 Qt 项目都需要
+    - `Qt6::Network`：网络编程（QUdpSocket、QTcpSocket），用于网络通信、聊天软件
+    - `Qt6::Widgets`：GUI 界面（窗口、按钮、文本框），用于桌面应用程序
+    - `Qt6::Gui`：图形界面基础（绘图、字体），用于 GUI 应用程序
+  - **配置 Qt6 项目**：
+    - `find_package(Qt6 REQUIRED COMPONENTS Core Network)`：查找 Qt6，需要 Core 和 Network 模块
+    - `CMAKE_AUTOMOC ON`：自动处理 Qt 的 MOC（Meta-Object Compiler）工具，用于信号槽、属性等
+    - `CMAKE_AUTOUIC ON`：自动处理 Qt 的 UIC（User Interface Compiler）工具，用于 .ui 文件
+    - `CMAKE_AUTORCC ON`：自动处理 Qt 的 RCC（Resource Compiler）工具，用于 .qrc 文件
+    - `target_link_libraries(${PROJECT_NAME} Qt6::Core Qt6::Network)`：链接 Qt6 模块，使用现代 CMake 语法
+  - **Qt6 模块的链接方式**：
+    - 现代 CMake 方式（推荐）：`target_link_libraries(${PROJECT_NAME} Qt6::Core Qt6::Network)`
+    - 优势：自动处理头文件路径、自动处理库文件路径、自动处理编译选项、跨平台支持
+  - **类比**：配置 Qt6 项目就像配置房子的功能模块，需要哪个功能就连接哪个模块，CMake 会自动处理连接细节
+
+- **跨平台构建配置**
+  - **平台检测**：使用 `if(WIN32)`、`elseif(APPLE)`、`elseif(UNIX)` 检测操作系统
+  - **Qt6 路径配置**：
+    - 方法 1：通过环境变量（推荐）：`export Qt6_DIR=/path/to/Qt6/lib/cmake/Qt6`
+    - 方法 2：通过 CMake 变量：`set(Qt6_DIR "/path/to/Qt6/lib/cmake/Qt6")`
+    - 方法 3：通过命令行参数：`cmake -DQt6_DIR=/path/to/Qt6/lib/cmake/Qt6 ..`
+    - 自动查找（推荐）：`find_package(Qt6 REQUIRED COMPONENTS Core Network)` 会自动在系统路径中查找
+  - **跨平台构建最佳实践**：
+    - 使用 find_package：让 CMake 自动查找库，不要手动指定路径
+    - 使用现代 CMake 语法：使用 `Qt6::Core` 格式，不要使用变量
+    - 避免硬编码路径：不要硬编码库路径，使用环境变量或 CMake 变量
+    - 测试不同平台：在不同平台上测试构建配置
+  - **类比**：跨平台构建就像建房子的通用设计，可以在不同地方（平台）使用相同的设计（配置）
+
+- **依赖管理最佳实践**
+  - **原则 1：明确依赖**：明确指定需要的模块，不要链接所有模块
+  - **原则 2：版本控制**：
+    - 指定最低版本：`find_package(Qt6 6.12 REQUIRED COMPONENTS Core Network)`（适合需要特定版本的项目）
+    - 不指定版本：`find_package(Qt6 REQUIRED COMPONENTS Core Network)`（更灵活，适合兼容不同版本的项目）
+    - 指定较低的最低版本：`find_package(Qt6 6.9 REQUIRED COMPONENTS Core Network)`（平衡灵活性和版本要求）
+  - **原则 3：错误处理**：使用 `REQUIRED` 确保依赖存在，如果找不到库会报错
+  - **CMakeLists.txt 组织结构**：
+    1. 基本配置（C++ 标准、项目名称）
+    2. 查找依赖（find_package）
+    3. Qt 配置（AUTOMOC、AUTOUIC、AUTORCC）
+    4. 源文件（set(SOURCES ...)）
+    5. 创建目标（add_executable）
+    6. 链接库（target_link_libraries）
+  - **类比**：依赖管理就像管理房子的设备清单，需要明确列出需要的设备（模块），检查设备是否齐全（REQUIRED），记录设备版本（版本控制）
+
+- **在 Cursor 中调试 CMake 项目**
+  - **智能构建任务（build-smart）**：
+    - 自动检测：自动检测当前目录是否有 CMakeLists.txt
+    - 统一配置：CMake 项目和普通项目使用同一套配置
+    - 动态路径：自动查找 CMake 项目根目录，不需要硬编码路径
+    - 跨项目支持：适用于项目中的任何 CMake 项目
+  - **配置 launch.json**：
+    - 使用 `build-smart` 创建的符号链接 `cmake-app`（动态路径）
+    - `preLaunchTask`：调试前自动执行 `build-smart` 任务（自动检测并构建）
+    - `console`：使用集成终端运行程序（输出显示在 Cursor 内部）
+  - **完整工作流程**：
+    1. 编写代码：在 `src/main.cpp` 中编写代码
+    2. 设置断点：在需要调试的行设置断点
+    3. 启动调试：按 `F5`，Cursor 会自动检测项目类型、构建并启动调试
+    4. 调试：使用 `F5`、`F10`、`F11` 控制程序执行，查看变量值
+  - **优势**：一键编译和调试、通用配置、支持断点调试、支持单步执行、提高开发效率
+  - **类比**：配置 Cursor 调试就像给房子安装智能控制系统，一键启动所有功能（自动检测、配置、编译、调试），不需要手动操作每个步骤，而且适用于所有房间（项目）
+
+- **CMAKE_EXPORT_COMPILE_COMMANDS**
+  - **作用**：生成 `compile_commands.json` 文件，用于 `IntelliSense/clangd` 代码补全和错误检查
+  - **配置方法**：在 CMakeLists.txt 中添加 `set(CMAKE_EXPORT_COMPILE_COMMANDS ON)`
+  - **使用场景**：在 Cursor/VSCode 中使用 IntelliSense 或 clangd 进行代码补全和错误检查
+  - **优势**：提高代码编辑体验，自动补全和错误检查更准确
+
+#### 🎓 教学特色
+
+- **类比**：CMake 链接外部库就像"自动连接水电"，告诉 CMake"我需要 Qt 库"，CMake 会自动找到并连接
+- **类比**：`find_package` 就像告诉 CMake"我需要 Qt6 库的 Core 和 Network 模块"，CMake 会自动查找并配置
+- **类比**：配置 Qt6 项目就像配置房子的功能模块，需要哪个功能就连接哪个模块
+- **类比**：跨平台构建就像建房子的通用设计，可以在不同地方（平台）使用相同的设计（配置）
+- **类比**：依赖管理就像管理房子的设备清单，需要明确列出需要的设备（模块）
+- **类比**：配置 Cursor 调试就像给房子安装智能控制系统，一键启动所有功能
+
+---
+
 ## 🔍 知识点跳跃检查
 
 ### ✅ 当前状态：未发现知识点跳跃
@@ -2022,6 +2134,7 @@
 32. **异常处理** - 已在 27-exception-handling.md 详细介绍（异常处理概念、try-catch 语句、throw 抛出异常、标准异常类型、异常安全、RAII 与异常安全、多文件应用）
 33. **多文件开发进阶** - 已在 28-multi-file-advanced.md 详细介绍（命名空间、静态成员、友元函数、前向声明、依赖管理最佳实践、复杂多文件项目组织）
 34. **网络编程概念** - 已在 29-network-programming-concepts.md 详细介绍（Socket 概念、TCP/UDP 协议对比、客户端/服务器模型、P2P 模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射）
+35. **CMake 进阶** - 已在 30-cmake-advanced.md 详细介绍（CMake 链接外部库、find_package、Qt 项目配置、跨平台构建、依赖管理最佳实践、在 Cursor 中调试 CMake 项目）
 
 ### ⚠️ 需要注意的知识点
 
@@ -2397,7 +2510,7 @@
 ✅ 27-异常处理
 ✅ 28-多文件开发进阶
 ✅ 29-网络编程概念
-⏳ 30-CMake 进阶
+✅ 30-CMake 进阶
 ⏳ 31-Qt 环境搭建
 ⏳ 32-Qt 信号槽
 ⏳ 33-Qt 网络编程
@@ -2483,6 +2596,6 @@
 
 ---
 
-**文档状态**：`01-29 完成 ✅ | 30+ 待创建 ⏳ | 总体进度 99%`
+**文档状态**：`01-30 完成 ✅ | 31+ 待创建 ⏳ | 总体进度 99%`
 
 **更新建议**：每次完成新文档后，更新此技能树记录，确保知识点无遗漏、无跳跃。
