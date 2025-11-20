@@ -60,10 +60,12 @@ if [ -f "$CMAKEDIR/CMakeLists.txt" ]; then
     echo "$EXECUTABLE" > "$CMAKEDIR/build/.executable_name"
     ln -sf "$EXECUTABLE" "$CMAKEDIR/build/$SYMLINK"
     # 创建符号链接到工作区根目录，供 launch.json 使用
+    # 使用绝对路径确保符号链接正确
+    CMAKE_BUILD_DIR_ABS="$(cd "$CMAKEDIR/build" && pwd)"
     mkdir -p "$WORKSPACE_ROOT/.vscode"
-    ln -sfn "$CMAKEDIR/build" "$WORKSPACE_ROOT/.vscode/.cmake_build_dir"
+    ln -sfn "$CMAKE_BUILD_DIR_ABS" "$WORKSPACE_ROOT/.vscode/.cmake_build_dir"
     echo "[SUCCESS] Executable: $EXECUTABLE"
-    echo "[SUCCESS] Build directory: $CMAKEDIR/build"
+    echo "[SUCCESS] Build directory: $CMAKE_BUILD_DIR_ABS"
 else
     echo "[INFO] CMakeLists.txt not found (searched up to: $CMAKEDIR), using direct compilation..."
     if ! clang++ -std=c++17 -g -Wall "$FILE_DIR"/*.cpp -o "$FILE_DIR/program"; then
