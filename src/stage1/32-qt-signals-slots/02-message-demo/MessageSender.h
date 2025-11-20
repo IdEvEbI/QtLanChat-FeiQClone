@@ -13,11 +13,11 @@ public:
 
     void sendMessage(const QString& message) {
         qDebug() << "[Sender] Sending message:" << message;
-        emit messageSent(message);  // 发出信号
+        emit messageSent(message);              // 发出信号
     }
 
 signals:
-    void messageSent(const QString& message);  // 声明信号
+    void messageSent(const QString& message);   // 声明信号
 
 private:
     QString m_name;

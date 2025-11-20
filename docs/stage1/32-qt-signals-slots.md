@@ -634,6 +634,7 @@ signal-slot-demo/
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QtCore/QDebug>
 
 class MessageSender : public QObject {
     Q_OBJECT
