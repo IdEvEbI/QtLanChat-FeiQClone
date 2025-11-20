@@ -262,3 +262,6 @@ src/**
 !src/**/*.h
 !src/**/*.md
 !src/**/CMakeLists.txt
+# 再次忽略 src 目录下的 build 和 cache 目录（必须在取消忽略目录之后）
+src/**/build/
+src/**/cache/
