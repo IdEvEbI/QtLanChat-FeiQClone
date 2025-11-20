@@ -3,6 +3,10 @@
 
 set +f
 
+# 获取工作区根目录（假设脚本在 .vscode 目录下）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 FILE_DIR="$1"
 if [ -z "$FILE_DIR" ]; then
     echo "[ERROR] File directory not provided"
@@ -55,7 +59,11 @@ if [ -f "$CMAKEDIR/CMakeLists.txt" ]; then
     # 保存可执行文件名并创建符号链接
     echo "$EXECUTABLE" > "$CMAKEDIR/build/.executable_name"
     ln -sf "$EXECUTABLE" "$CMAKEDIR/build/$SYMLINK"
+    # 创建符号链接到工作区根目录，供 launch.json 使用
+    mkdir -p "$WORKSPACE_ROOT/.vscode"
+    ln -sfn "$CMAKEDIR/build" "$WORKSPACE_ROOT/.vscode/.cmake_build_dir"
     echo "[SUCCESS] Executable: $EXECUTABLE"
+    echo "[SUCCESS] Build directory: $CMAKEDIR/build"
 else
     echo "[INFO] CMakeLists.txt not found (searched up to: $CMAKEDIR), using direct compilation..."
     if ! clang++ -std=c++17 -g -Wall "$FILE_DIR"/*.cpp -o "$FILE_DIR/program"; then
