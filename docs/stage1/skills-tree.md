@@ -1,8 +1,8 @@
 # C++ 技能树 - 知识点详细记录
 
-> **目的**：记录 01-30 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
+> **目的**：记录 01-31 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
 > **创建日期**：2025-10-26  
-> **更新记录**：基于 01-30 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶知识点）
+> **更新记录**：基于 01-31 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建知识点）
 
 ## 📊 文档进度
 
@@ -36,6 +36,7 @@
 - ✅ 28-multi-file-advanced.md - 已完成
 - ✅ 29-network-programming-concepts.md - 已完成
 - ✅ 30-cmake-advanced.md - 已完成
+- ✅ 31-qt-environment-setup.md - 已完成
 
 ---
 
@@ -2094,6 +2095,77 @@
 
 ---
 
+### 31-qt-environment-setup.md - Qt 环境搭建
+
+#### 🔑 核心知识点
+
+- **Qt 安装和配置**
+  - Qt 版本选择：Qt 6.9+（推荐 6.12+），Qt 6.9+ 可满足学习需求
+  - macOS 安装：使用 Homebrew `brew install qt@6`（可能安装 6.9.3 版本）
+  - Windows 安装：使用 Qt Online Installer，选择 Qt 6.12.0+ 和组件
+  - Linux 安装：使用 apt `sudo apt install qt6-base-dev qt6-tools-dev`
+  - 验证安装：`qmake6 --version` 或 `qmake --version`
+  - Qt6_DIR 环境变量：告诉 CMake Qt6 的安装位置（可选，CMake 会自动查找）
+
+- **CMake 配置 Qt 项目验证**
+  - 使用之前的示例项目验证 CMake 配置是否正确
+  - CMake 自动查找 Qt6：通过 `find_package(Qt6 REQUIRED COMPONENTS Core Network)`
+  - 配置成功标志：看到 `Configuring done` 和 `Generating done`
+  - 构建项目：`cmake --build .`，生成可执行文件
+  - 运行程序：`./MyQtApp`（macOS/Linux）或 `.\MyQtApp.exe`（Windows）
+
+- **Qt Creator 安装和使用**
+  - Qt Creator 简介：Qt 官方 IDE，提供代码编辑、调试、项目管理等功能
+  - 安装方式：
+    - 方式 1：通过 Qt 安装器安装（推荐），选择 Community Edition（社区版）
+    - 方式 2：通过包管理器安装（macOS）：`brew install --cask qt-creator`（社区版，18.0.0）
+    - 方式 3：单独下载 Qt Creator 安装包
+  - 版本选择：
+    - Community Edition（社区版）：免费，适用于学习和开源项目，LGPL v3 许可证
+    - Business Evaluation（商业评估版）：功能完整，但仅用于评估，商业使用需要购买许可证
+    - Education（教育版）：免费用于教育用途，需要教育邮箱验证
+  - 许可证说明：Qt 社区版采用 LGPL v3 许可证，可以用于开发商业应用，但需要遵守许可证条款（动态链接、提供重新链接的可能性等）
+  - 基本使用：打开项目、配置项目、构建项目、运行项目、调试项目
+
+- **Qt 环境配置详解**
+  - Qt6_DIR 环境变量设置：
+    - macOS（Homebrew）：`export Qt6_DIR=$(brew --prefix qt@6)/lib/cmake/Qt6`
+    - Windows：`set Qt6_DIR=C:\Qt\6.12.0\msvc2019_64\lib\cmake\Qt6`
+    - Linux：`export Qt6_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt6`
+  - CMake 自动查找 Qt6 的工作原理：
+    1. 查找 `Qt6Config.cmake` 文件
+    2. 查找顺序：`Qt6_DIR` 环境变量 → CMake 缓存变量 → 系统默认路径
+  - Qt 版本兼容性：
+    - 推荐：Qt 6.12+（最新稳定版）
+    - 最低：Qt 6.9+（如果系统版本较低）
+    - CMakeLists.txt 配置：不指定版本（推荐）、指定最低版本、指定精确版本
+
+- **Qt 项目结构**
+  - 最小 Qt 项目结构：`CMakeLists.txt` + `src/main.cpp`
+  - 完整 Qt 项目结构：`CMakeLists.txt` + `src/`（源文件）+ `ui/`（UI 设计文件，可选）+ `resources/`（资源文件，可选）+ `build/`（构建目录）
+  - CMakeLists.txt 结构：
+    1. 基本配置（C++ 标准、项目名称）
+    2. 生成 compile_commands.json
+    3. 查找 Qt6（find_package）
+    4. Qt 自动处理（AUTOMOC、AUTOUIC、AUTORCC）
+    5. 源文件（set(SOURCES ...)）
+    6. 创建目标（add_executable）
+    7. 链接库（target_link_libraries）
+
+- **常见问题排查**
+  - 找不到 Qt6：检查 Qt6 是否已安装、设置 Qt6_DIR 环境变量、重新运行 CMake
+  - Qt 版本不匹配：检查 Qt 版本、调整 CMakeLists.txt 中的版本要求
+  - 编译错误：检查头文件包含、检查 CMakeLists.txt、重新配置和构建
+
+#### 🎓 教学特色
+
+- **类比**：Qt 环境搭建就像建房子，之前学会了如何连接水电（CMake 配置），现在需要实际安装水电设备（Qt 环境搭建），然后才能使用电器（Qt 开发）
+- **类比**：Qt6_DIR 环境变量就像告诉 CMake"Qt6 安装在哪里"
+- **类比**：CMake 自动查找 Qt6 就像自动搜索系统中的 Qt6 安装位置
+- **类比**：Qt Creator 就像 Qt 开发的专用工具，提供代码编辑、调试、项目管理等功能
+
+---
+
 ## 🔍 知识点跳跃检查
 
 ### ✅ 当前状态：未发现知识点跳跃
@@ -2135,6 +2207,7 @@
 33. **多文件开发进阶** - 已在 28-multi-file-advanced.md 详细介绍（命名空间、静态成员、友元函数、前向声明、依赖管理最佳实践、复杂多文件项目组织）
 34. **网络编程概念** - 已在 29-network-programming-concepts.md 详细介绍（Socket 概念、TCP/UDP 协议对比、客户端/服务器模型、P2P 模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射）
 35. **CMake 进阶** - 已在 30-cmake-advanced.md 详细介绍（CMake 链接外部库、find_package、Qt 项目配置、跨平台构建、依赖管理最佳实践、在 Cursor 中调试 CMake 项目）
+36. **Qt 环境搭建** - 已在 31-qt-environment-setup.md 详细介绍（Qt 6.9+ 安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查）
 
 ### ⚠️ 需要注意的知识点
 
@@ -2511,7 +2584,7 @@
 ✅ 28-多文件开发进阶
 ✅ 29-网络编程概念
 ✅ 30-CMake 进阶
-⏳ 31-Qt 环境搭建
+✅ 31-Qt 环境搭建
 ⏳ 32-Qt 信号槽
 ⏳ 33-Qt 网络编程
 ```
@@ -2596,6 +2669,6 @@
 
 ---
 
-**文档状态**：`01-30 完成 ✅ | 31+ 待创建 ⏳ | 总体进度 99%`
+**文档状态**：`01-31 完成 ✅ | 32+ 待创建 ⏳ | 总体进度 99%`
 
 **更新建议**：每次完成新文档后，更新此技能树记录，确保知识点无遗漏、无跳跃。
