@@ -5,16 +5,24 @@
       "includePath": [
         "${workspaceFolder}/**",
         "/usr/local/include",
-        "/usr/include"
+        "/usr/include",
+        "/usr/local/lib/QtCore.framework/Headers",
+        "/usr/local/lib/QtNetwork.framework/Headers",
+        "/usr/local/lib/QtGui.framework/Headers",
+        "/usr/local/lib/QtWidgets.framework/Headers",
+        "/usr/local/share/qt/mkspecs/macx-clang"
       ],
       "macFrameworkPath": [
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks",
         "/usr/local/lib"
       ],
+      "defines": ["QT_CORE_LIB"],
       "compilerPath": "/usr/bin/clang++",
       "cStandard": "c17",
       "cppStandard": "c++17",
-      "intelliSenseMode": "macos-clang-arm64"
+      "intelliSenseMode": "macos-clang-arm64",
+      "compileCommands": "${workspaceFolder}/**/build/compile_commands.json",
+      "configurationProvider": "ms-vscode.cmake-tools"
     }
   ],
   "version": 4
