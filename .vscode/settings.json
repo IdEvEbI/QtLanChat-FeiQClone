@@ -15,24 +15,25 @@
         }
     },
     "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
         "editor.formatOnSave": true
+    },
+    "[c]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
     },
     "files.associations": {
         "*.md": "markdown",
         "*.cpp": "cpp",
         "*.h": "c"
     },
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "C_Cpp.errorSquiggles": "enabled",
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/**/build/compile_commands.json",
-    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": false,
     "clangd.arguments": [
-        "--compile-commands-dir=${workspaceFolder}",
         "--query-driver=**",
-        "--background-index"
+        "--background-index",
+        "--header-insertion=never",
+        "--completion-style=detailed"
     ],
     "clangd.path": "clangd",
+    "C_Cpp.intelliSenseEngine": "disabled",
     "code-runner.executorMap": {
         "cpp": "cd $dir && g++ -std=c++17 -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt"
     },

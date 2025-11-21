@@ -1,0 +1,29 @@
+CompileFlags:
+  Add:
+    - -std=c++17
+    - -I/usr/local/lib/QtCore.framework/Headers
+    - -I/usr/local/lib/QtNetwork.framework/Headers
+    - -I/usr/local/lib/QtGui.framework/Headers
+    - -I/usr/local/lib/QtWidgets.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtCore.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtNetwork.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtGui.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtWidgets.framework/Headers
+    - -iframework
+    - /usr/local/lib
+    - -iframework
+    - /usr/local/opt/qt/lib
+    - -DQT_CORE_LIB
+    - -DQT_NETWORK_LIB
+    - -DQT_VERSION=0x060900
+    - -DQT_VERSION_STR="6.9.0"
+    - -D__APPLE__
+  Remove:
+    - -W*
+
+Diagnostics:
+  UnusedIncludes: None
+  MissingIncludes: None
+
+Index:
+  Background: Build
