@@ -106,7 +106,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（33% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（67% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 31-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -116,12 +116,17 @@
   - ✅ Qt 项目结构（CMakeLists.txt 配置、项目目录结构）
   - ✅ 常见问题排查（找不到 Qt6、版本不匹配、编译错误）
   - ✅ 实践：验证 CMake 配置 Qt 项目
-- [ ] 32-qt-signals-slots.md（Qt 信号槽机制：信号槽概念、连接、Qt 对象模型）- 1.5h
-  - 信号槽概念（类比：信号像广播，槽像接收器）
-  - 信号槽连接（connect）
-  - Qt 对象模型
-  - 事件循环
-  - 实践：信号槽示例项目
+- [x] 32-qt-signals-slots.md（Qt 信号槽机制：信号槽概念、连接、Qt 对象模型）- 1.5h ✅
+  - ✅ 信号槽概念（类比：邮件订阅系统，观察者模式）
+  - ✅ 信号和槽的定义（信号只有声明，槽需要实现）
+  - ✅ 信号槽连接（QObject::connect，现代 C++ 语法）
+  - ✅ Qt 对象模型（QObject 基类、Q_OBJECT 宏、MOC 工具、对象树）
+  - ✅ 事件循环（事件概念、为什么需要事件循环、QCoreApplication::exec()）
+  - ✅ explicit 关键字说明（防止隐式类型转换）
+  - ✅ Lambda 表达式作为槽（已在 26-lambda-expressions.md 学习过）
+  - ✅ 信号槽参数类型转换、连接方式（Qt::AutoConnection、Qt::DirectConnection、Qt::QueuedConnection）
+  - ✅ 常见问题排查（信号槽连接失败、MOC 编译错误、参数类型不匹配）
+  - ✅ 实践：信号槽示例项目（Counter、MessageSender/MessageReceiver、Timer、TemperatureSensor/TemperatureDisplay）
 - [ ] 33-qt-network-programming.md（Qt 网络编程：Qt Network 模块、QUdpSocket、QTcpSocket）- 2.5h
   - Qt Network 模块介绍
   - QUdpSocket 使用（UDP 多播、广播）
@@ -266,12 +271,13 @@
 - ✅ 27-exception-handling.md（异常处理，1300 行，3 题练习）
 - ✅ 28-multi-file-advanced.md（多文件开发进阶，2212 行，3 题练习）
 - ✅ 29-network-programming-concepts.md（网络编程概念，866 行，3 题练习 + 3 题测试题）
-- ✅ 30-cmake-advanced.md（CMake 进阶，1465 行，3 题练习 + 3 题测试题）
+- ✅ 30-cmake-advanced.md（CMake 进阶，1543 行，3 题练习 + 3 题测试题）
 - ✅ 31-qt-environment-setup.md（Qt 环境搭建，1264 行，3 题练习 + 3 题测试题）
-- ✅ 配套代码文件（src/stage1/01-31/ 目录完整）
+- ✅ 32-qt-signals-slots.md（Qt 信号槽机制，1461 行，3 题练习 + 3 题测试题）
+- ✅ 配套代码文件（src/stage1/01-32/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-31**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-32**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -306,7 +312,7 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 2.5h，已完成 2.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：33% 完成（预计 5h，已完成 1h）**新增 - 方案 C：混合路径**
+**Stage 2 Qt 开发阶段**：67% 完成（预计 5h，已完成 2.5h）**新增 - 方案 C：混合路径**
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -318,8 +324,8 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（31-qt-environment-setup.md，1h）- 已完成
-**中期（2 周）**：完成 Stage 2 Qt 开发阶段剩余文档（32-33，4h）+ 开始 Stage 3 项目实战
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（31-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（32-qt-signals-slots.md，1.5h）- 已完成
+**中期（2 周）**：完成 Stage 2 Qt 开发阶段剩余文档（33，2.5h）+ 开始 Stage 3 项目实战
 **长期（3 周）**：完成 Stage 3 项目实战（34-36，7.5h）+ 配套代码 + 质量保证 + v0.1 发布
 
 **详细时间规划**：
@@ -328,7 +334,7 @@
 - **第 2 天**：✅ 30-cmake-advanced.md（1.5h）- 已完成
 - **第 3 天**：✅ 复习和巩固 Stage 1 补充阶段 - 已完成
 - **第 4 天**：✅ 31-qt-environment-setup.md（1h）- 已完成
-- **第 5 天**：32-qt-signals-slots.md（1.5h）
+- **第 5 天**：✅ 32-qt-signals-slots.md（1.5h）- 已完成
 - **第 6-7 天**：33-qt-network-programming.md（2.5h）
 - **第 7 天**：34-chat-system-design.md（2h）
 - **第 8-9 天**：35-terminal-chat-project.md（2.5h）
@@ -392,10 +398,10 @@
 - ✅ 29-network-programming-concepts.md（网络编程概念）
 - ✅ 30-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（31-33）🔄 33% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（31-33）🔄 67% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 31-qt-environment-setup.md（Qt 环境搭建）
-- ⏳ 32-qt-signals-slots.md（Qt 信号槽机制）
+- ✅ 32-qt-signals-slots.md（Qt 信号槽机制）
 - ⏳ 33-qt-network-programming.md（Qt 网络编程）
 
 **里程碑 10**：Stage 3 项目实战阶段（34-36）⏳ 0% 完成**新增 - 方案 C：混合路径**
@@ -442,17 +448,17 @@
 - ✅ **23-oop-practice.md**：OOP 综合练习（894 行，2 题练习）
 - ✅ **练习题数量**：每文档 3-5 题（符合标准）
 - ✅ **技能树可视化**：完整实现
-- ✅ **技能树文档**：知识点完整记录（已更新至 01-28）**已更新**
+- ✅ **技能树文档**：知识点完整记录（已更新至 01-32）**已更新**
 - ✅ **学习路径设计**：清晰明确（已补充缺失知识点）
 - ✅ **配套代码**：完整可运行示例（01-28 全部配套）
 - ✅ **远程备份**：feature/stage1-cpp-basics 分支
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 32-qt-signals-slots.md（Qt 信号槽机制）**最高优先级 - 方案 C**
-**本周目标**：完成 Stage 2 Qt 开发阶段第二个文档（32-qt-signals-slots.md，1.5h）
-**中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（32-33，4h）+ 开始 Stage 3 项目实战
-**重点文档**：32-qt-signals-slots.md（Qt 信号槽机制，最高优先级）
+**立即任务**：开始编写 33-qt-network-programming.md（Qt 网络编程）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 2 Qt 开发阶段第三个文档（33-qt-network-programming.md，2.5h）
+**中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（33，2.5h）+ 开始 Stage 3 项目实战
+**重点文档**：33-qt-network-programming.md（Qt 网络编程，最高优先级）
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
 **学习路径**：采用方案 C（混合路径），平衡学习深度和速度
 
@@ -477,7 +483,7 @@
 **Stage 2 Qt 开发阶段完成后，学生应能够：**
 
 - ✅ 搭建 Qt 开发环境（Qt 6.9+（推荐 6.12+）、CMake、Qt Creator）- ✅ 已完成
-- ⏳ 理解和使用 Qt 信号槽机制
+- ✅ 理解和使用 Qt 信号槽机制 - ✅ 已完成
 - ⏳ 使用 Qt Network 模块实现 UDP/TCP 通信（QUdpSocket、QTcpSocket）
 
 **Stage 3 项目实战阶段完成后，学生应能够：**
@@ -526,7 +532,7 @@
 **Stage 2 Qt 开发阶段将补充的知识点：**
 
 - ✅ **Qt 环境搭建**：Qt 6.9+（推荐 6.12+）安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查 - ✅ 已完成
-- ⏳ **Qt 信号槽机制**：信号槽概念、连接（connect）、Qt 对象模型、事件循环
+- ✅ **Qt 信号槽机制**：信号槽概念（邮件订阅系统类比、观察者模式）、信号和槽的定义、信号槽连接（QObject::connect、现代 C++ 语法）、Qt 对象模型（QObject 基类、Q_OBJECT 宏、MOC 工具、对象树）、事件循环（事件概念、为什么需要事件循环、QCoreApplication::exec()）、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、常见问题排查 - ✅ 已完成
 - ⏳ **Qt 网络编程**：Qt Network 模块、QUdpSocket（UDP 多播、广播）、QTcpSocket（TCP 连接、文件传输）、网络事件处理
 
 **可选补充（根据实际需要）：**
