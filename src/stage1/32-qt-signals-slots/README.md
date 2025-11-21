@@ -69,4 +69,3 @@ cmake --build .
 ## 参考文档
 
 详细说明请参考：[32-qt-signals-slots.md](../../docs/stage1/32-qt-signals-slots.md)
-
