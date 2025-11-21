@@ -365,6 +365,10 @@ CMake Error at CMakeLists.txt:16 (find_package):
 
 set +f
 
+# 获取工作区根目录（假设脚本在 .vscode 目录下）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 FILE_DIR="$1"
 if [ -z "$FILE_DIR" ]; then
     echo "[ERROR] File directory not provided"
@@ -392,7 +396,7 @@ if [ -f "$CMAKEDIR/CMakeLists.txt" ]; then
         exit 1
     fi
 
-    # 提取项目名称并创建符号链接
+    # 提取项目名称（支持带引号和不带引号的项目名）
     PROJNAME=$(grep -E '^project\(' "$CMAKEDIR/CMakeLists.txt" | head -1 | sed -E 's/^project\([[:space:]]*["'\'']?([^"'\'' ]+).*/\1/')
 
     if [ -z "$PROJNAME" ]; then
@@ -401,20 +405,31 @@ if [ -f "$CMAKEDIR/CMakeLists.txt" ]; then
     fi
 
     # 创建符号链接（支持 Unix 和 Windows 可执行文件）
+    EXECUTABLE=""
+    SYMLINK=""
     if [ -f "$CMAKEDIR/build/$PROJNAME" ]; then
-        echo "$PROJNAME" > "$CMAKEDIR/build/.executable_name"
-        ln -sf "$PROJNAME" "$CMAKEDIR/build/cmake-app"
-        echo "[SUCCESS] Executable: $PROJNAME"
+        EXECUTABLE="$PROJNAME"
+        SYMLINK="cmake-app"
     elif [ -f "$CMAKEDIR/build/$PROJNAME.exe" ]; then
-        echo "$PROJNAME.exe" > "$CMAKEDIR/build/.executable_name"
-        ln -sf "$PROJNAME.exe" "$CMAKEDIR/build/cmake-app.exe"
-        echo "[SUCCESS] Executable: $PROJNAME.exe"
+        EXECUTABLE="$PROJNAME.exe"
+        SYMLINK="cmake-app.exe"
     else
-        echo "[ERROR] Executable not found: $CMAKEDIR/build/$PROJNAME"
+        echo "[ERROR] Executable not found: $CMAKEDIR/build/$PROJNAME (or $PROJNAME.exe)"
         exit 1
     fi
+
+    # 保存可执行文件名并创建符号链接
+    echo "$EXECUTABLE" > "$CMAKEDIR/build/.executable_name"
+    ln -sf "$EXECUTABLE" "$CMAKEDIR/build/$SYMLINK"
+    # 创建符号链接到工作区根目录，供 launch.json 使用
+    # 使用绝对路径确保符号链接正确
+    CMAKE_BUILD_DIR_ABS="$(cd "$CMAKEDIR/build" && pwd)"
+    mkdir -p "$WORKSPACE_ROOT/.vscode"
+    ln -sfn "$CMAKE_BUILD_DIR_ABS" "$WORKSPACE_ROOT/.vscode/.cmake_build_dir"
+    echo "[SUCCESS] Executable: $EXECUTABLE"
+    echo "[SUCCESS] Build directory: $CMAKE_BUILD_DIR_ABS"
 else
-    echo "[INFO] CMakeLists.txt not found, using direct compilation..."
+    echo "[INFO] CMakeLists.txt not found (searched up to: $CMAKEDIR), using direct compilation..."
     if ! clang++ -std=c++17 -g -Wall "$FILE_DIR"/*.cpp -o "$FILE_DIR/program"; then
         echo "[ERROR] Compilation failed"
         exit 1
@@ -422,6 +437,12 @@ else
     echo "[SUCCESS] Compiled: $FILE_DIR/program"
 fi
 ```
+
+**关键改进**：
+
+- **符号链接机制**：脚本会在 CMake 项目的 `build` 目录创建 `cmake-app` 符号链接，同时在工作区根目录的 `.vscode/.cmake_build_dir` 创建指向实际构建目录的符号链接
+- **动态路径解析**：使用绝对路径创建符号链接，确保在不同工作目录下都能正确工作
+- **统一调试入口**：所有 CMake 项目的调试都通过 `.vscode/.cmake_build_dir/cmake-app` 统一入口，简化 `launch.json` 配置
 
 **创建 `.vscode/tasks.json`**（在项目根目录）：
 
@@ -476,9 +497,9 @@ fi
       "name": "Debug CMake Project (Current Dir)",
       "type": "lldb",
       "request": "launch",
-      "program": "${fileDirname}/../build/cmake-app",
+      "program": "${workspaceFolder}/.vscode/.cmake_build_dir/cmake-app",
       "args": [],
-      "cwd": "${fileDirname}/..",
+      "cwd": "${workspaceFolder}/.vscode/.cmake_build_dir",
       "preLaunchTask": "build-smart",
       "stopOnEntry": false,
       "console": "integratedTerminal"
@@ -489,11 +510,12 @@ fi
 
 **说明**：
 
-- **program**：使用 `build-smart` 创建的符号链接 `cmake-app`（动态路径）
+- **program**：使用 `build-smart` 创建的符号链接 `${workspaceFolder}/.vscode/.cmake_build_dir/cmake-app`，统一指向当前构建的 CMake 项目可执行文件
+- **cwd**：工作目录设置为 `${workspaceFolder}/.vscode/.cmake_build_dir`，确保程序在正确的目录下运行
 - **preLaunchTask**：调试前自动执行 `build-smart` 任务（自动检测并构建）
 - **stopOnEntry**：是否在程序入口处停止（false 表示不停止）
 - **console**：使用集成终端运行程序（输出显示在 Cursor 内部）
-- **动态路径**：`${fileDirname}/../build/cmake-app` 会自动适配不同的 CMake 项目
+- **统一入口**：所有 CMake 项目都通过 `.vscode/.cmake_build_dir/cmake-app` 统一入口，`build-smart.sh` 会自动更新这个符号链接指向当前构建的项目
 
 **优势**：
 
@@ -532,9 +554,58 @@ fi
 - **项目根目录**：`.vscode/tasks.json` 和 `.vscode/launch.json`（推荐）
 - **项目子目录**：也可以在每个项目子目录创建 `.vscode/` 配置（不推荐，维护成本高）
 
-> **类比**：配置 Cursor 调试就像给房子安装智能控制系统，一键启动所有功能（自动检测、配置、编译、调试），不需要手动操作每个步骤，而且适用于所有房间（项目）。
+#### 2.3.5 配置 IntelliSense 支持（可选但推荐）
 
-#### 2.3.5 配套代码文件和配置
+**问题**：删除 `build` 目录后，`compile_commands.json` 也会被删除，IntelliSense/clangd 可能无法正确解析 Qt 代码
+
+**解决方案**：创建 `.clangd` 配置文件，提供 Qt 框架的编译标志
+
+**创建 `.clangd`**（在项目根目录）：
+
+```yaml
+CompileFlags:
+  Add:
+    - -std=c++17
+    - -I/usr/local/lib/QtCore.framework/Headers
+    - -I/usr/local/lib/QtNetwork.framework/Headers
+    - -I/usr/local/lib/QtGui.framework/Headers
+    - -I/usr/local/lib/QtWidgets.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtCore.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtNetwork.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtGui.framework/Headers
+    - -I/usr/local/opt/qt/lib/QtWidgets.framework/Headers
+    - -iframework
+    - /usr/local/lib
+    - -iframework
+    - /usr/local/opt/qt/lib
+    - -DQT_CORE_LIB
+    - -DQT_NETWORK_LIB
+    - -DQT_VERSION=0x060900
+    - -DQT_VERSION_STR="6.9.0"
+    - -D__APPLE__
+  Remove:
+    - -W*
+
+Diagnostics:
+  UnusedIncludes: None
+  MissingIncludes: None
+
+Index:
+  Background: Build
+```
+
+**说明**：
+
+- **作用**：当 `compile_commands.json` 不存在时，clangd 会使用 `.clangd` 中的编译标志来解析代码
+- **Qt 路径**：配置了常见的 Qt 安装路径（macOS），确保 IntelliSense 能找到 Qt 头文件
+- **宏定义**：定义了 Qt 相关的宏，确保代码补全和错误检查正常工作
+- **诊断配置**：禁用了一些不必要的警告（未使用的头文件、缺失的头文件），减少干扰
+
+**注意**：`.clangd` 中的路径是 macOS 的常见路径。如果 Qt 安装在其他位置，需要相应调整路径。CMake 生成的 `compile_commands.json` 优先级更高，如果存在会优先使用。
+
+> **类比**：配置 Cursor 调试就像给房子安装智能控制系统，一键启动所有功能（自动检测、配置、编译、调试），不需要手动操作每个步骤，而且适用于所有房间（项目）。`.clangd` 就像备用电源，即使主电源（`compile_commands.json`）断开，也能保证基本功能（代码补全）正常工作。
+
+#### 2.3.6 配套代码文件和配置
 
 **项目位置**：`src/stage1/30-cmake-advanced/01-quick-start/`
 
@@ -542,12 +613,17 @@ fi
 
 ```ini
 项目根目录/
+├── .clangd                         # clangd 配置（IntelliSense 支持）
 ├── .vscode/                        # 统一配置（推荐）
 │   ├── build-smart.sh              # 智能构建脚本
 │   ├── tasks.json                  # 构建任务配置
-│   └── launch.json                 # 调试配置
+│   ├── launch.json                 # 调试配置
+│   └── .cmake_build_dir/           # 符号链接（自动创建，指向当前构建目录）
+│       └── cmake-app               # 符号链接（指向实际可执行文件）
 └── src/stage1/30-cmake-advanced/01-quick-start/
     ├── CMakeLists.txt
+    ├── build/                       # CMake 构建目录（自动创建）
+    │   └── cmake-app               # 符号链接（指向实际可执行文件）
     └── src/
         └── main.cpp
 ```
@@ -557,6 +633,8 @@ fi
 - **统一配置**：`.vscode/` 配置放在项目根目录，所有子项目共享
 - **智能构建**：`build-smart.sh` 自动检测 CMake 项目或普通项目
 - **通用调试**：`Debug CMake Project (Current Dir)` 适用于所有 CMake 项目
+- **符号链接机制**：`build-smart.sh` 会在 `.vscode/.cmake_build_dir` 创建指向当前构建目录的符号链接，`launch.json` 通过这个统一入口调试
+- **IntelliSense 支持**：`.clangd` 提供 Qt 框架的编译标志，确保即使没有 `compile_commands.json` 也能正确解析代码
 
 **使用方法**：
 
