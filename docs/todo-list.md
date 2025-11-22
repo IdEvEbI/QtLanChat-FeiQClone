@@ -89,15 +89,6 @@
 
 ### Stage 1 补充阶段（100% 完成）**新增 - 方案 C：混合路径**
 
-- [x] 32-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h ✅
-  - ✅ Socket 编程概念（类比：Socket 像电话插座）
-  - ✅ TCP vs UDP 协议对比（可靠传输 vs 快速传输）
-  - ✅ 客户端/服务器模型
-  - ✅ 网络编程基本流程
-  - ✅ IP 地址和端口号
-  - ✅ 概念到实现的映射（Socket → QUdpSocket/QTcpSocket）
-  - ✅ 学习路径说明（明确后续学习路径）
-  - ✅ **说明**：只讲概念，不深入系统 API，为 Qt Network 学习做准备
 - [x] 29-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h ✅
   - ✅ CMake 链接外部库（find_package）
   - ✅ Qt 项目配置（Qt6::Core、Qt6::Network）
@@ -106,7 +97,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（27% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（31% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -328,7 +319,7 @@
 - ✅ 配套代码文件（src/stage1/01-32/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-32**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-33**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -362,8 +353,8 @@
 **多文件开发基础**：100% 完成（24-multi-file-basics.md 已完成）**新增 - 阶段 1 扩展，最高优先级**
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
-**Stage 1 补充阶段**：100% 完成（预计 2.5h，已完成 2.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：27% 完成（预计 15h，已完成 4h）**新增 - 方案 C：混合路径**（33-qt-network-basics.md 已完成，34-35 待创建）
+**Stage 1 补充阶段**：100% 完成（预计 1.5h，已完成 1.5h）**新增 - 方案 C：混合路径**
+**Stage 2 Qt 开发阶段**：31% 完成（预计 16h，已完成 5h）**新增 - 方案 C：混合路径**（33-qt-network-basics.md 已完成，34-39 待创建）
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -375,7 +366,7 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：✅ 完成 Stage 1 补充阶段（29-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（30-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（31-qt-signals-slots.md，1.5h）- 已完成，✅ 完成 Stage 2 第三个文档（32-network-programming-concepts.md，1h）- 已完成，✅ 完成 Stage 2 第四个文档（33-qt-network-basics.md，1.5h）- 已完成
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（29-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 文档（30-qt-environment-setup.md 1h、31-qt-signals-slots.md 1.5h、32-network-programming-concepts.md 1h、33-qt-network-basics.md 1.5h）- 已完成
 **中期（2-3 周）**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
 **长期（3-4 周）**：完成 Stage 3 项目实战（40-42，8.5h）+ 配套代码 + 质量保证 + v0.1 发布
 
@@ -449,15 +440,15 @@
 
 - ✅ 28-multi-file-advanced.md（多文件开发进阶）
 
-**里程碑 8**：Stage 1 补充阶段（29-30）✅ 100% 完成**新增 - 方案 C：混合路径**
+**里程碑 8**：Stage 1 补充阶段（29）✅ 100% 完成**新增 - 方案 C：混合路径**
 
-- ✅ 29-network-programming-concepts.md（网络编程概念）
-- ✅ 30-cmake-advanced.md（CMake 进阶）
+- ✅ 29-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（31-39）🔄 27% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 31% 完成**新增 - 方案 C：混合路径**
 
-- ✅ 31-qt-environment-setup.md（Qt 环境搭建）
-- ✅ 32-qt-signals-slots.md（Qt 信号槽机制）
+- ✅ 30-qt-environment-setup.md（Qt 环境搭建）
+- ✅ 31-qt-signals-slots.md（Qt 信号槽机制）
+- ✅ 32-network-programming-concepts.md（网络编程概念）
 - ✅ 33-qt-network-basics.md（Qt 网络编程基础）⚠️ **拆分 - 网络基础**
 - ⏳ 34-qt-udp-programming.md（Qt UDP 编程）⚠️ **拆分 - UDP 编程**
 - ⏳ 35-qt-tcp-programming.md（Qt TCP 编程）⚠️ **拆分 - TCP 编程**
@@ -595,13 +586,13 @@
 
 **Stage 1 补充阶段将补充的知识点：**
 
-- ✅ **网络编程概念**：Socket 编程概念、TCP/UDP 协议对比、客户端/服务器模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射（Socket → QUdpSocket/QTcpSocket）
 - ✅ **CMake 进阶**：链接外部库（find_package）、Qt 项目配置（Qt6::Core、Qt6::Network）、跨平台构建配置、依赖管理最佳实践、在 Cursor 中调试 CMake 项目
 
 **Stage 2 Qt 开发阶段将补充的知识点：**
 
 - ✅ **Qt 环境搭建**：Qt 6.9+（推荐 6.12+）安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查 - ✅ 已完成
 - ✅ **Qt 信号槽机制**：信号槽概念（邮件订阅系统类比、观察者模式）、信号和槽的定义、信号槽连接（QObject::connect、现代 C++ 语法）、Qt 对象模型（QObject 基类、Q_OBJECT 宏、MOC 工具、对象树）、事件循环（事件概念、为什么需要事件循环、QCoreApplication::exec()）、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、常见问题排查 - ✅ 已完成
+- ✅ **网络编程概念**：Socket 编程概念、TCP/UDP 协议对比、客户端/服务器模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射（Socket → QUdpSocket/QTcpSocket）- ✅ 已完成
 - ✅ **Qt 网络编程基础**：Qt Network 模块概述、IP 地址详解（IPv4/IPv6、子网掩码）、端口号详解、广播/多播/点对点通讯、QHostAddress、QNetworkInterface、网络事件处理机制 - ✅ 已完成
 - ⏳ **Qt UDP 编程**：QUdpSocket 详解、UDP 通信流程（流程图、时序图）、UDP 单播/广播/多播、UDP 应用场景和最佳实践
 - ⏳ **Qt TCP 编程**：QTcpSocket、QTcpServer 详解、TCP 连接建立流程（三次握手时序图）、TCP 客户端/服务器通信流程（时序图）、TCP 文件传输、TCP 应用场景和最佳实践
