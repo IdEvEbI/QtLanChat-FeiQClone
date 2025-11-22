@@ -241,6 +241,166 @@ public:
 - 成员函数可以直接访问类的成员变量
 - `const` 成员函数：表示函数不会修改成员变量（只读函数）
 
+#### 2.4.3 this 指针
+
+**this 指针**：在成员函数中，`this` 是一个指向当前对象的指针，用于访问当前对象的成员。
+
+**this 指针的特点**：
+
+- **自动传递**：每个成员函数都有一个隐藏的 `this` 参数，指向调用该函数的对象
+- **类型**：`this` 的类型是 `类名* const`（指向当前对象的常量指针）
+- **作用**：用于在成员函数中明确访问当前对象的成员
+
+**this 指针的使用场景**：
+
+1. **区分参数和成员变量同名**：当函数参数名与成员变量名相同时，使用 `this` 明确指定成员变量
+
+   ```cpp
+   class User {
+   private:
+       std::string name;
+       int age;
+
+   public:
+       // 使用 this 区分参数和成员变量
+       void setName(const std::string& name) {
+           this->name = name;           // this->name 是成员变量，name 是参数
+       }
+
+       void setAge(int age) {
+           this->age = age;             // this->age 是成员变量，age 是参数
+       }
+   };
+   ```
+
+2. **返回当前对象的引用**：用于链式调用（将在后续章节详细讲解）
+
+   ```cpp
+   class User {
+   private:
+       std::string name;
+       int age;
+
+   public:
+       User& setName(const std::string& name) {
+           this->name = name;
+           return *this;                // 返回当前对象的引用，支持链式调用
+       }
+
+       User& setAge(int age) {
+           this->age = age;
+           return *this;                // 返回当前对象的引用
+       }
+   };
+
+   // 使用示例
+   User user;
+   user.setName("张三").setAge(25);     // 链式调用
+   ```
+
+3. **作为参数传递**：将当前对象传递给其他函数（如 Qt 中的父对象）
+
+   ```cpp
+   class Timer {
+   private:
+       QTimer* m_timer;
+
+   public:
+       Timer() {
+           // 将 this 作为父对象传递给 QTimer，实现自动内存管理
+           m_timer = new QTimer(this);
+       }
+   };
+   ```
+
+> **📌 补充说明：this 指针的类比**：
+>
+> - **this 指针**：就像"我自己"的概念，在成员函数中，`this` 指向调用该函数的对象
+> - **自动传递**：就像说话时默认指的是"我"，成员函数中默认访问的是当前对象的成员
+> - **明确指定**：当参数名和成员变量名相同时，使用 `this->成员` 明确指定是成员变量，而不是参数
+>
+> **📌 补充说明：this 指针的使用规则**：
+>
+> - **在成员函数中**：可以直接使用 `this`，也可以省略（编译器会自动添加）
+> - **访问成员变量**：`this->成员变量` 等价于直接写 `成员变量`
+> - **调用成员函数**：`this->成员函数()` 等价于直接写 `成员函数()`
+> - **const 成员函数**：在 `const` 成员函数中，`this` 的类型是 `const 类名* const`，不能修改成员变量
+>
+> **📌 补充说明：什么时候必须使用 this**：
+>
+> - **参数和成员变量同名**：当函数参数名与成员变量名相同时，必须使用 `this->` 来区分
+> - **作为参数传递**：需要将当前对象传递给其他函数时（如 Qt 中的父对象）
+> - **返回当前对象**：需要返回当前对象的引用或指针时（链式调用）
+
+**this 指针示例**：
+
+```cpp
+#include <iostream>
+#include <string>
+
+class User {
+private:
+    std::string name;
+    int age;
+
+public:
+    User(const std::string& name, int age) {
+        // 使用 this 区分参数和成员变量
+        this->name = name;              // this->name 是成员变量，name 是参数
+        this->age = age;                // this->age 是成员变量，age 是参数
+    }
+
+    void setName(const std::string& name) {
+        this->name = name;              // 必须使用 this，因为参数名和成员变量名相同
+    }
+
+    void setAge(int age) {
+        this->age = age;                // 必须使用 this，因为参数名和成员变量名相同
+    }
+
+    std::string getName() const {
+        return name;                    // 可以省略 this，因为参数名和成员变量名不同
+    }
+
+    int getAge() const {
+        return age;                     // 可以省略 this，因为参数名和成员变量名不同
+    }
+
+    void printInfo() const {
+        // 在成员函数中，可以直接访问成员变量，编译器会自动添加 this->
+        std::cout << "姓名: " << name << std::endl;  // 等价于 this->name
+        std::cout << "年龄: " << age << std::endl;   // 等价于 this->age
+    }
+};
+
+int main() {
+    User user("张三", 25);
+    user.printInfo();
+
+    user.setName("李四");
+    user.setAge(30);
+    user.printInfo();
+
+    return 0;
+}
+```
+
+**运行结果**：
+
+```
+姓名: 张三
+年龄: 25
+姓名: 李四
+年龄: 30
+```
+
+> **📌 说明**：在实际开发中，为了避免参数名和成员变量名冲突，通常使用不同的命名约定：
+>
+> - **成员变量**：使用 `m_` 前缀（如 `m_name`、`m_age`）或下划线后缀（如 `name_`、`age_`）
+> - **参数**：使用普通名称（如 `name`、`age`）
+>
+> 这样就不需要使用 `this` 来区分了。但在某些情况下（如 Qt 框架），`this` 的使用是必需的。
+
 ### 2.5 对象的创建和使用
 
 #### 2.5.1 创建对象
@@ -298,7 +458,7 @@ std::unique_ptr<User> user1 = std::make_unique<User>();  // 使用智能指针�
 - 对象在堆上分配，需要手动管理
 - 使用 `new/delete` 必须手动释放，否则会造成内存泄漏
 - 使用智能指针可以自动管理，更安全（推荐）
-- 适用于需要动态分配、多态等场景
+- 适用于需要动态分配、需要对象生命周期超出作用域等场景（多态等高级特性将在后续章节学习）
 
 > **📌 补充说明：栈对象 vs 堆对象**：
 >
@@ -1124,7 +1284,7 @@ int main() {
   - **A：**对于简单的类，通常不需要定义析构函数。只有在需要释放动态分配的内存、关闭文件等资源清理时才需要定义。
 
 - Q4：成员函数可以在类外部定义吗？
-  - **A：**可以。可以在类内声明，在类外定义。但需要在函数名前加上 `类名::`。
+  - **A：**可以。可以在类内声明，在类外定义。但需要在函数名前加上 `类名::`（作用域解析操作符）。详细内容将在 [多文件开发基础](./24-multi-file-basics.md) 章节讲解。
 
 - Q5：一个类可以创建多个对象吗？
   - **A：**可以。一个类可以创建多个对象，每个对象都有自己独立的成员变量副本。
