@@ -31,7 +31,7 @@
 
 **学习路径设计**：
 
-在学习 Qt Network 模块之前，我们先学习网络编程的基本概念（Socket、TCP/UDP、客户端/服务器模型等）。这样做的原因：
+在学习了 Qt 信号槽机制之后，我们需要学习网络编程的基本概念（Socket、TCP/UDP、客户端/服务器模型等），然后才能学习 Qt Network 模块。这样做的原因：
 
 1. **理解原理**：理解网络编程的基本原理，才能更好地使用 Qt Network 模块
 2. **选择协议**：理解 TCP 和 UDP 的区别，才能为不同场景选择合适的协议
@@ -42,10 +42,10 @@
 
 ```mermaid
 graph TD
-    A[29-网络编程概念<br/>理解 Socket、TCP/UDP、<br/>客户端/服务器模型] --> B[30-CMake 进阶<br/>学习 CMake 链接外部库<br/>配置 Qt 项目]
-    B --> C[31-Qt 环境搭建<br/>搭建 Qt 开发环境]
-    C --> D[32-Qt 信号槽<br/>学习 Qt 信号槽机制<br/>Qt Network 基于信号槽]
-    D --> E[33-Qt 网络编程<br/>学习 Qt Network 模块<br/>QUdpSocket、QTcpSocket<br/>应用前面学到的概念]
+    A[31-Qt 信号槽<br/>✅ 已完成<br/>学习 Qt 信号槽机制<br/>理解事件驱动模型] --> B[32-网络编程概念<br/>🔄 当前文档<br/>理解 Socket、TCP/UDP、<br/>客户端/服务器模型]
+    B --> C[33-Qt 网络基础<br/>⏳ 待学习<br/>深入理解网络基础概念<br/>IP、端口、子网掩码<br/>广播、多播、点对点<br/>Qt Network 模块基础]
+    C --> D[34-Qt UDP 编程<br/>⏳ 待学习<br/>学习 QUdpSocket<br/>实现 UDP 通信]
+    D --> E[35-Qt TCP 编程<br/>⏳ 待学习<br/>学习 QTcpSocket<br/>实现 TCP 通信]
 
     style A fill:#4caf50
     style B fill:#ffeb3b
@@ -56,8 +56,8 @@ graph TD
 
 **为什么不在本章直接学习 Qt Network？**
 
-- ❌ **缺少前置知识**：Qt Network 需要 CMake 配置和 Qt 信号槽机制
-- ❌ **理解困难**：没有网络编程概念基础，直接学习 Qt Network 会感到困惑
+- ❌ **缺少前置知识**：Qt Network 需要深入理解网络基础概念（IP、端口、广播、多播等）
+- ❌ **理解困难**：没有网络编程概念基础，直接学习 Qt Network API 会感到困惑
 - ✅ **循序渐进**：先理解概念，再学习具体实现，学习效果更好
 
 **本章的学习重点**：
@@ -494,21 +494,20 @@ graph LR
 
 **学习路径说明**：
 
-1. **当前文档（29-network-programming-concepts.md）**：
+1. **当前文档（32-network-programming-concepts.md）**：
    - ✅ 理解 Socket、TCP/UDP、客户端/服务器模型等概念
    - ✅ 知道什么时候用 TCP，什么时候用 UDP
    - ✅ 理解网络编程的基本流程
 
-2. **后续文档（30-33）**：
-   - **30-cmake-advanced.md**：学习如何配置 Qt 项目，链接 Qt Network 库
-   - **31-qt-environment-setup.md**：搭建 Qt 开发环境
-   - **32-qt-signals-slots.md**：学习 Qt 信号槽机制（Qt Network 基于信号槽）
-   - **33-qt-network-programming.md**：学习使用 Qt Network 模块，应用前面学到的概念
+2. **后续文档（33-36）**：
+   - **33-qt-network-basics.md**：深入学习网络基础概念（IP、端口、子网掩码、广播、多播、点对点），理解 Qt Network 模块基础
+   - **34-qt-udp-programming.md**：学习 QUdpSocket，实现 UDP 通信
+   - **35-qt-tcp-programming.md**：学习 QTcpSocket 和 QTcpServer，实现 TCP 通信
 
 **为什么这样安排学习路径？**
 
 - ✅ **循序渐进**：先理解概念，再学习具体实现
-- ✅ **知识连贯**：CMake → Qt 环境 → Qt 信号槽 → Qt Network，知识体系完整
+- ✅ **知识连贯**：Qt 信号槽 → 网络概念 → Qt Network 基础 → UDP/TCP 编程，知识体系完整
 - ✅ **实践导向**：学完概念后，立即学习如何用 Qt Network 实现
 
 > **类比**：就像学做菜，先学食材知识（概念），再学如何使用厨具（CMake、Qt 环境），最后学如何做菜（Qt Network）。如果直接学做菜，不知道为什么要这样做，学习效果不好。
@@ -684,9 +683,9 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
 
 完成本文档后，建议学习：
 
-- **30-cmake-advanced.md**：CMake 进阶，学习如何配置 Qt 项目
-- **31-qt-environment-setup.md**：Qt 环境搭建，准备 Qt 开发环境
-- **33-qt-network-programming.md**：Qt 网络编程，学习使用 Qt Network 模块
+- **33-qt-network-basics.md**：Qt 网络基础，深入学习网络基础概念和 Qt Network 模块
+- **34-qt-udp-programming.md**：Qt UDP 编程，学习 QUdpSocket 实现 UDP 通信
+- **35-qt-tcp-programming.md**：Qt TCP 编程，学习 QTcpSocket 和 QTcpServer 实现 TCP 通信
 
 ## 6. 课后作业及参考答案
 
@@ -771,50 +770,50 @@ graph LR
 
 **为什么这样安排学习路径？**
 
-1. **29-network-programming-concepts.md（当前文档）**：
+1. **31-qt-signals-slots.md（已完成）**：
+   - ✅ **已完成**：学习 Qt 信号槽机制，理解事件驱动模型
+   - ✅ **作用**：Qt Network 基于信号槽机制，必须先理解信号槽
+   - ✅ **重点**：信号槽概念、连接、事件循环
+
+2. **32-network-programming-concepts.md（当前文档）**：
    - ✅ **已完成**：理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
    - ✅ **作用**：为后续学习 Qt Network 打下概念基础
    - ✅ **重点**：理解概念，不涉及具体 API
 
-2. **30-cmake-advanced.md（下一步）**：
-   - 🔄 **下一步**：学习 CMake 链接外部库，配置 Qt 项目
-   - 🔄 **作用**：学会如何配置 Qt 项目，链接 Qt Network 库
-   - 🔄 **重点**：`find_package(Qt6)`、`target_link_libraries(Qt6::Network)`
+3. **33-qt-network-basics.md（下一步）**：
+   - 🔄 **下一步**：深入学习网络基础概念和 Qt Network 模块基础
+   - 🔄 **作用**：深入理解 IP、端口、广播、多播等概念，理解 Qt Network 模块
+   - 🔄 **重点**：网络基础概念、QHostAddress、QNetworkInterface、网络事件处理
 
-3. **31-qt-environment-setup.md**：
-   - ⏳ **待学习**：搭建 Qt 开发环境
-   - ⏳ **作用**：准备 Qt 开发环境，能够编译和运行 Qt 项目
-   - ⏳ **重点**：Qt 6.12+ 安装、CMake 配置、Qt Creator 使用
+4. **34-qt-udp-programming.md**：
+   - ⏳ **待学习**：学习 QUdpSocket，实现 UDP 通信
+   - ⏳ **作用**：应用网络概念和 Qt Network 基础，实现 UDP 通信
+   - ⏳ **重点**：QUdpSocket、UDP 通信流程、广播和多播
 
-4. **32-qt-signals-slots.md**：
-   - ⏳ **待学习**：学习 Qt 信号槽机制
-   - ⏳ **作用**：Qt Network 基于信号槽机制，必须先理解信号槽
-   - ⏳ **重点**：信号槽概念、连接、事件循环
-
-5. **33-qt-network-programming.md**：
-   - ⏳ **待学习**：学习 Qt Network 模块
-   - ⏳ **作用**：应用前面学到的网络编程概念，使用 Qt Network 实现网络通信
-   - ⏳ **重点**：`QUdpSocket`、`QTcpSocket`、网络事件处理
+5. **35-qt-tcp-programming.md**：
+   - ⏳ **待学习**：学习 QTcpSocket 和 QTcpServer，实现 TCP 通信
+   - ⏳ **作用**：应用网络概念和 Qt Network 基础，实现 TCP 通信
+   - ⏳ **重点**：QTcpSocket、QTcpServer、TCP 连接管理、网络事件处理
 
 **学习时间规划**：
 
 | 文档                               | 预计时间 | 累计时间 | 状态      |
 | ---------------------------------- | -------- | -------- | --------- |
-| 29-network-programming-concepts.md | 1h       | 1h       | ✅ 已完成 |
-| 30-cmake-advanced.md               | 1.5h     | 2.5h     | 🔄 下一步 |
-| 31-qt-environment-setup.md         | 1h       | 3.5h     | ⏳ 待学习 |
-| 32-qt-signals-slots.md             | 1.5h     | 5h       | ⏳ 待学习 |
-| 33-qt-network-programming.md       | 2.5h     | 7.5h     | ⏳ 待学习 |
+| 31-qt-signals-slots.md             | 1.5h     | 1.5h     | ✅ 已完成 |
+| 32-network-programming-concepts.md | 1h       | 2.5h     | ✅ 已完成 |
+| 33-qt-network-basics.md            | 1.5h     | 4h       | 🔄 下一步 |
+| 34-qt-udp-programming.md           | 2h       | 6h       | ⏳ 待学习 |
+| 35-qt-tcp-programming.md           | 2h       | 8h       | ⏳ 待学习 |
 
-**下一篇**：[CMake 进阶](./30-cmake-advanced.md)
+**下一篇**：[Qt 网络基础](./33-qt-network-basics.md)
 
 **学习路径**：
 
-1. ✅ 29-network-programming-concepts.md - 已完成（理解网络编程概念）
-2. 🔄 30-cmake-advanced.md - 下一步（学习 CMake 配置 Qt 项目）
-3. ⏳ 31-qt-environment-setup.md - 待学习（搭建 Qt 开发环境）
-4. ⏳ 32-qt-signals-slots.md - 待学习（学习 Qt 信号槽机制）
-5. ⏳ 33-qt-network-programming.md - 待学习（学习 Qt Network 模块，应用网络编程概念）
+1. ✅ 31-qt-signals-slots.md - 已完成（学习 Qt 信号槽机制，理解事件驱动模型）
+2. ✅ 32-network-programming-concepts.md - 已完成（理解网络编程概念）
+3. 🔄 33-qt-network-basics.md - 下一步（深入学习网络基础概念和 Qt Network 模块基础）
+4. ⏳ 34-qt-udp-programming.md - 待学习（学习 QUdpSocket，实现 UDP 通信）
+5. ⏳ 35-qt-tcp-programming.md - 待学习（学习 QTcpSocket，实现 TCP 通信）
 
 **技能树更新**：
 

@@ -42,9 +42,10 @@
 
 ```mermaid
 graph TD
-    A[30-CMake 进阶<br/>✅ 已完成<br/>学习链接外部库<br/>配置 Qt 项目] --> B[31-Qt 环境搭建<br/>🔄 当前文档<br/>应用 CMake 配置<br/>搭建 Qt 开发环境]
-    B --> C[32-Qt 信号槽<br/>⏳ 待学习<br/>学习 Qt 信号槽机制]
-    C --> D[33-Qt 网络编程<br/>⏳ 待学习<br/>学习 Qt Network 模块]
+    A[29-CMake 进阶<br/>✅ 已完成<br/>学习链接外部库<br/>配置 Qt 项目] --> B[30-Qt 环境搭建<br/>🔄 当前文档<br/>应用 CMake 配置<br/>搭建 Qt 开发环境]
+    B --> C[31-Qt 信号槽<br/>⏳ 待学习<br/>学习 Qt 信号槽机制]
+    C --> D[32-网络编程概念<br/>⏳ 待学习<br/>理解 Socket、TCP/UDP]
+    D --> E[33-Qt 网络基础<br/>⏳ 待学习<br/>学习 Qt Network 模块]
 
     style A fill:#4caf50
     style B fill:#ffeb3b
@@ -112,7 +113,7 @@ graph TD
 - [ ] CMake 进阶（find_package、Qt 项目配置、跨平台构建）
 - [ ] 基本的命令行操作（mkdir、cd、cmake、make）
 
-> **未掌握处理**：若未通过，请先复习 [CMake 进阶](./30-cmake-advanced.md)
+> **未掌握处理**：若未通过，请先复习 [CMake 进阶](./29-cmake-advanced.md)
 
 ## 2. 核心内容
 
@@ -257,7 +258,7 @@ Qt6Widgets/
 
 #### 2.2.1 使用之前的示例项目
 
-**项目位置**：`src/stage1/30-cmake-advanced/01-quick-start/`
+**项目位置**：`src/stage1/29-cmake-advanced/01-quick-start/`
 
 **项目结构**：
 
@@ -273,7 +274,7 @@ Qt6Widgets/
 **步骤 1：进入项目目录**：
 
 ```bash
-cd src/stage1/30-cmake-advanced/01-quick-start
+cd src/stage1/29-cmake-advanced/01-quick-start
 ```
 
 **步骤 2：创建构建目录**：
@@ -815,7 +816,7 @@ error: 'QCoreApplication' was not declared in this scope
 3. **验证配置**：
 
    ```bash
-   cd src/stage1/30-cmake-advanced/01-quick-start
+   cd src/stage1/29-cmake-advanced/01-quick-start
    mkdir build && cd build
    cmake ..
    cmake --build .
@@ -1088,7 +1089,7 @@ cmake --build .
   - **A：**不是必须的。如果你已经熟悉 Cursor/VSCode，可以继续使用 Cursor/VSCode 开发 Qt 项目。Qt Creator 是可选的 IDE。
 
 - **Q4：如何验证 Qt 环境配置是否正确？**
-  - **A：**使用之前的示例项目（`src/stage1/30-cmake-advanced/01-quick-start/`），运行 `cmake ..` 和 `cmake --build .`，如果成功构建并运行，说明环境配置正确。
+  - **A：**使用之前的示例项目（`src/stage1/29-cmake-advanced/01-quick-start/`），运行 `cmake ..` 和 `cmake --build .`，如果成功构建并运行，说明环境配置正确。
 
 ## 5. 资源与扩展
 
@@ -1108,8 +1109,9 @@ cmake --build .
 
 完成本文档后，建议学习：
 
-- **32-qt-signals-slots.md**：Qt 信号槽机制，学习 Qt 的核心特性
-- **33-qt-network-programming.md**：Qt 网络编程，应用前面学到的网络编程概念和 Qt 环境配置
+- **31-qt-signals-slots.md**：Qt 信号槽机制，学习 Qt 的核心特性
+- **32-network-programming-concepts.md**：网络编程概念，理解 Socket、TCP/UDP、客户端/服务器模型
+- **33-qt-network-basics.md**：Qt 网络基础，应用前面学到的网络编程概念和 Qt 环境配置
 
 ## 6. 课后作业及参考答案
 
@@ -1165,38 +1167,43 @@ graph LR
 
 **为什么这样安排学习路径？**
 
-1. **30-cmake-advanced.md（已完成）**：
+1. **29-cmake-advanced.md（已完成）**：
    - ✅ 学习 CMake 链接外部库（find_package）
    - ✅ 学习 Qt 项目配置（Qt6::Core、Qt6::Network）
 
-2. **31-qt-environment-setup.md（当前文档，已完成）**：
+2. **30-qt-environment-setup.md（当前文档，已完成）**：
    - ✅ 搭建 Qt 开发环境（安装 Qt6、配置环境变量）
    - ✅ 应用本文学到的 CMake 配置知识
    - ✅ 验证 Qt 环境配置是否正确
 
-3. **32-qt-signals-slots.md（下一步）**：
+3. **31-qt-signals-slots.md（下一步）**：
    - 🔄 学习 Qt 信号槽机制（Qt Network 基于信号槽）
 
-4. **33-qt-network-programming.md**：
-   - ⏳ 学习 Qt Network 模块，应用前面学到的概念
+4. **32-network-programming-concepts.md**：
+   - ⏳ 理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
+
+5. **33-qt-network-basics.md**：
+   - ⏳ 学习 Qt Network 模块基础，应用前面学到的概念
 
 **学习时间规划**：
 
-| 文档                         | 预计时间 | 累计时间 | 状态      |
-| ---------------------------- | -------- | -------- | --------- |
-| 30-cmake-advanced.md         | 1.5h     | 1.5h     | ✅ 已完成 |
-| 31-qt-environment-setup.md   | 1h       | 2.5h     | ✅ 已完成 |
-| 32-qt-signals-slots.md       | 1.5h     | 4h       | 🔄 下一步 |
-| 33-qt-network-programming.md | 2.5h     | 6.5h     | ⏳ 待学习 |
+| 文档                               | 预计时间 | 累计时间 | 状态      |
+| ---------------------------------- | -------- | -------- | --------- |
+| 29-cmake-advanced.md               | 1.5h     | 1.5h     | ✅ 已完成 |
+| 30-qt-environment-setup.md         | 1h       | 2.5h     | ✅ 已完成 |
+| 31-qt-signals-slots.md             | 1.5h     | 4h       | 🔄 下一步 |
+| 32-network-programming-concepts.md | 1h       | 5h       | ⏳ 待学习 |
+| 33-qt-network-basics.md            | 1.5h     | 6.5h     | ⏳ 待学习 |
 
-**下一篇**：[Qt 信号槽机制](./32-qt-signals-slots.md)
+**下一篇**：[Qt 信号槽机制](./31-qt-signals-slots.md)
 
 **学习路径**：
 
-1. ✅ 30-cmake-advanced.md - 已完成（学习 CMake 链接外部库、配置 Qt 项目）
-2. ✅ 31-qt-environment-setup.md - 已完成（搭建 Qt 开发环境，应用 CMake 配置）
-3. 🔄 32-qt-signals-slots.md - 下一步（学习 Qt 信号槽机制）
-4. ⏳ 33-qt-network-programming.md - 待学习（学习 Qt Network 模块，应用网络编程概念）
+1. ✅ 29-cmake-advanced.md - 已完成（学习 CMake 链接外部库、配置 Qt 项目）
+2. ✅ 30-qt-environment-setup.md - 已完成（搭建 Qt 开发环境，应用 CMake 配置）
+3. 🔄 31-qt-signals-slots.md - 下一步（学习 Qt 信号槽机制）
+4. ⏳ 32-network-programming-concepts.md - 待学习（理解网络编程概念）
+5. ⏳ 33-qt-network-basics.md - 待学习（学习 Qt Network 模块基础，应用网络编程概念）
 
 **技能树更新**：
 

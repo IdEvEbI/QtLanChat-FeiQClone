@@ -42,10 +42,11 @@
 
 ```mermaid
 graph TD
-    A[29-网络编程概念<br/>✅ 已完成] --> B[30-CMake 进阶<br/>🔄 当前文档<br/>学习链接外部库<br/>配置 Qt 项目]
-    B --> C[31-Qt 环境搭建<br/>⏳ 待学习<br/>应用 CMake 配置<br/>搭建 Qt 开发环境]
-    C --> D[32-Qt 信号槽<br/>⏳ 待学习]
-    D --> E[33-Qt 网络编程<br/>⏳ 待学习]
+    A[28-多文件开发进阶<br/>✅ 已完成] --> B[29-CMake 进阶<br/>🔄 当前文档<br/>学习链接外部库<br/>配置 Qt 项目]
+    B --> C[30-Qt 环境搭建<br/>⏳ 待学习<br/>应用 CMake 配置<br/>搭建 Qt 开发环境]
+    C --> D[31-Qt 信号槽<br/>⏳ 待学习]
+    D --> E[32-网络编程概念<br/>⏳ 待学习]
+    E --> F[33-Qt 网络基础<br/>⏳ 待学习]
 
     style A fill:#4caf50
     style B fill:#ffeb3b
@@ -318,7 +319,7 @@ CMake Error at CMakeLists.txt:16 (find_package):
     qt6-config.cmake
 ```
 
-**解决方法**：Qt6 的安装将在后续文档（31-qt-environment-setup.md）中学习。现在先理解 CMake 的配置方法。
+**解决方法**：Qt6 的安装将在后续文档（30-qt-environment-setup.md）中学习。现在先理解 CMake 的配置方法。
 
 > **快速体验总结**：通过这个简单的例子，你应该理解了：
 >
@@ -607,7 +608,7 @@ Index:
 
 #### 2.3.6 配套代码文件和配置
 
-**项目位置**：`src/stage1/30-cmake-advanced/01-quick-start/`
+**项目位置**：`src/stage1/29-cmake-advanced/01-quick-start/`
 
 **文件结构**：
 
@@ -620,7 +621,7 @@ Index:
 │   ├── launch.json                 # 调试配置
 │   └── .cmake_build_dir/           # 符号链接（自动创建，指向当前构建目录）
 │       └── cmake-app               # 符号链接（指向实际可执行文件）
-└── src/stage1/30-cmake-advanced/01-quick-start/
+└── src/stage1/29-cmake-advanced/01-quick-start/
     ├── CMakeLists.txt
     ├── build/                       # CMake 构建目录（自动创建）
     │   └── cmake-app               # 符号链接（指向实际可执行文件）
@@ -1301,7 +1302,7 @@ target_link_libraries(${PROJECT_NAME}
 ### 4.3 常见问题 FAQ
 
 - **Q1：find_package 找不到 Qt6 怎么办？**
-  - **A：**检查 Qt6 是否已安装，设置 `Qt6_DIR` 环境变量指向 Qt6 的 CMake 配置文件路径（如 `/path/to/Qt6/lib/cmake/Qt6`），或通过命令行参数指定：`cmake -DQt6_DIR=/path/to/Qt6/lib/cmake/Qt6 ..`。Qt6 的安装将在后续文档（31-qt-environment-setup.md）中学习。
+  - **A：**检查 Qt6 是否已安装，设置 `Qt6_DIR` 环境变量指向 Qt6 的 CMake 配置文件路径（如 `/path/to/Qt6/lib/cmake/Qt6`），或通过命令行参数指定：`cmake -DQt6_DIR=/path/to/Qt6/lib/cmake/Qt6 ..`。Qt6 的安装将在后续文档（30-qt-environment-setup.md）中学习。
 
 - **Q2：为什么使用 `Qt6::Core` 而不是 `Qt6Core`？**
   - **A：**`Qt6::Core` 是现代 CMake（3.0+）的推荐语法，是 CMake 目标（target），自动处理头文件路径、库文件路径、编译选项等。`Qt6Core` 是传统方式，需要手动处理路径。现代方式更简洁、更安全、更跨平台。
@@ -1339,9 +1340,10 @@ target_link_libraries(${PROJECT_NAME}
 
 完成本文档后，建议学习：
 
-- **31-qt-environment-setup.md**：Qt 环境搭建，学习如何安装和配置 Qt6
-- **32-qt-signals-slots.md**：Qt 信号槽机制，学习 Qt 的核心特性
-- **33-qt-network-programming.md**：Qt 网络编程，应用前面学到的 CMake 和网络编程概念
+- **30-qt-environment-setup.md**：Qt 环境搭建，学习如何安装和配置 Qt6
+- **31-qt-signals-slots.md**：Qt 信号槽机制，学习 Qt 的核心特性
+- **32-network-programming-concepts.md**：网络编程概念，理解 Socket、TCP/UDP、客户端/服务器模型
+- **33-qt-network-basics.md**：Qt 网络基础，应用前面学到的 CMake 和网络编程概念
 
 ## 6. 课后作业及参考答案
 
@@ -1443,43 +1445,48 @@ graph LR
 
 **为什么这样安排学习路径？**
 
-1. **29-network-programming-concepts.md（已完成）**：
-   - ✅ 理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
+1. **28-multi-file-advanced.md（已完成）**：
+   - ✅ 多文件开发进阶（命名空间、静态成员、友元函数、前向声明）
 
-2. **30-cmake-advanced.md（当前文档，已完成）**：
+2. **29-cmake-advanced.md（当前文档，已完成）**：
    - ✅ 学习 CMake 链接外部库（find_package）
    - ✅ 学习 Qt 项目配置（Qt6::Core、Qt6::Network）
    - ✅ 为后续 Qt 开发做准备
 
-3. **31-qt-environment-setup.md（下一步）**：
+3. **30-qt-environment-setup.md（下一步）**：
    - 🔄 搭建 Qt 开发环境（安装 Qt6、配置 CMake）
    - 🔄 应用本文学到的 CMake 配置知识
 
-4. **32-qt-signals-slots.md**：
+4. **31-qt-signals-slots.md**：
    - ⏳ 学习 Qt 信号槽机制（Qt Network 基于信号槽）
 
-5. **33-qt-network-programming.md**：
-   - ⏳ 学习 Qt Network 模块，应用前面学到的概念
+5. **32-network-programming-concepts.md**：
+   - ⏳ 理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
+
+6. **33-qt-network-basics.md**：
+   - ⏳ 学习 Qt Network 模块基础，应用前面学到的概念
 
 **学习时间规划**：
 
 | 文档                               | 预计时间 | 累计时间 | 状态      |
 | ---------------------------------- | -------- | -------- | --------- |
-| 29-network-programming-concepts.md | 1h       | 1h       | ✅ 已完成 |
-| 30-cmake-advanced.md               | 1.5h     | 2.5h     | ✅ 已完成 |
-| 31-qt-environment-setup.md         | 1h       | 3.5h     | 🔄 下一步 |
-| 32-qt-signals-slots.md             | 1.5h     | 5h       | ⏳ 待学习 |
-| 33-qt-network-programming.md       | 2.5h     | 7.5h     | ⏳ 待学习 |
+| 28-multi-file-advanced.md          | 1.5h     | 1.5h     | ✅ 已完成 |
+| 29-cmake-advanced.md               | 1.5h     | 3h       | ✅ 已完成 |
+| 30-qt-environment-setup.md         | 1h       | 4h       | 🔄 下一步 |
+| 31-qt-signals-slots.md             | 1.5h     | 5.5h     | ⏳ 待学习 |
+| 32-network-programming-concepts.md | 1h       | 6.5h     | ⏳ 待学习 |
+| 33-qt-network-basics.md            | 1.5h     | 8h       | ⏳ 待学习 |
 
-**下一篇**：[Qt 环境搭建](./31-qt-environment-setup.md)
+**下一篇**：[Qt 环境搭建](./30-qt-environment-setup.md)
 
 **学习路径**：
 
-1. ✅ 29-network-programming-concepts.md - 已完成（理解网络编程概念）
-2. ✅ 30-cmake-advanced.md - 已完成（学习 CMake 链接外部库、配置 Qt 项目）
-3. 🔄 31-qt-environment-setup.md - 下一步（搭建 Qt 开发环境，应用 CMake 配置）
-4. ⏳ 32-qt-signals-slots.md - 待学习（学习 Qt 信号槽机制）
-5. ⏳ 33-qt-network-programming.md - 待学习（学习 Qt Network 模块，应用网络编程概念）
+1. ✅ 28-multi-file-advanced.md - 已完成（多文件开发进阶）
+2. ✅ 29-cmake-advanced.md - 已完成（学习 CMake 链接外部库、配置 Qt 项目）
+3. 🔄 30-qt-environment-setup.md - 下一步（搭建 Qt 开发环境，应用 CMake 配置）
+4. ⏳ 31-qt-signals-slots.md - 待学习（学习 Qt 信号槽机制）
+5. ⏳ 32-network-programming-concepts.md - 待学习（理解网络编程概念）
+6. ⏳ 33-qt-network-basics.md - 待学习（学习 Qt Network 模块基础，应用网络编程概念）
 
 **技能树更新**：
 
@@ -1538,5 +1545,5 @@ graph TD
 > 1. **本文档的定位**：专注于 CMake 链接外部库和 Qt 项目配置，不涉及 Qt 的具体使用（将在后续文档中学习）。
 > 2. **为什么先学 CMake 进阶**：Qt 项目需要通过 CMake 链接 Qt 库，必须先掌握 CMake 链接外部库的方法。就像建房子，先学会连接水电（CMake 链接外部库），再学会使用电器（Qt 开发）。
 > 3. **后续学习路径**：学完 CMake 配置后，将学习 Qt 环境搭建（应用 CMake 配置）、Qt 信号槽机制，最后学习 Qt Network 模块。
-> 4. **Qt6 安装**：如果系统没有安装 Qt6，`find_package` 会报错。Qt6 的安装将在后续文档（31-qt-environment-setup.md）中学习。
+> 4. **Qt6 安装**：如果系统没有安装 Qt6，`find_package` 会报错。Qt6 的安装将在后续文档（30-qt-environment-setup.md）中学习。
 > 5. **实践导向**：本文档提供了完整的 Qt 项目配置示例，可以直接应用到实际项目中。

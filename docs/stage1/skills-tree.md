@@ -34,10 +34,10 @@
 - ✅ 26-lambda-expressions.md - 已完成
 - ✅ 27-exception-handling.md - 已完成
 - ✅ 28-multi-file-advanced.md - 已完成
-- ✅ 29-network-programming-concepts.md - 已完成
-- ✅ 30-cmake-advanced.md - 已完成
-- ✅ 31-qt-environment-setup.md - 已完成
-- ✅ 32-qt-signals-slots.md - 已完成
+- ✅ 29-cmake-advanced.md - 已完成
+- ✅ 30-qt-environment-setup.md - 已完成
+- ✅ 31-qt-signals-slots.md - 已完成
+- ✅ 32-network-programming-concepts.md - 已完成
 
 ---
 
@@ -1932,7 +1932,7 @@
 
 ---
 
-### 29-network-programming-concepts.md - 网络编程概念
+### 32-network-programming-concepts.md - 网络编程概念
 
 #### 🔑 核心知识点
 
@@ -2010,7 +2010,7 @@
 
 ---
 
-### 30-cmake-advanced.md - CMake 进阶
+### 29-cmake-advanced.md - CMake 进阶
 
 #### 🔑 核心知识点
 
@@ -2121,7 +2121,7 @@
 
 ---
 
-### 31-qt-environment-setup.md - Qt 环境搭建
+### 30-qt-environment-setup.md - Qt 环境搭建
 
 #### 🔑 核心知识点
 
@@ -2192,7 +2192,7 @@
 
 ---
 
-### 32-qt-signals-slots.md - Qt 信号槽机制
+### 31-qt-signals-slots.md - Qt 信号槽机制
 
 #### 🔑 核心知识点
 
@@ -2330,10 +2330,10 @@
 31. **Lambda 表达式** - 已在 26-lambda-expressions.md 详细介绍（Lambda 表达式语法、捕获列表、值捕获、引用捕获、混合捕获、与 STL 算法配合使用、多文件应用）
 32. **异常处理** - 已在 27-exception-handling.md 详细介绍（异常处理概念、try-catch 语句、throw 抛出异常、标准异常类型、异常安全、RAII 与异常安全、多文件应用）
 33. **多文件开发进阶** - 已在 28-multi-file-advanced.md 详细介绍（命名空间、静态成员、友元函数、前向声明、依赖管理最佳实践、复杂多文件项目组织）
-34. **网络编程概念** - 已在 29-network-programming-concepts.md 详细介绍（Socket 概念、TCP/UDP 协议对比、客户端/服务器模型、P2P 模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射）
-35. **CMake 进阶** - 已在 30-cmake-advanced.md 详细介绍（CMake 链接外部库、find_package、Qt 项目配置、跨平台构建、依赖管理最佳实践、在 Cursor 中调试 CMake 项目）
-36. **Qt 环境搭建** - 已在 31-qt-environment-setup.md 详细介绍（Qt 6.9+ 安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查）
-37. **Qt 信号槽机制** - 已在 32-qt-signals-slots.md 详细介绍（信号槽概念、信号和槽的定义、信号槽连接、Qt 对象模型、QObject 基类、Q_OBJECT 宏、MOC 工具、对象树、事件循环、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、实践应用）
+34. **CMake 进阶** - 已在 29-cmake-advanced.md 详细介绍（CMake 链接外部库、find_package、Qt 项目配置、跨平台构建、依赖管理最佳实践、在 Cursor 中调试 CMake 项目）
+35. **Qt 环境搭建** - 已在 30-qt-environment-setup.md 详细介绍（Qt 6.9+ 安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查）
+36. **Qt 信号槽机制** - 已在 31-qt-signals-slots.md 详细介绍（信号槽概念、信号和槽的定义、信号槽连接、Qt 对象模型、QObject 基类、Q_OBJECT 宏、MOC 工具、对象树、事件循环、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、实践应用）
+37. **网络编程概念** - 已在 32-network-programming-concepts.md 详细介绍（Socket 概念、TCP/UDP 协议对比、客户端/服务器模型、P2P 模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射）
 
 ### ⚠️ 需要注意的知识点
 

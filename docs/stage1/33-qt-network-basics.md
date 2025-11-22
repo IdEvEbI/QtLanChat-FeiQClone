@@ -31,7 +31,7 @@
 
 **学习路径设计**：
 
-在学习了网络编程概念（29-network-programming-concepts.md）之后，我们需要深入学习网络基础概念，然后才能学习 Qt Network 的具体实现。这样做的原因：
+在学习了网络编程概念（32-network-programming-concepts.md）之后，我们需要深入学习网络基础概念，然后才能学习 Qt Network 的具体实现。这样做的原因：
 
 1. **理解原理**：深入理解 IP、端口、子网掩码等概念，才能正确配置网络参数
 2. **选择方案**：理解广播、多播、点对点的区别，才能为不同场景选择合适的通信方式
@@ -42,7 +42,7 @@
 
 ```mermaid
 graph TD
-    A[29-网络编程概念<br/>✅ 已完成<br/>理解 Socket、TCP/UDP、<br/>客户端/服务器模型] --> B[32-Qt 信号槽<br/>✅ 已完成<br/>学习 Qt 信号槽机制<br/>理解事件驱动模型]
+    A[31-Qt 信号槽<br/>✅ 已完成<br/>学习 Qt 信号槽机制<br/>理解事件驱动模型] --> B[32-网络编程概念<br/>✅ 已完成<br/>理解 Socket、TCP/UDP、<br/>客户端/服务器模型]
     B --> C[33-Qt 网络基础<br/>🔄 当前文档<br/>深入理解网络基础概念<br/>IP、端口、子网掩码<br/>广播、多播、点对点<br/>Qt Network 模块基础]
     C --> D[34-Qt UDP 编程<br/>⏳ 待学习<br/>学习 QUdpSocket<br/>实现 UDP 通信]
     D --> E[35-Qt TCP 编程<br/>⏳ 待学习<br/>学习 QTcpSocket<br/>实现 TCP 通信]
@@ -101,7 +101,7 @@ graph TD
 - [ ] Qt 环境搭建（Qt 6.9+ 安装、CMake 配置 Qt 项目）
 - [ ] Lambda 表达式基础（可选，文档中会使用 Lambda 表达式作为槽函数）
 
-> **未掌握处理**：若未通过，请先复习 [Qt 信号槽机制](./32-qt-signals-slots.md)、[网络编程概念](./29-network-programming-concepts.md)、[Qt 环境搭建](./31-qt-environment-setup.md) 和 [Lambda 表达式](./26-lambda-expressions.md)（可选）
+> **未掌握处理**：若未通过，请先复习 [Qt 信号槽机制](./31-qt-signals-slots.md)、[网络编程概念](./32-network-programming-concepts.md)、[Qt 环境搭建](./30-qt-environment-setup.md) 和 [Lambda 表达式](./26-lambda-expressions.md)（可选）
 
 ## 2. 核心内容
 
@@ -348,13 +348,19 @@ if (addr3.isMulticast()) {
 
 ```cpp
 // UDP 服务器绑定端口
-QUdpSocket* socket = new QUdpSocket(this);
+QUdpSocket* socket = new QUdpSocket(this);  // this 指向当前对象，作为父对象
 socket->bind(QHostAddress::AnyIPv4, 12345);
 
 // TCP 服务器绑定端口
-QTcpServer* server = new QTcpServer(this);
+QTcpServer* server = new QTcpServer(this);  // this 指向当前对象，作为父对象
 server->listen(QHostAddress::AnyIPv4, 12345);
 ```
+
+> **📌 补充说明：this 指针**：
+>
+> - **this 指针**：在成员函数中，`this` 是一个指向当前对象的指针
+> - **Qt 中的使用**：`new QUdpSocket(this)` 中的 `this` 表示将当前对象作为 `QUdpSocket` 的父对象，实现自动内存管理
+> - **详细说明**：关于 `this` 指针的详细讲解，请参考 [类和对象详解](./18-classes-objects.md) 中的 `2.4.3 this 指针` 部分
 
 **端口复用（Reuse Address）**：
 

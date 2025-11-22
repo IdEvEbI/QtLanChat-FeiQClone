@@ -89,7 +89,7 @@
 
 ### Stage 1 补充阶段（100% 完成）**新增 - 方案 C：混合路径**
 
-- [x] 29-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h ✅
+- [x] 32-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h ✅
   - ✅ Socket 编程概念（类比：Socket 像电话插座）
   - ✅ TCP vs UDP 协议对比（可靠传输 vs 快速传输）
   - ✅ 客户端/服务器模型
@@ -98,7 +98,7 @@
   - ✅ 概念到实现的映射（Socket → QUdpSocket/QTcpSocket）
   - ✅ 学习路径说明（明确后续学习路径）
   - ✅ **说明**：只讲概念，不深入系统 API，为 Qt Network 学习做准备
-- [x] 30-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h ✅
+- [x] 29-cmake-advanced.md（CMake 进阶：链接外部库、Qt 项目配置）- 1.5h ✅
   - ✅ CMake 链接外部库（find_package）
   - ✅ Qt 项目配置（Qt6::Core、Qt6::Network）
   - ✅ 跨平台构建配置
@@ -108,15 +108,15 @@
 
 ### Stage 2：Qt 开发阶段（27% 完成）**新增 - 方案 C：混合路径**
 
-- [x] 31-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
+- [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
-  - ✅ CMake 配置 Qt 项目验证（应用 30-cmake-advanced.md 的知识）
+  - ✅ CMake 配置 Qt 项目验证（应用 29-cmake-advanced.md 的知识）
   - ✅ Qt Creator 安装和使用（社区版/商业版选择、基本功能）
   - ✅ Qt 环境配置详解（Qt6_DIR 环境变量、CMake 自动查找、版本兼容性）
   - ✅ Qt 项目结构（CMakeLists.txt 配置、项目目录结构）
   - ✅ 常见问题排查（找不到 Qt6、版本不匹配、编译错误）
   - ✅ 实践：验证 CMake 配置 Qt 项目
-- [x] 32-qt-signals-slots.md（Qt 信号槽机制：信号槽概念、连接、Qt 对象模型）- 1.5h ✅
+- [x] 31-qt-signals-slots.md（Qt 信号槽机制：信号槽概念、连接、Qt 对象模型）- 1.5h ✅
   - ✅ 信号槽概念（类比：邮件订阅系统，观察者模式）
   - ✅ 信号和槽的定义（信号只有声明，槽需要实现）
   - ✅ 信号槽连接（QObject::connect，现代 C++ 语法）
@@ -127,6 +127,7 @@
   - ✅ 信号槽参数类型转换、连接方式（Qt::AutoConnection、Qt::DirectConnection、Qt::QueuedConnection）
   - ✅ 常见问题排查（信号槽连接失败、MOC 编译错误、参数类型不匹配）
   - ✅ 实践：信号槽示例项目（Counter、MessageSender/MessageReceiver、Timer、TemperatureSensor/TemperatureDisplay）
+- [x] 32-network-programming-concepts.md（网络编程概念：Socket 概念、TCP/UDP 对比、客户端/服务器模型）- 1h ✅
 - [x] 33-qt-network-basics.md（Qt 网络编程基础：IP、端口、子网掩码、广播、多播、点对点、Qt Network 模块基础）- 1.5h ✅ ⚠️ **拆分 - 网络基础**
   - ✅ Qt Network 模块概述（模块介绍、主要类、特点）
   - ✅ IP 地址详解（IPv4/IPv6、子网掩码、网络地址、主机地址）
@@ -319,10 +320,10 @@
 - ✅ 26-lambda-expressions.md（Lambda 表达式，1601 行，3 题练习 + 2 题编程测试题）
 - ✅ 27-exception-handling.md（异常处理，1300 行，3 题练习）
 - ✅ 28-multi-file-advanced.md（多文件开发进阶，2212 行，3 题练习）
-- ✅ 29-network-programming-concepts.md（网络编程概念，866 行，3 题练习 + 3 题测试题）
-- ✅ 30-cmake-advanced.md（CMake 进阶，1543 行，3 题练习 + 3 题测试题）
-- ✅ 31-qt-environment-setup.md（Qt 环境搭建，1264 行，3 题练习 + 3 题测试题）
-- ✅ 32-qt-signals-slots.md（Qt 信号槽机制，1461 行，3 题练习 + 3 题测试题）
+- ✅ 29-cmake-advanced.md（CMake 进阶，1543 行，3 题练习 + 3 题测试题）
+- ✅ 30-qt-environment-setup.md（Qt 环境搭建，1264 行，3 题练习 + 3 题测试题）
+- ✅ 31-qt-signals-slots.md（Qt 信号槽机制，1461 行，3 题练习 + 3 题测试题）
+- ✅ 32-network-programming-concepts.md（网络编程概念，866 行，3 题练习 + 3 题测试题）
 - ✅ 33-qt-network-basics.md（Qt 网络编程基础，949 行，3 题练习 + 3 题测试题）⚠️ **拆分 - 网络基础**
 - ✅ 配套代码文件（src/stage1/01-32/ 目录完整）
 - ✅ VSCode 调试环境配置
@@ -374,20 +375,19 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（31-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（32-qt-signals-slots.md，1.5h）- 已完成，✅ 完成 Stage 2 第三个文档（33-qt-network-basics.md，1.5h）- 已完成
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（29-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（30-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（31-qt-signals-slots.md，1.5h）- 已完成，✅ 完成 Stage 2 第三个文档（32-network-programming-concepts.md，1h）- 已完成，✅ 完成 Stage 2 第四个文档（33-qt-network-basics.md，1.5h）- 已完成
 **中期（2-3 周）**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
 **长期（3-4 周）**：完成 Stage 3 项目实战（40-42，8.5h）+ 配套代码 + 质量保证 + v0.1 发布
 
 **详细时间规划**：
 
-- **第 1 天**：✅ 29-network-programming-concepts.md（1h）- 已完成
-- **第 2 天**：✅ 30-cmake-advanced.md（1.5h）- 已完成
-- **第 3 天**：✅ 复习和巩固 Stage 1 补充阶段 - 已完成
-- **第 4 天**：✅ 31-qt-environment-setup.md（1h）- 已完成
-- **第 5 天**：✅ 32-qt-signals-slots.md（1.5h）- 已完成
-- **第 6 天**：✅ 33-qt-network-basics.md（1.5h）- 已完成 ⚠️ **拆分 - 网络基础**
-- **第 7-8 天**：34-qt-udp-programming.md（2h）⚠️ **拆分 - UDP 编程**
-- **第 9-10 天**：35-qt-tcp-programming.md（2h）⚠️ **拆分 - TCP 编程**
+- **第 1 天**：✅ 29-cmake-advanced.md（1.5h）- 已完成
+- **第 2 天**：✅ 30-qt-environment-setup.md（1h）- 已完成
+- **第 3 天**：✅ 31-qt-signals-slots.md（1.5h）- 已完成
+- **第 4 天**：✅ 32-network-programming-concepts.md（1h）- 已完成
+- **第 5 天**：✅ 33-qt-network-basics.md（1.5h）- 已完成 ⚠️ **拆分 - 网络基础**
+- **第 6-7 天**：35-qt-udp-programming.md（2h）⚠️ **拆分 - UDP 编程**
+- **第 8-9 天**：36-qt-tcp-programming.md（2h）⚠️ **拆分 - TCP 编程**
 - **第 11 天**：36-qt-widgets-basics.md（1.5h）⚠️ **新增 - 基础控件**
 - **第 12-13 天**：37-qt-widgets-advanced.md（2h）⚠️ **新增 - 高级控件**
 - **第 14 天**：38-qt-widgets-multi-window.md（1.5h）⚠️ **新增 - 多窗口管理**

@@ -42,8 +42,9 @@
 
 ```mermaid
 graph TD
-    A[31-Qt 环境搭建<br/>✅ 已完成<br/>搭建 Qt 开发环境<br/>验证 CMake 配置] --> B[32-Qt 信号槽<br/>🔄 当前文档<br/>学习 Qt 信号槽机制<br/>理解事件驱动模型]
-    B --> C[33-Qt 网络编程<br/>⏳ 待学习<br/>学习 Qt Network 模块<br/>应用信号槽机制]
+    A[30-Qt 环境搭建<br/>✅ 已完成<br/>搭建 Qt 开发环境<br/>验证 CMake 配置] --> B[31-Qt 信号槽<br/>🔄 当前文档<br/>学习 Qt 信号槽机制<br/>理解事件驱动模型]
+    B --> C[32-网络编程概念<br/>⏳ 待学习<br/>理解 Socket、TCP/UDP]
+    C --> D[33-Qt 网络基础<br/>⏳ 待学习<br/>学习 Qt Network 模块<br/>应用信号槽机制]
 
     style A fill:#4caf50
     style B fill:#ffeb3b
@@ -116,7 +117,7 @@ graph TD
 - [ ] 基本的 C++ 语法（函数、指针、引用）
 - [ ] Lambda 表达式基础（可选，文档中会使用 Lambda 表达式作为槽函数）
 
-> **未掌握处理**：若未通过，请先复习 [Qt 环境搭建](./31-qt-environment-setup.md)、[C++ 面向对象基础](./18-classes-objects.md) 和 [Lambda 表达式](./26-lambda-expressions.md)（可选）
+> **未掌握处理**：若未通过，请先复习 [Qt 环境搭建](./30-qt-environment-setup.md)、[C++ 面向对象基础](./18-classes-objects.md) 和 [Lambda 表达式](./26-lambda-expressions.md)（可选）
 
 ## 2. 核心内容
 
@@ -931,7 +932,7 @@ error: no matching function for call to 'QObject::connect'
 
 ### 3.2 实际应用示例
 
-**Qt Network 中的信号槽**（预览，将在 33-qt-network-programming.md 详细学习）：
+**Qt Network 中的信号槽**（预览，将在 33-qt-network-basics.md 详细学习）：
 
 ```cpp
 QUdpSocket* socket = new QUdpSocket(this);
@@ -1235,7 +1236,8 @@ int main(int argc, char *argv[]) {
 
 完成本文档后，建议学习：
 
-- **33-qt-network-programming.md**：Qt 网络编程，学习如何使用信号槽处理网络事件（QUdpSocket、QTcpSocket）
+- **32-network-programming-concepts.md**：网络编程概念，理解 Socket、TCP/UDP、客户端/服务器模型
+- **33-qt-network-basics.md**：Qt 网络基础，学习如何使用信号槽处理网络事件（QUdpSocket、QTcpSocket）
 
 ## 6. 课后作业及参考答案
 
@@ -1371,33 +1373,38 @@ graph LR
 
 **为什么这样安排学习路径？**
 
-1. **31-qt-environment-setup.md（已完成）**：
+1. **30-qt-environment-setup.md（已完成）**：
    - ✅ 搭建 Qt 开发环境（安装 Qt6、配置环境变量）
    - ✅ 验证 CMake 配置是否正确
 
-2. **32-qt-signals-slots.md（当前文档，已完成）**：
+2. **31-qt-signals-slots.md（当前文档，已完成）**：
    - ✅ 学习 Qt 信号槽机制（Qt Network 的基础）
    - ✅ 理解 Qt 对象模型和事件循环
    - ✅ 掌握信号槽的连接方法
 
-3. **33-qt-network-programming.md（下一步）**：
-   - 🔄 学习 Qt Network 模块，应用信号槽机制处理网络事件
+3. **32-network-programming-concepts.md（下一步）**：
+   - 🔄 理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
+
+4. **33-qt-network-basics.md**：
+   - ⏳ 学习 Qt Network 模块基础，应用信号槽机制处理网络事件
 
 **学习时间规划**：
 
-| 文档                         | 预计时间 | 累计时间 | 状态      |
-| ---------------------------- | -------- | -------- | --------- |
-| 31-qt-environment-setup.md   | 1h       | 1h       | ✅ 已完成 |
-| 32-qt-signals-slots.md       | 1.5h     | 2.5h     | ✅ 已完成 |
-| 33-qt-network-programming.md | 2.5h     | 5h       | 🔄 下一步 |
+| 文档                               | 预计时间 | 累计时间 | 状态      |
+| ---------------------------------- | -------- | -------- | --------- |
+| 30-qt-environment-setup.md         | 1h       | 1h       | ✅ 已完成 |
+| 31-qt-signals-slots.md             | 1.5h     | 2.5h     | ✅ 已完成 |
+| 32-network-programming-concepts.md | 1h       | 3.5h     | 🔄 下一步 |
+| 33-qt-network-basics.md            | 1.5h     | 5h       | ⏳ 待学习 |
 
-**下一篇**：[Qt 网络编程](./33-qt-network-programming.md)
+**下一篇**：[网络编程概念](./32-network-programming-concepts.md)
 
 **学习路径**：
 
-1. ✅ 31-qt-environment-setup.md - 已完成（搭建 Qt 开发环境，验证 CMake 配置）
-2. ✅ 32-qt-signals-slots.md - 已完成（学习 Qt 信号槽机制，理解事件驱动模型）
-3. 🔄 33-qt-network-programming.md - 下一步（学习 Qt Network 模块，应用信号槽机制）
+1. ✅ 30-qt-environment-setup.md - 已完成（搭建 Qt 开发环境，验证 CMake 配置）
+2. ✅ 31-qt-signals-slots.md - 已完成（学习 Qt 信号槽机制，理解事件驱动模型）
+3. 🔄 32-network-programming-concepts.md - 下一步（理解网络编程概念）
+4. ⏳ 33-qt-network-basics.md - 待学习（学习 Qt Network 模块基础，应用信号槽机制）
 
 **技能树更新**：
 
