@@ -6,7 +6,8 @@
 > **难度等级**：⭐⭐⭐  
 > **技能收获**：网络基础概念、IP 地址、端口号、子网掩码、广播/多播/点对点、Qt Network 模块、QHostAddress、QNetworkInterface、网络事件处理  
 > **文档版本**：v1.0  
-> **最后更新**：2025-11-21
+> **最后更新**：2025-11-22  
+> **配套代码**：`src/stage1/33-qt-network-basics/`（4 个示例程序，详见文档中的代码位置标注）
 
 📊 **难度等级说明**
 
@@ -283,25 +284,34 @@ IP 地址：   192.168.1.100
 
 **QHostAddress 使用示例**：
 
+> **📁 代码位置**：`src/stage1/33-qt-network-basics/01-qhostaddress-demo/main.cpp`
+
 ```cpp
+#include <QtCore/QCoreApplication>
 #include <QtNetwork/QHostAddress>
 #include <QtCore/QDebug>
 
-// 创建 IP 地址对象
-QHostAddress addr1("192.168.1.100");
-QHostAddress addr2 = QHostAddress::LocalHost;  // 127.0.0.1
-QHostAddress addr3 = QHostAddress::Broadcast;  // 255.255.255.255
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
 
-// 转换为字符串
-qDebug() << addr1.toString();  // 输出: "192.168.1.100"
+    // 创建 IP 地址对象
+    QHostAddress addr1("192.168.1.100");
+    QHostAddress addr2 = QHostAddress::LocalHost;   // 127.0.0.1
+    QHostAddress addr3 = QHostAddress::Broadcast;   // 255.255.255.255
 
-// 判断地址类型
-if (addr1.isLoopback()) {
-    qDebug() << "This is a loopback address";
-}
+    // 转换为字符串
+    qDebug() << addr1.toString();                   // 输出: "192.168.1.100"
 
-if (addr3.isMulticast()) {
-    qDebug() << "This is a multicast address";
+    // 判断地址类型
+    if (addr1.isLoopback()) {
+        qDebug() << "This is a loopback address";
+    }
+
+    if (addr3.isMulticast()) {
+        qDebug() << "This is a multicast address";
+    }
+
+    return 0;
 }
 ```
 
@@ -348,11 +358,11 @@ if (addr3.isMulticast()) {
 
 ```cpp
 // UDP 服务器绑定端口
-QUdpSocket* socket = new QUdpSocket(this);  // this 指向当前对象，作为父对象
+QUdpSocket* socket = new QUdpSocket(this);      // this 指向当前对象，作为父对象
 socket->bind(QHostAddress::AnyIPv4, 12345);
 
 // TCP 服务器绑定端口
-QTcpServer* server = new QTcpServer(this);  // this 指向当前对象，作为父对象
+QTcpServer* server = new QTcpServer(this);      // this 指向当前对象，作为父对象
 server->listen(QHostAddress::AnyIPv4, 12345);
 ```
 
@@ -544,10 +554,12 @@ graph LR
 | **allInterfaces()**     | 获取所有网络接口       | `QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();` |
 | **interfaceFromName()** | 根据名称获取网络接口   | `QNetworkInterface eth0 = QNetworkInterface::interfaceFromName("eth0");`    |
 | **name()**              | 获取接口名称           | `QString name = interface.name();`                                          |
-| **addresses()**         | 获取接口的 IP 地址列表 | `QList<QNetworkAddressEntry> addresses = interface.addresses();`            |
+| **addressEntries()**    | 获取接口的 IP 地址列表 | `QList<QNetworkAddressEntry> entries = interface.addressEntries();`         |
 | **isValid()**           | 判断接口是否有效       | `if (interface.isValid()) { ... }`                                          |
 
 **QNetworkInterface 使用示例**：
+
+> **📁 代码位置**：`src/stage1/33-qt-network-basics/02-network-info/NetworkInfo.cpp`
 
 ```cpp
 #include <QtNetwork/QNetworkInterface>
@@ -561,8 +573,8 @@ for (const QNetworkInterface& interface : interfaces) {
     qDebug() << "  Valid:" << interface.isValid();
 
     // 获取接口的 IP 地址
-    QList<QNetworkAddressEntry> addresses = interface.addresses();
-    for (const QNetworkAddressEntry& entry : addresses) {
+    QList<QNetworkAddressEntry> entries = interface.addressEntries();
+    for (const QNetworkAddressEntry& entry : entries) {
         QHostAddress addr = entry.ip();
         if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
             qDebug() << "  IPv4:" << addr.toString();
@@ -585,7 +597,7 @@ QString getLocalIpAddress() {
             continue;
         }
 
-        QList<QNetworkAddressEntry> entries = interface.addresses();
+        QList<QNetworkAddressEntry> entries = interface.addressEntries();
         for (const QNetworkAddressEntry& entry : entries) {
             QHostAddress addr = entry.ip();
             // 返回第一个 IPv4 地址
@@ -606,6 +618,8 @@ QString getLocalIpAddress() {
 
 **场景**：创建一个程序，获取本机的网络接口信息。
 
+> **📁 代码位置**：`src/stage1/33-qt-network-basics/02-network-info/`
+
 **代码示例**：
 
 ```cpp
@@ -621,47 +635,55 @@ class NetworkInfo : public QObject {
     Q_OBJECT
 
 public:
-    explicit NetworkInfo(QObject* parent = nullptr) : QObject(parent) {
-        printNetworkInfo();
-    }
+    explicit NetworkInfo(QObject* parent = nullptr);
 
 private:
-    void printNetworkInfo() {
-        QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
-
-        qDebug() << "=== Network Interfaces ===";
-
-        for (const QNetworkInterface& interface : interfaces) {
-            // 跳过非活动接口
-            if (!interface.flags().testFlag(QNetworkInterface::IsUp)) {
-                continue;
-            }
-
-            qDebug() << "\nInterface:" << interface.name();
-            qDebug() << "  Hardware Address:" << interface.hardwareAddress();
-            qDebug() << "  Is Loopback:" << interface.flags().testFlag(QNetworkInterface::IsLoopBack);
-            qDebug() << "  Is Up:" << interface.flags().testFlag(QNetworkInterface::IsUp);
-
-            // 获取 IP 地址
-            QList<QNetworkAddressEntry> entries = interface.addresses();
-            for (const QNetworkAddressEntry& entry : entries) {
-                QHostAddress addr = entry.ip();
-                if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
-                    qDebug() << "  IPv4 Address:" << addr.toString();
-                    qDebug() << "  Netmask:" << entry.netmask().toString();
-                    qDebug() << "  Broadcast:" << entry.broadcast().toString();
-                }
-            }
-        }
-    }
+    void printNetworkInfo();
 };
 
 #endif // NETWORKINFO_H
 ```
 
-**main.cpp**：
+```cpp
+// NetworkInfo.cpp
+#include "NetworkInfo.h"
+
+NetworkInfo::NetworkInfo(QObject* parent) : QObject(parent) {
+    printNetworkInfo();
+}
+
+void NetworkInfo::printNetworkInfo() {
+    QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
+
+    qDebug() << "=== Network Interfaces ===";
+
+    for (const QNetworkInterface& interface : interfaces) {
+        // 跳过非活动接口
+        if (!interface.flags().testFlag(QNetworkInterface::IsUp)) {
+            continue;
+        }
+
+        qDebug() << "\nInterface:" << interface.name();
+        qDebug() << "  Hardware Address:" << interface.hardwareAddress();
+        qDebug() << "  Is Loopback:" << interface.flags().testFlag(QNetworkInterface::IsLoopBack);
+        qDebug() << "  Is Up:" << interface.flags().testFlag(QNetworkInterface::IsUp);
+
+        // 获取 IP 地址
+        QList<QNetworkAddressEntry> entries = interface.addressEntries();
+        for (const QNetworkAddressEntry& entry : entries) {
+            QHostAddress addr = entry.ip();
+            if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
+                qDebug() << "  IPv4 Address:" << addr.toString();
+                qDebug() << "  Netmask:" << entry.netmask().toString();
+                qDebug() << "  Broadcast:" << entry.broadcast().toString();
+            }
+        }
+    }
+}
+```
 
 ```cpp
+// main.cpp
 #include <QtCore/QCoreApplication>
 #include "NetworkInfo.h"
 
@@ -700,6 +722,8 @@ Interface: lo0
 
 **场景**：创建一个程序，验证 IP 地址和端口的有效性。
 
+> **📁 代码位置**：`src/stage1/33-qt-network-basics/03-network-validator/`
+
 **代码示例**：
 
 ```cpp
@@ -715,56 +739,80 @@ class NetworkValidator : public QObject {
     Q_OBJECT
 
 public:
-    explicit NetworkValidator(QObject* parent = nullptr) : QObject(parent) {
-        validateAddresses();
-        validatePorts();
-    }
+    explicit NetworkValidator(QObject* parent = nullptr);
 
 private:
-    void validateAddresses() {
-        qDebug() << "=== IP Address Validation ===";
-
-        // 验证 IPv4 地址
-        QHostAddress addr1("192.168.1.100");
-        qDebug() << "192.168.1.100 is valid:" << !addr1.isNull();
-        qDebug() << "Is loopback:" << addr1.isLoopback();
-        qDebug() << "Is multicast:" << addr1.isMulticast();
-
-        // 验证多播地址
-        QHostAddress addr2("224.0.0.1");
-        qDebug() << "\n224.0.0.1 is multicast:" << addr2.isMulticast();
-
-        // 验证广播地址
-        QHostAddress addr3 = QHostAddress::Broadcast;
-        qDebug() << "Broadcast address:" << addr3.toString();
-
-        // 验证无效地址
-        QHostAddress addr4("999.999.999.999");
-        qDebug() << "\n999.999.999.999 is valid:" << !addr4.isNull();
-    }
-
-    void validatePorts() {
-        qDebug() << "\n=== Port Validation ===";
-
-        quint16 port1 = 80;      // HTTP
-        quint16 port2 = 443;     // HTTPS
-        quint16 port3 = 12345;   // 自定义端口
-
-        qDebug() << "Port 80 (HTTP):" << port1;
-        qDebug() << "Port 443 (HTTPS):" << port2;
-        qDebug() << "Port 12345 (Custom):" << port3;
-
-        // 端口范围检查
-        if (port1 < 1024) {
-            qDebug() << "Port 80 requires administrator privileges";
-        }
-        if (port3 >= 1024 && port3 <= 65535) {
-            qDebug() << "Port 12345 is in user range (1024-65535)";
-        }
-    }
+    void validateAddresses();
+    void validatePorts();
 };
 
 #endif // NETWORKVALIDATOR_H
+```
+
+```cpp
+// NetworkValidator.cpp
+#include "NetworkValidator.h"
+
+NetworkValidator::NetworkValidator(QObject* parent) : QObject(parent) {
+    validateAddresses();
+    validatePorts();
+}
+
+void NetworkValidator::validateAddresses() {
+    qDebug() << "=== IP Address Validation ===";
+
+    // 验证 IPv4 地址
+    QHostAddress addr1("192.168.1.100");
+    qDebug() << "192.168.1.100 is valid:" << !addr1.isNull();
+    qDebug() << "Is loopback:" << addr1.isLoopback();
+    qDebug() << "Is multicast:" << addr1.isMulticast();
+
+    // 验证多播地址
+    QHostAddress addr2("224.0.0.1");
+    qDebug() << "\n224.0.0.1 is multicast:" << addr2.isMulticast();
+
+    // 验证广播地址
+    QHostAddress addr3 = QHostAddress::Broadcast;
+    qDebug() << "Broadcast address:" << addr3.toString();
+
+    // 验证无效地址
+    QHostAddress addr4("999.999.999.999");
+    qDebug() << "\n999.999.999.999 is valid:" << !addr4.isNull();
+}
+
+void NetworkValidator::validatePorts() {
+    qDebug() << "\n=== Port Validation ===";
+
+    quint16 port1 = 80;      // HTTP
+    quint16 port2 = 443;     // HTTPS
+    quint16 port3 = 12345;   // 自定义端口
+
+    qDebug() << "Port 80 (HTTP):" << port1;
+    qDebug() << "Port 443 (HTTPS):" << port2;
+    qDebug() << "Port 12345 (Custom):" << port3;
+
+    // 端口范围检查
+    if (port1 < 1024) {
+        qDebug() << "Port 80 requires administrator privileges";
+    }
+    if (port3 >= 1024 && port3 <= 65535) {
+        qDebug() << "Port 12345 is in user range (1024-65535)";
+    }
+}
+```
+
+```cpp
+// main.cpp
+#include <QtCore/QCoreApplication>
+#include "NetworkValidator.h"
+
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+
+    NetworkValidator validator;
+
+    return 0;
+}
 ```
 
 ## 4. 常见问题与解决方案
@@ -779,8 +827,21 @@ private:
 
 使用 `QNetworkInterface` 获取本机的 IP 地址：
 
+> **📁 代码位置**：`src/stage1/33-qt-network-basics/04-get-local-ip/NetworkUtils.cpp`
+
 ```cpp
-QString getLocalIpAddress() {
+// NetworkUtils.h
+class NetworkUtils {
+public:
+    // 获取本机的第一个 IPv4 地址（非回环）
+    static QString getLocalIpAddress();
+
+    // 获取所有 IPv4 地址
+    static QStringList getAllLocalIpAddresses();
+};
+
+// NetworkUtils.cpp
+QString NetworkUtils::getLocalIpAddress() {
     QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
 
     for (const QNetworkInterface& interface : interfaces) {
@@ -790,7 +851,7 @@ QString getLocalIpAddress() {
             continue;
         }
 
-        QList<QNetworkAddressEntry> entries = interface.addresses();
+        QList<QNetworkAddressEntry> entries = interface.addressEntries();
         for (const QNetworkAddressEntry& entry : entries) {
             QHostAddress addr = entry.ip();
             // 返回第一个 IPv4 地址
@@ -908,40 +969,145 @@ QString getLocalIpAddress() {
 
    **答案**：B
 
-## 6. 下一步学习
+## 6. 配套代码说明
 
-完成本文档后，建议学习：
+### 6.1 代码位置
 
-- **34-qt-udp-programming.md**：Qt UDP 编程，学习使用 QUdpSocket 实现 UDP 通信（单播、广播、多播）
-- **35-qt-tcp-programming.md**：Qt TCP 编程，学习使用 QTcpSocket 和 QTcpServer 实现 TCP 通信
+本文档的所有配套代码位于 `src/stage1/33-qt-network-basics/` 目录，包含 4 个示例程序：
 
-## 7. 总结
+| 示例程序                 | 代码位置                                                | 说明                         |
+| ------------------------ | ------------------------------------------------------- | ---------------------------- |
+| **01-qhostaddress-demo** | `src/stage1/33-qt-network-basics/01-qhostaddress-demo/` | QHostAddress 基础使用示例    |
+| **02-network-info**      | `src/stage1/33-qt-network-basics/02-network-info/`      | 获取本机网络信息示例         |
+| **03-network-validator** | `src/stage1/33-qt-network-basics/03-network-validator/` | IP 地址和端口验证示例        |
+| **04-get-local-ip**      | `src/stage1/33-qt-network-basics/04-get-local-ip/`      | 获取本机 IP 地址实用函数示例 |
 
-### 7.1 核心知识点回顾
+### 6.2 编译和运行
 
-- **IP 地址**：网络中每台计算机的唯一标识，IPv4 用点分十进制表示
-- **子网掩码**：用于区分 IP 地址中的网络部分和主机部分
-- **端口号**：标识计算机上的不同程序，范围 0-65535
-- **广播**：向局域网内所有设备发送消息（地址：255.255.255.255）
-- **多播**：向加入特定多播组的设备发送消息（地址：224.0.0.0 - 239.255.255.255）
-- **点对点通讯**：节点之间直接通信，不需要服务器中转
-- **QHostAddress**：Qt 提供的 IP 地址类，用于表示和操作 IP 地址
-- **QNetworkInterface**：Qt 提供的网络接口类，用于获取网络接口信息
-- **网络事件处理**：通过信号槽机制处理网络事件（readyRead、connected、disconnected）
+每个示例程序都包含完整的 CMakeLists.txt 配置，可以独立编译运行：
 
-### 7.2 学习成果
+```bash
+# 进入示例目录
+cd src/stage1/33-qt-network-basics/01-qhostaddress-demo
 
-完成本文档后，你应该能够：
+# 创建构建目录
+mkdir build && cd build
 
-- ✅ 深入理解 IP 地址、端口号、子网掩码等网络基础概念
-- ✅ 区分广播、多播、点对点通讯的特点和应用场景
-- ✅ 使用 QHostAddress 和 QNetworkInterface 操作网络地址和接口
-- ✅ 理解网络事件处理机制（信号槽、事件循环）
-- ✅ 为后续 UDP/TCP 编程打下坚实基础
+# 配置和编译
+cmake ..
+cmake --build .
 
-### 7.3 实践建议
+# 运行
+./QHostAddressDemo
+```
 
-- **多实践**：多写代码，熟悉 QHostAddress 和 QNetworkInterface 的使用
-- **理解原理**：深入理解网络基础概念，不要只记住 API
-- **错误处理**：注意错误处理，网络操作可能失败
-- **事件驱动**：理解 Qt 的事件驱动模型，使用信号槽处理网络事件
+详细说明请参考 `src/stage1/33-qt-network-basics/README.md`。
+
+## 7. 下一步学习
+
+### 7.1 学习路径说明
+
+**完整学习路径**：
+
+```mermaid
+graph LR
+    A[29-CMake 进阶<br/>✅ 已完成] --> B[30-Qt 环境搭建<br/>✅ 已完成]
+    B --> C[31-Qt 信号槽<br/>✅ 已完成]
+    C --> D[32-网络编程概念<br/>✅ 已完成]
+    D --> E[33-Qt 网络基础<br/>✅ 已完成]
+    E --> F[34-Qt UDP 编程<br/>🔄 下一步]
+    F --> G[35-Qt TCP 编程<br/>⏳ 待学习]
+
+    style A fill:#4caf50
+    style B fill:#4caf50
+    style C fill:#4caf50
+    style D fill:#4caf50
+    style E fill:#4caf50
+    style F fill:#ffeb3b
+    style G fill:#e0e0e0
+```
+
+**为什么这样安排学习路径？**
+
+1. **31-qt-signals-slots.md（已完成）**：
+   - ✅ **已完成**：学习 Qt 信号槽机制，理解事件驱动模型
+   - ✅ **作用**：Qt Network 基于信号槽机制，必须先理解信号槽
+   - ✅ **重点**：信号槽概念、连接、事件循环
+
+2. **32-network-programming-concepts.md（已完成）**：
+   - ✅ **已完成**：理解网络编程概念（Socket、TCP/UDP、客户端/服务器模型）
+   - ✅ **作用**：为后续学习 Qt Network 打下概念基础
+   - ✅ **重点**：理解概念，不涉及具体 API
+
+3. **33-qt-network-basics.md（当前文档）**：
+   - ✅ **已完成**：深入学习网络基础概念和 Qt Network 模块基础
+   - ✅ **作用**：深入理解 IP、端口、广播、多播等概念，理解 Qt Network 模块
+   - ✅ **重点**：网络基础概念、QHostAddress、QNetworkInterface、网络事件处理
+
+4. **34-qt-udp-programming.md（下一步）**：
+   - 🔄 **下一步**：学习 QUdpSocket，实现 UDP 通信
+   - 🔄 **作用**：应用网络概念和 Qt Network 基础，实现 UDP 通信
+   - 🔄 **重点**：QUdpSocket、UDP 通信流程、广播和多播
+
+5. **35-qt-tcp-programming.md**：
+   - ⏳ **待学习**：学习 QTcpSocket 和 QTcpServer，实现 TCP 通信
+   - ⏳ **作用**：应用网络概念和 Qt Network 基础，实现 TCP 通信
+   - ⏳ **重点**：QTcpSocket、QTcpServer、TCP 连接管理、网络事件处理
+
+**学习时间规划**：
+
+| 文档                               | 预计时间 | 累计时间 | 状态      |
+| ---------------------------------- | -------- | -------- | --------- |
+| 31-qt-signals-slots.md             | 1.5h     | 1.5h     | ✅ 已完成 |
+| 32-network-programming-concepts.md | 1h       | 2.5h     | ✅ 已完成 |
+| 33-qt-network-basics.md            | 1.5h     | 4h       | ✅ 已完成 |
+| 34-qt-udp-programming.md           | 2h       | 6h       | 🔄 下一步 |
+| 35-qt-tcp-programming.md           | 2h       | 8h       | ⏳ 待学习 |
+
+**下一篇**：[Qt UDP 编程](./34-qt-udp-programming.md)
+
+**学习路径**：
+
+1. ✅ 31-qt-signals-slots.md - 已完成（学习 Qt 信号槽机制，理解事件驱动模型）
+2. ✅ 32-network-programming-concepts.md - 已完成（理解网络编程概念）
+3. ✅ 33-qt-network-basics.md - 已完成（深入学习网络基础概念和 Qt Network 模块基础）
+4. 🔄 34-qt-udp-programming.md - 下一步（学习 QUdpSocket，实现 UDP 通信）
+5. ⏳ 35-qt-tcp-programming.md - 待学习（学习 QTcpSocket，实现 TCP 通信）
+
+**技能树更新**：
+
+```mermaid
+graph TD
+    A[C++ 技能树] --> B[基础语法 ⭐⭐]
+    A --> C[面向对象 ⭐⭐⭐⭐]
+    A --> D[工程实践 ⭐⭐⭐]
+    A --> E[网络编程 ⭐⭐⭐⭐]
+
+    B --> B1[变量和常量 ✅]
+    B --> B2[数据类型 ✅]
+    B --> B3[控制结构 ✅]
+
+    C --> C1[类和对象 ✅]
+    C --> C2[封装 ✅]
+
+    D --> D1[多文件开发 ✅]
+    D --> D2[异常处理 ✅]
+
+    E --> E1[网络编程概念 ✅]
+    E --> E2[Qt Network 基础 ✅]
+    E --> E3[Qt UDP/TCP ⏳]
+
+    style E1 fill:#4caf50
+    style E2 fill:#4caf50
+    style E3 fill:#ffeb3b
+```
+
+**学习成果**：
+
+- **理解概念**：能够深入理解 IP、端口、子网掩码、广播、多播、点对点等网络基础概念
+- **使用 API**：能够使用 QHostAddress 和 QNetworkInterface 操作网络地址和接口
+- **事件处理**：理解网络事件处理机制（信号槽、事件循环）
+- **实践能力**：能够获取本机网络信息、验证 IP 地址和端口
+- **掌握度自评**：80%
+
+> **指导建议**：<50% 建议复习，50-80% 继续学习，>80% 可进入下一阶段
