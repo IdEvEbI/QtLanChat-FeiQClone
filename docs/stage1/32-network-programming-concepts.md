@@ -754,18 +754,20 @@ graph LR
 
 ```mermaid
 graph LR
-    A[29-网络编程概念<br/>✅ 已完成] --> B[30-CMake 进阶<br/>🔄 下一步]
-    B --> C[31-Qt 环境搭建<br/>⏳ 待学习]
-    C --> D[32-Qt 信号槽<br/>⏳ 待学习]
-    D --> E[33-Qt 网络编程<br/>⏳ 待学习]
-    E --> F[项目实战<br/>⏳ 待学习]
+    A[29-CMake 进阶<br/>✅ 已完成] --> B[30-Qt 环境搭建<br/>✅ 已完成]
+    B --> C[31-Qt 信号槽<br/>✅ 已完成]
+    C --> D[32-网络编程概念<br/>✅ 已完成]
+    D --> E[33-Qt 网络基础<br/>🔄 下一步]
+    E --> F[34-Qt UDP 编程<br/>⏳ 待学习]
+    F --> G[35-Qt TCP 编程<br/>⏳ 待学习]
 
     style A fill:#4caf50
-    style B fill:#ffeb3b
-    style C fill:#e0e0e0
-    style D fill:#e0e0e0
-    style E fill:#e0e0e0
+    style B fill:#4caf50
+    style C fill:#4caf50
+    style D fill:#4caf50
+    style E fill:#ffeb3b
     style F fill:#e0e0e0
+    style G fill:#e0e0e0
 ```
 
 **为什么这样安排学习路径？**

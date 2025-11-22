@@ -1361,14 +1361,18 @@ int main(int argc, char *argv[]) {
 
 ```mermaid
 graph LR
-    A[31-Qt 环境搭建<br/>✅ 已完成] --> B[32-Qt 信号槽<br/>✅ 已完成]
-    B --> C[33-Qt 网络编程<br/>🔄 下一步]
-    C --> D[项目实战<br/>⏳ 待学习]
+    A[30-Qt 环境搭建<br/>✅ 已完成] --> B[31-Qt 信号槽<br/>✅ 已完成]
+    B --> C[32-网络编程概念<br/>✅ 已完成]
+    C --> D[33-Qt 网络基础<br/>🔄 下一步]
+    D --> E[34-Qt UDP 编程<br/>⏳ 待学习]
+    E --> F[35-Qt TCP 编程<br/>⏳ 待学习]
 
     style A fill:#4caf50
     style B fill:#4caf50
-    style C fill:#ffeb3b
-    style D fill:#e0e0e0
+    style C fill:#4caf50
+    style D fill:#ffeb3b
+    style E fill:#e0e0e0
+    style F fill:#e0e0e0
 ```
 
 **为什么这样安排学习路径？**
