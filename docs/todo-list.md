@@ -106,7 +106,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（29% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（27% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 31-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -127,20 +127,35 @@
   - ✅ 信号槽参数类型转换、连接方式（Qt::AutoConnection、Qt::DirectConnection、Qt::QueuedConnection）
   - ✅ 常见问题排查（信号槽连接失败、MOC 编译错误、参数类型不匹配）
   - ✅ 实践：信号槽示例项目（Counter、MessageSender/MessageReceiver、Timer、TemperatureSensor/TemperatureDisplay）
-- [ ] 33-qt-network-programming.md（Qt 网络编程：Qt Network 模块、QUdpSocket、QTcpSocket）- 2.5h
-  - Qt Network 模块介绍
-  - QUdpSocket 使用（UDP 多播、广播）
-  - QTcpSocket 使用（TCP 连接、文件传输）
-  - 网络事件处理（readyRead、connected、disconnected）
-  - 实践：简单的 UDP/TCP 通信示例
-- [ ] 34-qt-widgets-basics.md（Qt Widgets 基础控件：窗口、按钮、输入框、布局）- 1.5h ⚠️ **新增 - 补充 GUI 开发知识**
+- [x] 33-qt-network-basics.md（Qt 网络编程基础：IP、端口、子网掩码、广播、多播、点对点、Qt Network 模块基础）- 1.5h ✅ ⚠️ **拆分 - 网络基础**
+  - ✅ Qt Network 模块概述（模块介绍、主要类、特点）
+  - ✅ IP 地址详解（IPv4/IPv6、子网掩码、网络地址、主机地址）
+  - ✅ 端口号详解（端口范围、端口绑定、端口复用）
+  - ✅ 广播、多播、点对点通讯详解（单播、广播、多播、P2P）
+  - ✅ QHostAddress、QNetworkInterface 基础类使用
+  - ✅ 网络事件处理机制（信号槽、事件循环）
+  - ✅ 实践：获取本机网络信息、验证 IP 地址和端口
+- [ ] 34-qt-udp-programming.md（Qt UDP 编程：QUdpSocket 详解、UDP 通信流程、单播/广播/多播、完整示例）- 2h ⚠️ **拆分 - UDP 编程**
+  - UDP 通信流程（流程图、时序图）
+  - QUdpSocket 详解（主要方法、信号、事件处理）
+  - UDP 单播、广播、多播实现
+  - UDP 应用场景和最佳实践
+  - 实践：完整的 UDP 聊天程序示例
+- [ ] 35-qt-tcp-programming.md（Qt TCP 编程：QTcpSocket、QTcpServer 详解、TCP 连接流程、文件传输）- 2h ⚠️ **拆分 - TCP 编程**
+  - TCP 连接建立流程（三次握手时序图）
+  - TCP 客户端/服务器通信流程（时序图）
+  - QTcpSocket 和 QTcpServer 详解
+  - TCP 文件传输实现
+  - TCP 应用场景和最佳实践
+  - 实践：TCP 文件传输示例
+- [ ] 36-qt-widgets-basics.md（Qt Widgets 基础控件：窗口、按钮、输入框、布局）- 1.5h ⚠️ **新增 - 补充 GUI 开发知识**
   - Qt Widgets 模块介绍（QApplication、QWidget、QMainWindow）
   - 基础控件（QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton）
   - 布局管理（QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout）
   - 窗口基础（QMainWindow、QWidget、窗口属性设置）
   - 事件处理基础（鼠标事件、键盘事件）
   - 实践：创建一个简单的 GUI 应用（计算器或登录窗口）
-- [ ] 35-qt-widgets-advanced.md（Qt Widgets 高级控件：列表、表格、树形、进度条）- 2h ⚠️ **新增 - 丰富界面功能**
+- [ ] 37-qt-widgets-advanced.md（Qt Widgets 高级控件：列表、表格、树形、进度条）- 2h ⚠️ **新增 - 丰富界面功能**
   - 列表控件（QListWidget、QListView、自定义列表项）
   - 表格控件（QTableWidget、QTableView、数据模型）
   - 树形控件（QTreeWidget、QTreeView、层级数据展示）
@@ -148,7 +163,7 @@
   - 组合框和下拉菜单（QComboBox、QMenu、QMenuBar）
   - 滚动区域（QScrollArea、QScrollBar）
   - 实践：创建一个数据展示应用（学生管理系统界面）
-- [ ] 36-qt-widgets-multi-window.md（Qt Widgets 多窗口管理：对话框、模态、窗口通信）- 1.5h ⚠️ **新增 - 多窗口应用**
+- [ ] 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理：对话框、模态、窗口通信）- 1.5h ⚠️ **新增 - 多窗口应用**
   - 对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）
   - 模态与非模态对话框（exec() vs show()）
   - 自定义对话框（继承 QDialog、信号槽通信）
@@ -156,7 +171,7 @@
   - 窗口间数据传递（信号槽、静态方法、单例模式）
   - 窗口状态管理（显示/隐藏、最小化/最大化、关闭事件）
   - 实践：创建一个多窗口应用（主窗口 + 设置窗口 + 关于窗口）
-- [ ] 37-qt-widgets-styling.md（Qt Widgets 界面美化：样式表、主题、图标、动画）- 2h ⚠️ **新增 - 界面美化**
+- [ ] 39-qt-widgets-styling.md（Qt Widgets 界面美化：样式表、主题、图标、动画）- 2h ⚠️ **新增 - 界面美化**
   - Qt 样式表（QSS）基础语法（选择器、属性、伪状态）
   - 常用样式属性（颜色、字体、边框、背景、圆角）
   - 主题和配色方案（浅色/深色主题、自定义调色板）
@@ -167,16 +182,16 @@
 
 ### Stage 3：项目实战阶段（0% 完成）**新增 - 方案 C：混合路径**
 
-- [ ] 38-chat-system-design.md（系统设计：整合所有 C++ 和 Qt 知识，设计聊天系统架构）- 2h
+- [ ] 40-chat-system-design.md（系统设计：整合所有 C++ 和 Qt 知识，设计聊天系统架构）- 2h
   - 设计聊天系统架构
   - 整合所有 C++ 和 Qt 知识（信号槽、网络编程、Widgets 基础/高级/多窗口/美化）
   - 设计类结构、模块划分
   - UI 界面设计（聊天窗口布局、用户列表、消息展示区域）
-- [ ] 39-terminal-chat-project.md（终端版聊天程序：使用 Qt Network 实现无界面聊天系统）- 2.5h
+- [ ] 41-terminal-chat-project.md（终端版聊天程序：使用 Qt Network 实现无界面聊天系统）- 2.5h
   - 实现无界面的聊天系统
   - 使用 Qt Network 实现 UDP/TCP 通信
   - 实现基本的消息收发功能
-- [ ] 40-qt-ui-chat-project.md（Qt UI 聊天程序：实现美观的 GUI 聊天系统）- 4h ⚠️ **时间增加 - 包含界面美化**
+- [ ] 42-qt-ui-chat-project.md（Qt UI 聊天程序：实现美观的 GUI 聊天系统）- 4h ⚠️ **时间增加 - 包含界面美化**
   - 实现带 GUI 的聊天系统
   - 使用 Qt Widgets 设计界面（应用 34-37 的所有知识）
   - 实现文件传输、群组聊天等功能
@@ -308,6 +323,7 @@
 - ✅ 30-cmake-advanced.md（CMake 进阶，1543 行，3 题练习 + 3 题测试题）
 - ✅ 31-qt-environment-setup.md（Qt 环境搭建，1264 行，3 题练习 + 3 题测试题）
 - ✅ 32-qt-signals-slots.md（Qt 信号槽机制，1461 行，3 题练习 + 3 题测试题）
+- ✅ 33-qt-network-basics.md（Qt 网络编程基础，949 行，3 题练习 + 3 题测试题）⚠️ **拆分 - 网络基础**
 - ✅ 配套代码文件（src/stage1/01-32/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
@@ -346,7 +362,7 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 2.5h，已完成 2.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：29% 完成（预计 10h，已完成 2.5h）**新增 - 方案 C：混合路径**
+**Stage 2 Qt 开发阶段**：27% 完成（预计 15h，已完成 4h）**新增 - 方案 C：混合路径**（33-qt-network-basics.md 已完成，34-35 待创建）
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -358,9 +374,9 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（31-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（32-qt-signals-slots.md，1.5h）- 已完成
-**中期（2-3 周）**：完成 Stage 2 Qt 开发阶段剩余文档（33-37，7.5h）+ 开始 Stage 3 项目实战
-**长期（3-4 周）**：完成 Stage 3 项目实战（38-40，8.5h）+ 配套代码 + 质量保证 + v0.1 发布
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（30-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 第一个文档（31-qt-environment-setup.md，1h）- 已完成，✅ 完成 Stage 2 第二个文档（32-qt-signals-slots.md，1.5h）- 已完成，✅ 完成 Stage 2 第三个文档（33-qt-network-basics.md，1.5h）- 已完成
+**中期（2-3 周）**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
+**长期（3-4 周）**：完成 Stage 3 项目实战（40-42，8.5h）+ 配套代码 + 质量保证 + v0.1 发布
 
 **详细时间规划**：
 
@@ -369,14 +385,16 @@
 - **第 3 天**：✅ 复习和巩固 Stage 1 补充阶段 - 已完成
 - **第 4 天**：✅ 31-qt-environment-setup.md（1h）- 已完成
 - **第 5 天**：✅ 32-qt-signals-slots.md（1.5h）- 已完成
-- **第 6-7 天**：33-qt-network-programming.md（2.5h）
-- **第 8 天**：34-qt-widgets-basics.md（1.5h）⚠️ **新增 - 基础控件**
-- **第 9-10 天**：35-qt-widgets-advanced.md（2h）⚠️ **新增 - 高级控件**
-- **第 11 天**：36-qt-widgets-multi-window.md（1.5h）⚠️ **新增 - 多窗口管理**
-- **第 12-13 天**：37-qt-widgets-styling.md（2h）⚠️ **新增 - 界面美化**
-- **第 14 天**：38-chat-system-design.md（2h）
-- **第 15-16 天**：39-terminal-chat-project.md（2.5h）
-- **第 17-20 天**：40-qt-ui-chat-project.md（4h）⚠️ **时间增加 - 包含界面美化**
+- **第 6 天**：✅ 33-qt-network-basics.md（1.5h）- 已完成 ⚠️ **拆分 - 网络基础**
+- **第 7-8 天**：34-qt-udp-programming.md（2h）⚠️ **拆分 - UDP 编程**
+- **第 9-10 天**：35-qt-tcp-programming.md（2h）⚠️ **拆分 - TCP 编程**
+- **第 11 天**：36-qt-widgets-basics.md（1.5h）⚠️ **新增 - 基础控件**
+- **第 12-13 天**：37-qt-widgets-advanced.md（2h）⚠️ **新增 - 高级控件**
+- **第 14 天**：38-qt-widgets-multi-window.md（1.5h）⚠️ **新增 - 多窗口管理**
+- **第 15-16 天**：39-qt-widgets-styling.md（2h）⚠️ **新增 - 界面美化**
+- **第 17 天**：40-chat-system-design.md（2h）
+- **第 18-19 天**：41-terminal-chat-project.md（2.5h）
+- **第 20-23 天**：42-qt-ui-chat-project.md（4h）⚠️ **时间增加 - 包含界面美化**
 
 ### 🎯 当前里程碑
 
@@ -436,21 +454,23 @@
 - ✅ 29-network-programming-concepts.md（网络编程概念）
 - ✅ 30-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（31-37）🔄 29% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（31-39）🔄 27% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 31-qt-environment-setup.md（Qt 环境搭建）
 - ✅ 32-qt-signals-slots.md（Qt 信号槽机制）
-- ⏳ 33-qt-network-programming.md（Qt 网络编程）
-- ⏳ 34-qt-widgets-basics.md（Qt Widgets 基础控件）⚠️ **新增**
-- ⏳ 35-qt-widgets-advanced.md（Qt Widgets 高级控件）⚠️ **新增**
-- ⏳ 36-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
-- ⏳ 37-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
+- ✅ 33-qt-network-basics.md（Qt 网络编程基础）⚠️ **拆分 - 网络基础**
+- ⏳ 34-qt-udp-programming.md（Qt UDP 编程）⚠️ **拆分 - UDP 编程**
+- ⏳ 35-qt-tcp-programming.md（Qt TCP 编程）⚠️ **拆分 - TCP 编程**
+- ⏳ 36-qt-widgets-basics.md（Qt Widgets 基础控件）⚠️ **新增**
+- ⏳ 37-qt-widgets-advanced.md（Qt Widgets 高级控件）⚠️ **新增**
+- ⏳ 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
+- ⏳ 39-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
 
-**里程碑 10**：Stage 3 项目实战阶段（38-40）⏳ 0% 完成**新增 - 方案 C：混合路径**
+**里程碑 10**：Stage 3 项目实战阶段（40-42）⏳ 0% 完成**新增 - 方案 C：混合路径**
 
-- ⏳ 38-chat-system-design.md（系统设计）
-- ⏳ 39-terminal-chat-project.md（终端版聊天程序）
-- ⏳ 40-qt-ui-chat-project.md（Qt UI 聊天程序 - 美观界面）⚠️ **时间增加**
+- ⏳ 40-chat-system-design.md（系统设计）
+- ⏳ 41-terminal-chat-project.md（终端版聊天程序）
+- ⏳ 42-qt-ui-chat-project.md（Qt UI 聊天程序 - 美观界面）⚠️ **时间增加**
 
 ### ⚠️ 潜在风险
 
@@ -497,11 +517,11 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 33-qt-network-programming.md（Qt 网络编程）**最高优先级 - 方案 C**
-**本周目标**：完成 Stage 2 Qt 开发阶段第三个文档（33-qt-network-programming.md，2.5h）
-**下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（34-37，7h）⚠️ **新增 - 完整的 GUI 开发知识体系**（34-qt-widgets-basics.md 基础控件 1.5h、35-qt-widgets-advanced.md 高级控件 2h、36-qt-widgets-multi-window.md 多窗口管理 1.5h、37-qt-widgets-styling.md 界面美化 2h）
-**中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（33，2.5h）+ 开始 Stage 3 项目实战
-**重点文档**：33-qt-network-programming.md（Qt 网络编程，最高优先级）、34-37 Qt Widgets 系列（GUI 开发完整知识体系：34-qt-widgets-basics.md 基础控件、35-qt-widgets-advanced.md 高级控件、36-qt-widgets-multi-window.md 多窗口管理、37-qt-widgets-styling.md 界面美化）⚠️ **新增**
+**立即任务**：开始编写 34-qt-udp-programming.md（Qt UDP 编程）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 2 Qt 开发阶段网络编程系列文档（34-qt-udp-programming.md 2h、35-qt-tcp-programming.md 2h）
+**下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）⚠️ **新增 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
+**中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
+**重点文档**：34-qt-udp-programming.md（Qt UDP 编程，最高优先级）、35-qt-tcp-programming.md（Qt TCP 编程）、36-39 Qt Widgets 系列（GUI 开发完整知识体系：36-qt-widgets-basics.md 基础控件、37-qt-widgets-advanced.md 高级控件、38-qt-widgets-multi-window.md 多窗口管理、39-qt-widgets-styling.md 界面美化）⚠️ **新增**
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
 **学习路径**：采用方案 C（混合路径），平衡学习深度和速度
 
@@ -527,7 +547,9 @@
 
 - ✅ 搭建 Qt 开发环境（Qt 6.9+（推荐 6.12+）、CMake、Qt Creator）- ✅ 已完成
 - ✅ 理解和使用 Qt 信号槽机制 - ✅ 已完成
-- ⏳ 使用 Qt Network 模块实现 UDP/TCP 通信（QUdpSocket、QTcpSocket）
+- ✅ 深入理解网络基础概念（IP、端口、子网掩码、广播、多播、点对点）- ✅ 已完成
+- ⏳ 使用 Qt Network 模块实现 UDP 通信（QUdpSocket、单播/广播/多播）
+- ⏳ 使用 Qt Network 模块实现 TCP 通信（QTcpSocket、QTcpServer、文件传输）
 - ⏳ 使用 Qt Widgets 基础控件创建 GUI 应用（窗口、按钮、输入框、布局）
 - ⏳ 使用 Qt Widgets 高级控件展示复杂数据（列表、表格、树形、进度条）
 - ⏳ 管理多窗口应用（对话框、模态窗口、窗口间通信）
@@ -535,8 +557,8 @@
 
 **Stage 3 项目实战阶段完成后，学生应能够：**
 
-- ⏳ 设计聊天系统架构（整合所有 C++ 和 Qt 知识，包括 Widgets 基础/高级/多窗口/美化）
-- ⏳ 实现终端版聊天程序（无界面，使用 Qt Network）
+- ⏳ 设计聊天系统架构（整合所有 C++ 和 Qt 知识，包括网络编程、Widgets 基础/高级/多窗口/美化）
+- ⏳ 实现终端版聊天程序（无界面，使用 Qt Network UDP/TCP）
 - ⏳ 实现美观的 Qt UI 聊天程序（带 GUI，应用所有 Widgets 知识，界面美化，文件传输、群组聊天、多窗口管理）
 
 ### 🔍 知识点完整性检查清单
@@ -580,7 +602,9 @@
 
 - ✅ **Qt 环境搭建**：Qt 6.9+（推荐 6.12+）安装和配置、CMake 配置 Qt 项目验证、Qt Creator 安装和使用、Qt 环境配置详解、Qt 项目结构、常见问题排查 - ✅ 已完成
 - ✅ **Qt 信号槽机制**：信号槽概念（邮件订阅系统类比、观察者模式）、信号和槽的定义、信号槽连接（QObject::connect、现代 C++ 语法）、Qt 对象模型（QObject 基类、Q_OBJECT 宏、MOC 工具、对象树）、事件循环（事件概念、为什么需要事件循环、QCoreApplication::exec()）、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、常见问题排查 - ✅ 已完成
-- ⏳ **Qt 网络编程**：Qt Network 模块、QUdpSocket（UDP 多播、广播）、QTcpSocket（TCP 连接、文件传输）、网络事件处理
+- ✅ **Qt 网络编程基础**：Qt Network 模块概述、IP 地址详解（IPv4/IPv6、子网掩码）、端口号详解、广播/多播/点对点通讯、QHostAddress、QNetworkInterface、网络事件处理机制 - ✅ 已完成
+- ⏳ **Qt UDP 编程**：QUdpSocket 详解、UDP 通信流程（流程图、时序图）、UDP 单播/广播/多播、UDP 应用场景和最佳实践
+- ⏳ **Qt TCP 编程**：QTcpSocket、QTcpServer 详解、TCP 连接建立流程（三次握手时序图）、TCP 客户端/服务器通信流程（时序图）、TCP 文件传输、TCP 应用场景和最佳实践
 - ⏳ **Qt Widgets 基础控件**：Qt Widgets 模块（QApplication、QWidget、QMainWindow）、基础组件（QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton）、布局管理（QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout）、窗口基础、事件处理基础 ⚠️ **新增**
 - ⏳ **Qt Widgets 高级控件**：列表控件（QListWidget、QListView）、表格控件（QTableWidget、QTableView）、树形控件（QTreeWidget、QTreeView）、进度和状态（QProgressBar、QStatusBar）、组合框和菜单（QComboBox、QMenu）、滚动区域 ⚠️ **新增**
 - ⏳ **Qt Widgets 多窗口管理**：对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）、模态与非模态对话框、自定义对话框、多窗口应用架构、窗口间数据传递、窗口状态管理 ⚠️ **新增**
