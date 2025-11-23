@@ -1,6 +1,6 @@
 # QtLanChat-FeiQClone 项目开发 TODO
 
-> **项目周期**：3 周（21 天）| **当前阶段**：Stage 1 补充阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-28 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶知识点），采用方案 C（混合路径）规划后续学习路径
+> **项目周期**：3 周（21 天）| **当前阶段**：Stage 2 Qt 开发阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-34 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、网络编程概念、Qt 网络基础、Qt UDP 编程知识点），采用方案 C（混合路径）规划后续学习路径
 
 ## 📋 文档基础设施（已完成 ✅）
 
@@ -97,7 +97,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（31% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（44% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -127,12 +127,14 @@
   - ✅ QHostAddress、QNetworkInterface 基础类使用
   - ✅ 网络事件处理机制（信号槽、事件循环）
   - ✅ 实践：获取本机网络信息、验证 IP 地址和端口
-- [ ] 34-qt-udp-programming.md（Qt UDP 编程：QUdpSocket 详解、UDP 通信流程、单播/广播/多播、完整示例）- 2h ⚠️ **拆分 - UDP 编程**
-  - UDP 通信流程（流程图、时序图）
-  - QUdpSocket 详解（主要方法、信号、事件处理）
-  - UDP 单播、广播、多播实现
-  - UDP 应用场景和最佳实践
-  - 实践：完整的 UDP 聊天程序示例
+- [x] 34-qt-udp-programming.md（Qt UDP 编程：QUdpSocket 详解、UDP 通信流程、单播/广播/多播、完整示例）- 2h ✅ ⚠️ **拆分 - UDP 编程**
+  - ✅ UDP 通信流程（流程图、时序图）
+  - ✅ QUdpSocket 详解（主要方法、信号、事件处理）
+  - ✅ UDP 单播、广播、多播实现
+  - ✅ UDP 应用层确认机制（ACK）：消息序列号、ACK 确认、超时重传、去重处理
+  - ✅ UDP 应用场景和最佳实践
+  - ✅ 实践：完整的 UDP 聊天程序示例（支持单播/广播/多播）
+  - ✅ 配套代码：6 个示例程序（01-basic-udp、02-unicast-demo、03-broadcast-demo、04-multicast-demo、05-chat-demo、06-ack-demo）
 - [ ] 35-qt-tcp-programming.md（Qt TCP 编程：QTcpSocket、QTcpServer 详解、TCP 连接流程、文件传输）- 2h ⚠️ **拆分 - TCP 编程**
   - TCP 连接建立流程（三次握手时序图）
   - TCP 客户端/服务器通信流程（时序图）
@@ -315,11 +317,12 @@
 - ✅ 30-qt-environment-setup.md（Qt 环境搭建，1264 行，3 题练习 + 3 题测试题）
 - ✅ 31-qt-signals-slots.md（Qt 信号槽机制，1461 行，3 题练习 + 3 题测试题）
 - ✅ 32-network-programming-concepts.md（网络编程概念，866 行，3 题练习 + 3 题测试题）
-- ✅ 33-qt-network-basics.md（Qt 网络编程基础，949 行，3 题练习 + 3 题测试题）⚠️ **拆分 - 网络基础**
-- ✅ 配套代码文件（src/stage1/01-32/ 目录完整）
+- ✅ 33-qt-network-basics.md（Qt 网络编程基础，1176 行，3 题练习 + 3 题测试题）⚠️ **拆分 - 网络基础**
+- ✅ 34-qt-udp-programming.md（Qt UDP 编程，1604 行，3 题练习 + 3 题测试题）⚠️ **拆分 - UDP 编程**
+- ✅ 配套代码文件（src/stage1/01-34/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-33**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-34**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -354,7 +357,7 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 1.5h，已完成 1.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：31% 完成（预计 16h，已完成 5h）**新增 - 方案 C：混合路径**（33-qt-network-basics.md 已完成，34-39 待创建）
+**Stage 2 Qt 开发阶段**：44% 完成（预计 15h，已完成 7h）**新增 - 方案 C：混合路径**（34-qt-udp-programming.md 已完成，35-39 待创建）
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -377,8 +380,8 @@
 - **第 3 天**：✅ 31-qt-signals-slots.md（1.5h）- 已完成
 - **第 4 天**：✅ 32-network-programming-concepts.md（1h）- 已完成
 - **第 5 天**：✅ 33-qt-network-basics.md（1.5h）- 已完成 ⚠️ **拆分 - 网络基础**
-- **第 6-7 天**：35-qt-udp-programming.md（2h）⚠️ **拆分 - UDP 编程**
-- **第 8-9 天**：36-qt-tcp-programming.md（2h）⚠️ **拆分 - TCP 编程**
+- **第 6-7 天**：✅ 34-qt-udp-programming.md（2h）- 已完成 ⚠️ **拆分 - UDP 编程**
+- **第 8-9 天**：35-qt-tcp-programming.md（2h）⚠️ **拆分 - TCP 编程**
 - **第 11 天**：36-qt-widgets-basics.md（1.5h）⚠️ **新增 - 基础控件**
 - **第 12-13 天**：37-qt-widgets-advanced.md（2h）⚠️ **新增 - 高级控件**
 - **第 14 天**：38-qt-widgets-multi-window.md（1.5h）⚠️ **新增 - 多窗口管理**
@@ -444,13 +447,13 @@
 
 - ✅ 29-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 31% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 44% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 30-qt-environment-setup.md（Qt 环境搭建）
 - ✅ 31-qt-signals-slots.md（Qt 信号槽机制）
 - ✅ 32-network-programming-concepts.md（网络编程概念）
 - ✅ 33-qt-network-basics.md（Qt 网络编程基础）⚠️ **拆分 - 网络基础**
-- ⏳ 34-qt-udp-programming.md（Qt UDP 编程）⚠️ **拆分 - UDP 编程**
+- ✅ 34-qt-udp-programming.md（Qt UDP 编程）⚠️ **拆分 - UDP 编程**
 - ⏳ 35-qt-tcp-programming.md（Qt TCP 编程）⚠️ **拆分 - TCP 编程**
 - ⏳ 36-qt-widgets-basics.md（Qt Widgets 基础控件）⚠️ **新增**
 - ⏳ 37-qt-widgets-advanced.md（Qt Widgets 高级控件）⚠️ **新增**
@@ -508,11 +511,11 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 34-qt-udp-programming.md（Qt UDP 编程）**最高优先级 - 方案 C**
-**本周目标**：完成 Stage 2 Qt 开发阶段网络编程系列文档（34-qt-udp-programming.md 2h、35-qt-tcp-programming.md 2h）
+**立即任务**：开始编写 35-qt-tcp-programming.md（Qt TCP 编程）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 2 Qt 开发阶段网络编程系列文档（35-qt-tcp-programming.md 2h）
 **下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）⚠️ **新增 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
 **中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
-**重点文档**：34-qt-udp-programming.md（Qt UDP 编程，最高优先级）、35-qt-tcp-programming.md（Qt TCP 编程）、36-39 Qt Widgets 系列（GUI 开发完整知识体系：36-qt-widgets-basics.md 基础控件、37-qt-widgets-advanced.md 高级控件、38-qt-widgets-multi-window.md 多窗口管理、39-qt-widgets-styling.md 界面美化）⚠️ **新增**
+**重点文档**：35-qt-tcp-programming.md（Qt TCP 编程，最高优先级）、36-39 Qt Widgets 系列（GUI 开发完整知识体系：36-qt-widgets-basics.md 基础控件、37-qt-widgets-advanced.md 高级控件、38-qt-widgets-multi-window.md 多窗口管理、39-qt-widgets-styling.md 界面美化）⚠️ **新增**
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
 **学习路径**：采用方案 C（混合路径），平衡学习深度和速度
 
@@ -539,7 +542,7 @@
 - ✅ 搭建 Qt 开发环境（Qt 6.9+（推荐 6.12+）、CMake、Qt Creator）- ✅ 已完成
 - ✅ 理解和使用 Qt 信号槽机制 - ✅ 已完成
 - ✅ 深入理解网络基础概念（IP、端口、子网掩码、广播、多播、点对点）- ✅ 已完成
-- ⏳ 使用 Qt Network 模块实现 UDP 通信（QUdpSocket、单播/广播/多播）
+- ✅ 使用 Qt Network 模块实现 UDP 通信（QUdpSocket、单播/广播/多播、ACK 确认机制）- ✅ 已完成
 - ⏳ 使用 Qt Network 模块实现 TCP 通信（QTcpSocket、QTcpServer、文件传输）
 - ⏳ 使用 Qt Widgets 基础控件创建 GUI 应用（窗口、按钮、输入框、布局）
 - ⏳ 使用 Qt Widgets 高级控件展示复杂数据（列表、表格、树形、进度条）
@@ -594,7 +597,7 @@
 - ✅ **Qt 信号槽机制**：信号槽概念（邮件订阅系统类比、观察者模式）、信号和槽的定义、信号槽连接（QObject::connect、现代 C++ 语法）、Qt 对象模型（QObject 基类、Q_OBJECT 宏、MOC 工具、对象树）、事件循环（事件概念、为什么需要事件循环、QCoreApplication::exec()）、Lambda 表达式作为槽、信号槽参数类型转换、连接方式、常见问题排查 - ✅ 已完成
 - ✅ **网络编程概念**：Socket 编程概念、TCP/UDP 协议对比、客户端/服务器模型、网络编程基本流程、IP 地址和端口号、概念到实现的映射（Socket → QUdpSocket/QTcpSocket）- ✅ 已完成
 - ✅ **Qt 网络编程基础**：Qt Network 模块概述、IP 地址详解（IPv4/IPv6、子网掩码）、端口号详解、广播/多播/点对点通讯、QHostAddress、QNetworkInterface、网络事件处理机制 - ✅ 已完成
-- ⏳ **Qt UDP 编程**：QUdpSocket 详解、UDP 通信流程（流程图、时序图）、UDP 单播/广播/多播、UDP 应用场景和最佳实践
+- ✅ **Qt UDP 编程**：QUdpSocket 详解、UDP 通信流程（流程图、时序图）、UDP 单播/广播/多播、UDP 应用层确认机制（ACK）、UDP 应用场景和最佳实践 - ✅ 已完成
 - ⏳ **Qt TCP 编程**：QTcpSocket、QTcpServer 详解、TCP 连接建立流程（三次握手时序图）、TCP 客户端/服务器通信流程（时序图）、TCP 文件传输、TCP 应用场景和最佳实践
 - ⏳ **Qt Widgets 基础控件**：Qt Widgets 模块（QApplication、QWidget、QMainWindow）、基础组件（QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton）、布局管理（QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout）、窗口基础、事件处理基础 ⚠️ **新增**
 - ⏳ **Qt Widgets 高级控件**：列表控件（QListWidget、QListView）、表格控件（QTableWidget、QTableView）、树形控件（QTreeWidget、QTreeView）、进度和状态（QProgressBar、QStatusBar）、组合框和菜单（QComboBox、QMenu）、滚动区域 ⚠️ **新增**
