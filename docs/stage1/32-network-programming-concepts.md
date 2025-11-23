@@ -5,8 +5,8 @@
 > **预计时间**：60 分钟  
 > **难度等级**：⭐⭐⭐  
 > **技能收获**：网络编程概念、Socket、TCP/UDP 协议、客户端/服务器模型、网络编程基本流程  
-> **文档版本**：v1.0  
-> **最后更新**：2025-11-17
+> **文档版本**：v1.1  
+> **最后更新**：2025-11-22
 
 📊 **难度等级说明**
 
@@ -170,7 +170,7 @@ graph TD
 
 **TCP 的特点**：
 
-1. **面向连接**：通信前需要先建立连接（三次握手）
+1. **面向连接**：通信前需要先建立连接（TCP 通过三次握手建立连接，具体细节将在 [35-qt-tcp-programming.md](./35-qt-tcp-programming.md) 中学习）
 2. **可靠传输**：保证数据按顺序、完整地到达目的地
 3. **流量控制**：控制发送速度，避免接收方处理不过来
 4. **拥塞控制**：网络拥堵时自动降低发送速度
@@ -306,7 +306,8 @@ graph TD
 **聊天软件中的应用**：
 
 - **局域网聊天**：使用 P2P 模型，每个用户既是客户端又是服务器
-- **消息广播**：使用 UDP 多播，直接向局域网内所有用户发送消息
+- **1v1 聊天**：使用 UDP 单播，直接向指定用户发送消息
+- **群组聊天**：使用 UDP 多播，直接向加入多播组的用户发送消息
 - **文件传输**：使用 TCP 连接，直接在两台计算机之间传输文件
 
 ### 2.5 网络编程基本流程
@@ -345,8 +346,8 @@ graph TD
 
 > **类比**：就像顾客用餐流程：
 >
-> 1. **准备电话**：创建 Socket
-> 2. **打电话订座**：连接服务器
+> 1. **准备去餐厅**：创建 Socket
+> 2. **到达餐厅**：连接服务器
 > 3. **点菜**：发送数据
 > 4. **等待上菜**：接收响应
 > 5. **结账离开**：关闭连接
@@ -449,10 +450,11 @@ graph TD
 在 QtLanChat 项目中，网络编程概念用于：
 
 - **局域网设备发现**：使用 UDP 广播，发现局域网内的其他用户
-- **实时文字聊天**：使用 UDP 多播，快速发送聊天消息
+- **实时文字聊天（1v1）**：使用 UDP 单播，快速发送聊天消息给指定用户
 - **文件传输**：使用 TCP 连接，可靠传输文件
 - **群组聊天**：使用 UDP 多播，向多个用户发送消息
 - **用户管理**：使用 UDP 心跳包，维护在线用户列表
+  - **心跳包（Heartbeat）**：定期发送的小数据包，用于检测对方是否在线。就像心跳一样，定期"跳动"表示设备还活着。如果一段时间内没有收到心跳包，就认为对方已离线
 
 ### 3.2 实际应用示例
 
@@ -460,27 +462,318 @@ graph TD
 
 ```mermaid
 graph LR
-    A[用户 A<br/>客户端] -->|UDP 多播<br/>聊天消息| B[用户 B<br/>客户端]
+    A[用户 A<br/>客户端] -->|UDP 单播<br/>1v1 聊天消息| B[用户 B<br/>客户端]
+    A -->|UDP 多播<br/>群组聊天消息| C[用户 C<br/>客户端]
     A -->|TCP 连接<br/>文件传输| B
 
     style A fill:#e1f5fe
     style B fill:#e1f5fe
+    style C fill:#e1f5fe
 ```
 
 **说明**：
 
-- **UDP 多播**：用于实时聊天，速度快，适合发送文本消息
+- **UDP 单播**：用于 1v1 实时聊天，速度快，适合发送文本消息给指定用户
+- **UDP 多播**：用于群组聊天，速度快，适合向多个用户发送消息
 - **TCP 连接**：用于文件传输，可靠，保证文件完整传输
 
 ### 3.3 设计思路
 
 **为什么选择这种设计**：
 
-- **UDP 用于聊天**：聊天消息丢失影响不大，速度更重要
+- **UDP 单播用于 1v1 聊天**：1v1 聊天消息直接发送给指定用户，速度快，消息丢失影响不大
+- **UDP 多播用于群组聊天**：群组聊天需要向多个用户发送消息，多播比多次单播更高效
 - **TCP 用于文件传输**：文件必须完整传输，可靠性更重要
 - **P2P 架构**：局域网内直接通信，不需要服务器中转
 
-### 3.4 这些概念如何应用到 Qt Network？
+### 3.4 实际应用场景深度解析
+
+在实际开发聊天软件或屏幕共享软件时，如何选择合适的协议和架构？以下是几个常见问题的解答：
+
+#### 3.4.1 UDP 通讯如何确保对方收到消息？
+
+**问题场景**：1v1 聊天时，用户感觉不出来断开连接，如果是 UDP 通讯，对方怎么才能收到消息呢？
+
+**问题分析**：
+
+UDP 是无连接的、不可靠的协议，数据包可能丢失。如果直接使用 UDP 发送消息，无法保证对方一定收到。
+
+**解决方案**：
+
+1. **应用层确认机制（ACK）**：
+   - 发送方发送消息后，等待接收方的确认消息（ACK）
+   - 如果超时未收到确认，重发消息
+   - 接收方收到消息后，立即发送确认消息
+
+   ```
+   发送方：发送消息 → 等待确认 → 收到确认 ✅
+   接收方：收到消息 → 发送确认
+   ```
+
+2. **消息序列号**：
+   - 为每个消息分配唯一的序列号
+   - 接收方检查序列号，发现丢失时请求重发
+   - 防止重复接收和乱序问题
+
+3. **混合方案（推荐）**：
+   - **普通消息**：使用 UDP + 应用层确认机制（快速、轻量）
+   - **重要消息**：使用 TCP（保证可靠传输）
+   - **离线消息**：如果对方离线，消息暂存本地，对方上线后重发
+
+> **类比**：就像**快递包裹**：
+>
+> - **UDP 直接发送**：就像把包裹放在门口，不知道对方是否收到
+> - **UDP + 确认机制**：就像快递需要签收，签收后发送确认短信
+> - **TCP**：就像挂号信，必须本人签收，保证送达
+
+**实际应用**：
+
+> **📌 说明**：以下代码示例使用 Qt 的 `QTimer` 类（定时器）和 Lambda 表达式。`QTimer` 是 Qt 提供的定时器类，用于在指定时间后执行操作。Lambda 表达式已在 [26-lambda-expressions.md](./26-lambda-expressions.md) 中学习过。
+
+```cpp
+// 伪代码示例
+void sendMessageWithAck(const QString& message) {
+    quint32 seqNum = generateSequenceNumber();
+
+    // 发送消息
+    sendUdpMessage(message, seqNum);
+
+    // 启动超时定时器（3秒）
+    // QTimer 是 Qt 提供的定时器类，用于在指定时间后执行操作
+    QTimer* ackTimer = new QTimer(this);
+    ackTimer->setSingleShot(true);  // 单次触发
+    ackTimer->setInterval(3000);    // 3 秒超时
+
+    // 连接超时信号到 Lambda 表达式（Lambda 表达式已在 26-lambda-expressions.md 中学习）
+    connect(ackTimer, &QTimer::timeout, [this, seqNum]() {
+        // 超时未收到确认，重发
+        qDebug() << "ACK timeout, resending message" << seqNum;
+        resendMessage(seqNum);
+    });
+
+    ackTimer->start();
+}
+
+void onAckReceived(quint32 seqNum) {
+    // 收到确认，停止定时器
+    ackTimers[seqNum]->stop();
+    ackTimers.remove(seqNum);
+}
+```
+
+#### 3.4.2 "对方正在输入中"功能如何实现？
+
+**问题场景**：在微信软件中，经常对方在输入消息时，我方微信端会显示"对方正在输入中"，这是如何实现的？
+
+**问题分析**：
+
+需要实时检测对方是否在输入，但不能等待对方发送完整消息。
+
+**解决方案**：
+
+1. **输入事件触发**：
+   - 用户在输入框中输入时，触发输入事件
+   - 延迟发送"正在输入"状态（避免频繁发送）
+
+2. **UDP 状态消息**：
+   - 使用 UDP 发送轻量级的状态消息（"正在输入"）
+   - UDP 速度快，适合实时状态更新
+   - 消息丢失影响不大（状态会定期更新）
+
+3. **状态超时机制**：
+   - 如果一段时间内（如 3 秒）没有收到"正在输入"消息，自动清除状态
+   - 防止状态一直显示
+
+**实现流程**：
+
+```mermaid
+sequenceDiagram
+    participant UserA as 用户 A
+    participant ClientA as 客户端 A
+    participant Network as 网络
+    participant ClientB as 客户端 B
+    participant UserB as 用户 B
+
+    UserA->>ClientA: 在输入框中输入
+    ClientA->>ClientA: 延迟 500ms（防抖）
+    ClientA->>Network: UDP 发送"正在输入"状态
+    Network->>ClientB: 状态消息到达
+    ClientB->>UserB: 显示"对方正在输入中..."
+
+    Note over ClientA: 3秒内未收到新状态
+    ClientB->>UserB: 清除"正在输入"状态
+```
+
+**实际应用**：
+
+> **📌 说明**：以下代码示例使用 Qt 的 `QTimer` 类（定时器）。`QTimer` 是 Qt 提供的定时器类，用于在指定时间后执行操作。
+
+```cpp
+// 伪代码示例
+class ChatInput {
+    QTimer* typingTimer;        // 防抖定时器（延迟发送）
+    QTimer* typingStatusTimer;  // 状态超时定时器（自动清除状态）
+
+    void onTextChanged() {
+        // 用户输入时，延迟发送"正在输入"状态（防抖机制）
+        if (!typingTimer->isActive()) {
+            typingTimer->setSingleShot(true);
+            typingTimer->setInterval(500);  // 延迟 500ms，避免频繁发送
+            typingTimer->start();
+        }
+    }
+
+    void sendTypingStatus() {
+        // 发送"正在输入"状态
+        sendUdpMessage("TYPING", targetAddr);
+
+        // 3秒后自动停止发送（状态超时）
+        typingStatusTimer->setSingleShot(true);
+        typingStatusTimer->setInterval(3000);
+        typingStatusTimer->start();
+    }
+
+    void onMessageSent() {
+        // 消息发送后，停止"正在输入"状态
+        sendUdpMessage("NOT_TYPING", targetAddr);
+        typingTimer->stop();
+        typingStatusTimer->stop();
+    }
+};
+```
+
+**关键点**：
+
+- **防抖机制**：避免每次按键都发送状态（延迟 500ms）
+- **状态超时**：自动清除过期的状态显示
+- **轻量级消息**：使用 UDP 发送状态，速度快，丢失影响不大
+
+#### 3.4.3 局域网屏幕共享的 P2P 分发策略
+
+**问题场景**：局域网屏幕共享时，如果局域网的计算机台数比较多，如何利用中间节点做 P2P 分发，降低主机的数据传输压力？
+
+**问题分析**：
+
+如果主机直接向所有客户端发送屏幕数据，网络带宽压力巨大。需要利用 P2P 架构，让客户端之间互相转发数据。
+
+**解决方案**：
+
+1. **树形分发架构（推荐）**：
+   - 主机作为根节点，只向部分客户端发送数据
+   - 收到数据的客户端作为中间节点，向其他客户端转发
+   - 形成树形结构，降低主机压力
+
+   ```mermaid
+   graph TD
+       A[主机<br/>屏幕源] -->|发送数据| B[客户端1<br/>中间节点]
+       A -->|发送数据| C[客户端2<br/>中间节点]
+       B -->|转发数据| D[客户端3]
+       B -->|转发数据| E[客户端4]
+       C -->|转发数据| F[客户端5]
+       C -->|转发数据| G[客户端6]
+
+       style A fill:#ffeb3b
+       style B fill:#c8e6c9
+       style C fill:#c8e6c9
+   ```
+
+2. **节点选择策略**：
+   - **带宽优先**：选择带宽较大的客户端作为中间节点
+   - **延迟优先**：选择延迟较低的客户端作为中间节点
+   - **负载均衡**：动态调整树形结构，避免某些节点负载过高
+
+3. **数据分片和冗余**：
+   - 将屏幕数据分片发送
+   - 每个分片发送到多个路径（冗余）
+   - 客户端收到任意一个分片即可显示
+
+**实现流程**：
+
+```mermaid
+sequenceDiagram
+    participant Host as 主机
+    participant Node1 as 中间节点1
+    participant Node2 as 中间节点2
+    participant Client1 as 客户端1
+    participant Client2 as 客户端2
+
+    Host->>Host: 捕获屏幕数据
+    Host->>Node1: 发送数据分片1
+    Host->>Node2: 发送数据分片2
+    Node1->>Client1: 转发数据分片1
+    Node1->>Client2: 转发数据分片1
+    Node2->>Client1: 转发数据分片2
+    Node2->>Client2: 转发数据分片2
+```
+
+**实际应用**：
+
+> **📌 说明**：以下代码示例使用 C++ 标准库的 `std::sort` 函数（排序算法）和 Lambda 表达式。`std::sort` 是 C++ 标准库提供的排序函数，Lambda 表达式已在 [26-lambda-expressions.md](./26-lambda-expressions.md) 中学习过。
+
+```cpp
+// 伪代码示例
+class ScreenShareServer {
+    QList<ClientNode*> clientNodes;
+    QList<ClientNode*> intermediateNodes;  // 中间节点列表
+
+    void selectIntermediateNodes() {
+        // 选择带宽较大、延迟较低的客户端作为中间节点
+        intermediateNodes.clear();
+
+        // 按带宽排序（使用 C++ 标准库的 std::sort 函数）
+        // Lambda 表达式用于定义排序规则（按带宽降序）
+        std::sort(clientNodes.begin(), clientNodes.end(),
+                  [](ClientNode* a, ClientNode* b) {
+                      return a->bandwidth > b->bandwidth;
+                  });
+
+        // 选择前 20% 作为中间节点
+        int count = clientNodes.size() * 0.2;
+        for (int i = 0; i < count; i++) {
+            intermediateNodes.append(clientNodes[i]);
+        }
+    }
+
+    void distributeScreenData(const QByteArray& screenData) {
+        // 主机只向中间节点发送数据
+        for (ClientNode* node : intermediateNodes) {
+            sendUdpData(screenData, node->address);
+        }
+    }
+};
+
+class IntermediateNode {
+    QList<ClientNode*> childClients;  // 子客户端列表
+
+    void onDataReceived(const QByteArray& data) {
+        // 收到数据后，转发给子客户端
+        for (ClientNode* client : childClients) {
+            sendUdpData(data, client->address);
+        }
+    }
+};
+```
+
+**关键点**：
+
+- **树形结构**：主机 → 中间节点 → 客户端，降低主机压力
+- **动态调整**：根据网络状况动态选择中间节点
+- **负载均衡**：避免某些节点负载过高
+- **数据冗余**：通过多个路径发送数据，提高可靠性
+
+**性能对比**：
+
+| 方案         | 主机发送次数               | 网络负载 | 适用场景            |
+| ------------ | -------------------------- | -------- | ------------------- |
+| **直接发送** | N 次（N=客户端数）         | 高       | 客户端数量少（<10） |
+| **P2P 分发** | M 次（M=中间节点数，M<<N） | 低       | 客户端数量多（>10） |
+
+> **类比**：就像**传话游戏**：
+>
+> - **直接发送**：就像老师对每个学生都说一遍，老师很累
+> - **P2P 分发**：就像老师对几个学生说，这几个学生再告诉其他学生，老师轻松很多
+
+### 3.5 这些概念如何应用到 Qt Network？
 
 **概念到实现的映射**：
 
@@ -498,6 +791,7 @@ graph LR
    - ✅ 理解 Socket、TCP/UDP、客户端/服务器模型等概念
    - ✅ 知道什么时候用 TCP，什么时候用 UDP
    - ✅ 理解网络编程的基本流程
+   - ✅ 理解实际应用场景和解决方案
 
 2. **后续文档（33-36）**：
    - **33-qt-network-basics.md**：深入学习网络基础概念（IP、端口、子网掩码、广播、多播、点对点），理解 Qt Network 模块基础
@@ -542,7 +836,7 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
 
 - 列出 TCP 和 UDP 的主要特点
 - 说明它们各自的应用场景
-- 解释为什么聊天软件使用 UDP，文件传输使用 TCP
+- 解释为什么 1v1 聊天使用 UDP 单播，群组聊天使用 UDP 多播，文件传输使用 TCP
 
 **参考答案**：
 
@@ -562,7 +856,8 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
 
 **为什么聊天用 UDP，文件传输用 TCP**：
 
-- **聊天用 UDP**：消息丢失影响不大，速度更重要
+- **1v1 聊天用 UDP 单播**：消息直接发送给指定用户，速度快，消息丢失影响不大
+- **群组聊天用 UDP 多播**：需要向多个用户发送消息，多播比多次单播更高效
 - **文件传输用 TCP**：文件必须完整传输，可靠性更重要
 
 #### 练习 3：客户端/服务器模型
@@ -646,7 +941,7 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
    **答案**：A
 
    **解析**：
-   - A 正确：UDP 速度快，适合实时聊天；TCP 可靠，适合文件传输
+   - A 正确：UDP 速度快，适合实时聊天（1v1 用单播，群组用多播）；TCP 可靠，适合文件传输
    - B 错误：UDP 不可靠，TCP 可靠
    - C 错误：UDP 和 TCP 有本质区别
    - D 错误：UDP 和 TCP 都可以用于多种场景
@@ -712,11 +1007,16 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
 
 **参考答案**：
 
-**1. 聊天消息使用 UDP**：
+**1. 1v1 聊天消息使用 UDP 单播，群组聊天消息使用 UDP 多播**：
 
-- 原因：消息丢失影响不大，速度更重要
-- 优势：实时性好，延迟低
-- 缺点：可能丢失消息，需要应用层处理
+- **1v1 聊天（UDP 单播）**：
+  - 原因：消息直接发送给指定用户，速度快，消息丢失影响不大
+  - 优势：实时性好，延迟低
+  - 缺点：可能丢失消息，需要应用层确认机制
+- **群组聊天（UDP 多播）**：
+  - 原因：需要向多个用户发送消息，多播比多次单播更高效
+  - 优势：网络负载低，可扩展性好
+  - 缺点：需要加入多播组，可能丢失消息
 
 **2. 文件传输使用 TCP**：
 
@@ -734,15 +1034,21 @@ Socket（套接字）是网络编程中的核心概念，是程序与网络之�
 
 ```mermaid
 graph LR
-    A[用户 A] -->|UDP 多播<br/>聊天消息| B[用户 B]
-    B -->|UDP 多播<br/>聊天消息| C[用户 C]
-    A -->|UDP 多播<br/>聊天消息| C
+    A[用户 A] -->|UDP 单播<br/>1v1 聊天消息| B[用户 B]
+    A -->|UDP 多播<br/>群组聊天消息| C[用户 C]
+    B -->|UDP 多播<br/>群组聊天消息| C
     A -->|TCP 连接<br/>文件传输| B
 
     style A fill:#e1f5fe
     style B fill:#e1f5fe
     style C fill:#e1f5fe
 ```
+
+**说明**：
+
+- **UDP 单播**：用于 1v1 聊天（用户 A ↔ 用户 B）
+- **UDP 多播**：用于群组聊天（用户 A、B、C 都在群组中）
+- **TCP 连接**：用于文件传输（用户 A → 用户 B）
 
 **评分标准**：协议选择合理性（40%）、架构设计合理性（30%）、解释清晰度（30%）
 
