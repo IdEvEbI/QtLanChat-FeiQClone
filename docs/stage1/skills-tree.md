@@ -1,8 +1,8 @@
 # C++ 技能树 - 知识点详细记录
 
-> **目的**：记录 01-35 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
+> **目的**：记录 01-36 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
 > **创建日期**：2025-10-26  
-> **更新记录**：基于 01-35 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程知识点）
+> **更新记录**：基于 01-36 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件知识点）
 
 ## 📊 文档进度
 
@@ -41,6 +41,7 @@
 - ✅ 33-qt-network-basics.md - 已完成
 - ✅ 34-qt-udp-programming.md - 已完成
 - ✅ 35-qt-tcp-programming.md - 已完成
+- ✅ 36-qt-widgets-basics.md - 已完成
 
 ---
 
@@ -2722,6 +2723,91 @@
 
 ---
 
+### 36-qt-widgets-basics.md - Qt Widgets 基础控件
+
+#### 🔑 核心知识点
+
+- **Qt Widgets 模块概述**
+  - Qt Widgets 定义：Qt 提供的桌面应用 GUI 框架，提供了丰富的控件和窗口类，用于创建图形用户界面
+  - Qt Widgets 的特点：丰富的控件、布局管理、事件处理、跨平台、样式定制
+  - QApplication：Qt 应用程序类，管理应用程序的生命周期和事件循环，单例模式，整个应用只有一个 QApplication 实例，生命周期从 `main()` 函数开始创建，到 `exec()` 返回时结束
+  - QWidget：所有控件的基类，提供了窗口和控件的基础功能，可以独立显示（作为窗口），也可以作为其他控件的子控件
+  - QMainWindow：主窗口类，提供了应用程序主窗口的标准结构（菜单栏、工具栏、状态栏、中央区域），适合创建主窗口
+  - Qt Widgets 应用基本结构：创建 QApplication → 创建主窗口 → 创建中央控件 → 创建布局管理器 → 创建控件 → 连接信号槽 → 显示窗口 → 启动事件循环
+  - 类比：Qt Widgets 就像工具箱，QApplication 就像应用程序的管家，QWidget 就像积木的基座，QMainWindow 就像房子的框架
+
+- **基础控件**
+  - QPushButton（按钮）：用于响应用户点击操作，主要方法（setText、text、setIcon、setEnabled、isEnabled、setCheckable、isChecked），主要信号（clicked、pressed、released、toggled）
+  - QLineEdit（单行输入框）：用于输入单行文本，支持文本验证、占位符、密码模式，主要方法（setText、text、setPlaceholderText、setEchoMode、setMaxLength、setReadOnly、clear），主要信号（textChanged、textEdited、editingFinished、returnPressed）
+  - QTextEdit（多行文本输入框）：用于输入和显示多行文本，支持富文本格式、滚动支持、文本操作，主要方法（setPlainText、toPlainText、setHtml、toHtml、setReadOnly、clear、append），主要信号（textChanged）
+  - QLabel（标签）：用于显示文本或图片，支持文本对齐、自动换行，主要方法（setText、text、setPixmap、setAlignment、setWordWrap）
+  - QCheckBox（复选框）：用于多选操作，支持三态（未选中、选中、部分选中），主要方法（setText、setChecked、isChecked、setTristate、checkState），主要信号（clicked、toggled、stateChanged）
+  - QRadioButton（单选按钮）：用于单选操作，需要将多个 QRadioButton 放在同一个 QButtonGroup 中，主要方法（setText、setChecked、isChecked），主要信号（clicked、toggled）
+  - QButtonGroup：用于管理单选按钮组，主要方法（addButton、checkedId、buttonClicked），主要信号（idClicked）
+  - 类比：QPushButton 就像门铃按钮，QLineEdit 就像填写表格的单行输入框，QTextEdit 就像记事本，QLabel 就像标签纸，QCheckBox 就像多选题的选项框，QRadioButton 就像单选题的选项
+
+- **布局管理**
+  - 布局管理定义：Qt 提供的自动排列控件位置的机制，根据窗口大小自动调整控件位置和大小
+  - 布局管理的优势：自动调整、跨平台、代码简洁、响应式
+  - QVBoxLayout（垂直布局）：将控件按垂直方向排列，从上到下依次排列，支持自动拉伸、间距控制，主要方法（addWidget、addLayout、addStretch、setSpacing、setContentsMargins）
+  - QHBoxLayout（水平布局）：将控件按水平方向排列，从左到右依次排列，支持自动拉伸、间距控制
+  - QGridLayout（网格布局）：将控件按网格方式排列，按行和列排列成网格，支持跨行跨列放置控件，主要方法（addWidget、setRowStretch、setColumnStretch、setSpacing）
+  - QFormLayout（表单布局）：用于创建表单（标签-输入框对），自动创建标签和输入框的配对，支持对齐方式，主要方法（addRow、setLabelAlignment）
+  - 类比：布局管理就像自动排列的积木，QVBoxLayout 就像垂直排列的书架，QHBoxLayout 就像水平排列的书架，QGridLayout 就像表格，QFormLayout 就像填写表格
+
+- **窗口基础**
+  - QMainWindow（主窗口）：提供了应用程序主窗口的标准结构（菜单栏、工具栏、状态栏、中央区域），主要方法（setMenuBar、menuBar、addToolBar、setStatusBar、statusBar、setCentralWidget、centralWidget）
+  - QWidget（基础窗口）：所有控件的基类，也可以作为独立窗口使用，适合创建简单的窗口应用，主要方法（setWindowTitle、setWindowIcon、resize、show、hide、close、setMinimumSize、setMaximumSize）
+  - 窗口属性设置：窗口标题、窗口图标、窗口大小、最小/最大尺寸
+  - 类比：QMainWindow 就像房子的框架，QWidget 作为窗口就像简单的房间
+
+- **事件处理基础**
+  - 鼠标事件：Qt 提供的鼠标交互事件，包括鼠标按下、释放、移动、双击等，事件类型（mousePressEvent、mouseReleaseEvent、mouseMoveEvent、mouseDoubleClickEvent、wheelEvent），使用 `setMouseTracking(true)` 启用鼠标跟踪
+  - 键盘事件：Qt 提供的键盘交互事件，包括按键按下、释放等，事件类型（keyPressEvent、keyReleaseEvent），使用 `setFocusPolicy(Qt::StrongFocus)` 设置焦点策略，接收键盘事件
+  - QMouseEvent：鼠标事件对象，提供鼠标位置（pos）、鼠标按钮（button、buttons）
+  - QKeyEvent：键盘事件对象，提供按键文本（text）、键码（key）
+  - override 关键字：C++11 引入，明确表示这是重写基类的虚函数，如果函数签名不匹配会编译错误
+  - Q_UNUSED 宏：用于标记未使用的参数，避免编译器警告
+  - 类比：鼠标事件就像触摸操作，键盘事件就像打字操作
+
+- **完整的 GUI 应用示例**
+  - 简单计算器应用：显示窗口标题、两个数字输入框（QLineEdit）、运算符选择（QRadioButton：加法、减法、乘法、除法）、计算按钮（QPushButton）、结果显示标签（QLabel）、使用布局管理器排列控件
+  - 登录窗口示例：用户名输入框、密码输入框（密码模式）、登录按钮、使用 QFormLayout 创建表单布局、验证用户名和密码、显示验证结果
+  - 实现要点：界面布局（使用多种布局管理器）、功能实现（读取输入、获取选择、执行计算、显示结果）、数据验证、错误处理
+
+- **项目场景**
+  - 在 QtLanChat 项目中，Qt Widgets 基础控件用于：
+    1. 聊天软件界面：消息显示区域（QTextEdit 只读模式）、消息输入框（QLineEdit 或 QTextEdit）、发送按钮（QPushButton）、用户列表（QLabel）、状态显示（QLabel）
+    2. 屏幕共享软件界面：控制面板（QPushButton）、设置窗口（QLineEdit、QCheckBox）、状态显示（QLabel）、参数选择（QRadioButton）
+  - Qt Widgets 基础控件在 QtLanChat 中的应用对照表：QTextEdit（消息显示区域、多行消息输入）、QLineEdit（单行消息输入、用户名输入、IP 地址输入）、QPushButton（发送按钮、连接按钮、断开按钮）、QLabel（用户名显示、状态显示、消息提示）、QCheckBox（记住密码、自动连接、消息通知设置）、QRadioButton（连接方式选择、共享模式选择）
+  - 实际应用示例：聊天软件主窗口布局示例（概念性示例），展示如何将 Qt Widgets 基础控件应用到聊天软件界面中
+
+- **使用的 Qt 类**
+  - QButtonGroup：用于管理单选按钮组，主要方法（addButton、checkedId），主要信号（idClicked）
+  - QMouseEvent：鼠标事件对象，提供鼠标位置和按钮信息
+  - QKeyEvent：键盘事件对象，提供按键文本和键码
+  - Q_UNUSED：宏，用于标记未使用的参数
+  - override：C++11 关键字，明确表示这是重写基类的虚函数
+  - QMessageBox：Qt 提供的消息框类（前向引用，将在后续文档详细介绍）
+  - QMenu、QAction：菜单相关的类（前向引用，将在后续文档详细介绍）
+  - QPainter：Qt 提供的绘图类（前向引用，将在后续文档详细介绍）
+
+#### 🎓 教学特色
+
+- **类比**：Qt Widgets 就像工具箱，里面装满了各种工具（控件）
+- **类比**：QApplication 就像应用程序的管家，管理整个应用的生命周期
+- **类比**：QWidget 就像积木的基座，所有控件都基于它
+- **类比**：QMainWindow 就像房子的框架，提供了主窗口的标准结构
+- **类比**：布局管理就像自动排列的积木，当容器大小改变时，积木会自动重新排列
+- **类比**：QPushButton 就像门铃按钮，按下时会触发动作
+- **类比**：QLineEdit 就像填写表格的单行输入框
+- **类比**：QTextEdit 就像记事本，可以输入和显示多行文本
+- **类比**：QLabel 就像标签纸，用于显示文本或图片信息
+- **类比**：QCheckBox 就像多选题的选项框，可以同时选择多个选项
+- **类比**：QRadioButton 就像单选题的选项，同一组内只能选择一个选项
+
+---
+
 ## 🔍 知识点跳跃检查
 
 ### ✅ 当前状态：未发现知识点跳跃
@@ -2768,6 +2854,7 @@
 38. **Qt 网络基础** - 已在 33-qt-network-basics.md 详细介绍（Qt Network 模块概述、网络事件处理机制、IP 地址详解、子网掩码、QHostAddress、端口号详解、端口绑定和端口复用、广播/多播/点对点通讯、QNetworkInterface、实践应用）
 39. **Qt UDP 编程** - 已在 34-qt-udp-programming.md 详细介绍（QUdpSocket 类详解、UDP 通信流程和时序图、UDP 单播/广播/多播实现、UDP 应用层确认机制（ACK）：消息序列号、ACK 确认、超时重传、去重处理、UDP 应用场景和最佳实践、完整的 UDP 聊天程序示例、QDataStream/QMap/QSet 的使用）
 40. **Qt TCP 编程** - 已在 35-qt-tcp-programming.md 详细介绍（TCP 连接建立流程（三次握手时序图）、TCP 连接断开流程（四次挥手时序图）、TCP 客户端/服务器通信流程（流程图和时序图）、QTcpSocket 类详解：主要方法、信号、状态枚举、QTcpServer 类详解：主要方法、信号、多客户端管理、TCP 文件传输实现：协议设计、分块传输、确认机制、TCP 应用场景和最佳实践：错误处理、连接超时、大文件传输、多客户端管理、项目场景：QtLanChat 中的 TCP 应用、完整的 TCP 聊天程序示例、QFile/QFileInfo/QStringList/QTimer/QAbstractSocket 的使用）
+41. **Qt Widgets 基础控件** - 已在 36-qt-widgets-basics.md 详细介绍（Qt Widgets 模块概述：QApplication、QWidget、QMainWindow、Qt Widgets 应用基本结构、基础控件：QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton、布局管理：QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout、窗口基础：QMainWindow、QWidget、窗口属性设置、事件处理基础：鼠标事件、键盘事件、完整的 GUI 应用示例：计算器、登录窗口、项目场景：QtLanChat 中的 Widgets 应用、QButtonGroup、QMouseEvent、QKeyEvent、Q_UNUSED、override 关键字、QMessageBox 前向引用）
 
 ### ⚠️ 需要注意的知识点
 
@@ -3132,7 +3219,7 @@
 ### 已完成的路径
 
 ```
-✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程
+✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程 → 36-Qt Widgets 基础
 ```
 
 ### 建议的后续路径
@@ -3149,6 +3236,7 @@
 ✅ 33-Qt 网络基础
 ✅ 34-Qt UDP 编程
 ✅ 35-Qt TCP 编程
+✅ 36-Qt Widgets 基础
 ```
 
 ---
@@ -3231,6 +3319,6 @@
 
 ---
 
-**文档状态**：`01-35 完成 ✅ | 36+ 待创建 ⏳ | 总体进度 99%`
+**文档状态**：`01-36 完成 ✅ | 37+ 待创建 ⏳ | 总体进度 99%`
 
 **更新建议**：每次完成新文档后，更新此技能树记录，确保知识点无遗漏、无跳跃。
