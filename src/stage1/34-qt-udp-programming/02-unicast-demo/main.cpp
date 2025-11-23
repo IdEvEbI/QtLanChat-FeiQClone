@@ -1,0 +1,30 @@
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDebug>
+#include <QtCore/QTimer>
+#include "UnicastSender.h"
+#include "UnicastReceiver.h"
+
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+
+    // 创建接收方
+    UnicastReceiver receiver;
+    if (!receiver.bind(12345)) {
+        return 1;
+    }
+
+    // 创建发送方
+    UnicastSender sender;
+
+    // 延迟发送消息，确保接收方已准备好
+    QTimer::singleShot(500, [&sender]() {
+        QHostAddress targetAddr("127.0.0.1");
+        sender.sendMessage("Hello, Unicast!", targetAddr, 12345);
+    });
+
+    // 3秒后退出
+    QTimer::singleShot(3000, &app, &QCoreApplication::quit);
+
+    return app.exec();
+}
+
