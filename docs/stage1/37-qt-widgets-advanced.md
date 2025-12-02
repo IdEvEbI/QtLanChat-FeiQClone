@@ -5,8 +5,8 @@
 > **预计时间**：120 分钟  
 > **难度等级**：⭐⭐⭐⭐  
 > **技能收获**：QListWidget、QTableWidget、QTreeWidget、QProgressBar、QComboBox、QScrollArea、数据模型、复杂界面设计  
-> **文档版本**：v1.0  
-> **最后更新**：2025-11-27
+> **文档版本**：v1.1  
+> **最后更新**：2025-12-02
 
 📊 **难度等级说明**
 
@@ -191,6 +191,7 @@ int main(int argc, char *argv[])
     listWidget->addItem("用户3");
 
     // 设置选择模式（多选）
+    // QAbstractItemView 是所有视图控件的基类，提供了选择模式等通用功能
     listWidget->setSelectionMode(QAbstractItemView::MultiSelection);
 
     // 创建按钮
@@ -225,6 +226,16 @@ int main(int argc, char *argv[])
 
 **QListView**：Qt 提供的列表视图控件，基于模型-视图架构，更灵活但使用更复杂。
 
+**模型-视图架构说明**：
+
+Qt 的模型-视图架构将数据（模型）和显示（视图）分离：
+
+- **模型（Model）**：负责存储和管理数据（如 `QStringListModel`、`QStandardItemModel`）
+- **视图（View）**：负责显示数据（如 `QListView`、`QTableView`、`QTreeView`）
+- **优势**：数据与显示分离，一个模型可以被多个视图使用，性能更好
+
+**QAbstractItemView**：所有视图控件的基类（如 `QListView`、`QTableView`、`QTreeView`），提供了选择模式、编辑模式等通用功能。`QListWidget`、`QTableWidget`、`QTreeWidget` 内部也使用视图，但封装了模型，使用更简单。
+
 **QListView vs QListWidget**：
 
 | 特性           | QListWidget          | QListView            |
@@ -235,6 +246,8 @@ int main(int argc, char *argv[])
 | **适用场景**   | 简单列表展示         | 复杂数据展示         |
 
 **QListView 使用示例**（使用 QStringListModel）：
+
+**QStringListModel**：Qt 提供的字符串列表模型，用于存储和管理字符串列表数据。
 
 ```cpp
 #include <QtWidgets/QApplication>
@@ -321,6 +334,7 @@ int main(int argc, char *argv[])
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <QtCore/QDebug>
+// 注意：QAbstractItemView 通过 QTableWidget 头文件间接包含，无需单独包含
 
 int main(int argc, char *argv[])
 {
@@ -356,6 +370,7 @@ int main(int argc, char *argv[])
     tableWidget->setItem(2, 2, new QTableWidgetItem("广州"));
 
     // 设置选择模式（行选择）
+    // QAbstractItemView 是所有视图控件的基类，提供了选择行为等通用功能
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     // 创建按钮
@@ -397,6 +412,10 @@ int main(int argc, char *argv[])
 | **适用场景**   | 简单表格展示         | 复杂数据展示         |
 
 **QTableView 使用示例**（使用 QStandardItemModel）：
+
+**QStandardItemModel**：Qt 提供的标准项模型，用于存储和管理表格数据（多行多列）。
+
+**QStandardItem**：标准项模型中的单元格项，用于存储单元格数据（文本、图标等）。
 
 ```cpp
 #include <QtWidgets/QApplication>
@@ -699,15 +718,15 @@ int main(int argc, char *argv[])
     // 创建按钮
     QPushButton *button = new QPushButton("开始任务", &window);
 
-    QObject::connect(button, &QPushButton::clicked, []() {
+    QObject::connect(button, &QPushButton::clicked, [&window]() {
         // 创建进度对话框
-        QProgressDialog *dialog = new QProgressDialog("正在处理...", "取消", 0, 100);
+        QProgressDialog *dialog = new QProgressDialog("正在处理...", "取消", 0, 100, &window);
         dialog->setWindowTitle("进度");
         dialog->setModal(true);
         dialog->show();
 
         // 模拟进度
-        QTimer *timer = new QTimer();
+        QTimer *timer = new QTimer(&window);
         int progress = 0;
 
         QObject::connect(timer, &QTimer::timeout, [&progress, dialog, timer]() {
@@ -1015,7 +1034,7 @@ int main(int argc, char *argv[])
     scrollArea->setWidgetResizable(true);  // 允许内容调整大小
 
     // 创建内容控件（一个很长的标签）
-    QWidget *contentWidget = new QWidget();
+    QWidget *contentWidget = new QWidget(&window);
     QVBoxLayout *contentLayout = new QVBoxLayout(contentWidget);
 
     for (int i = 0; i < 20; ++i) {
@@ -1121,6 +1140,7 @@ public:
         m_studentTable = new QTableWidget(rightWidget);
         m_studentTable->setColumnCount(3);
         m_studentTable->setHorizontalHeaderLabels(QStringList() << "姓名" << "年龄" << "成绩");
+        // QAbstractItemView 是所有视图控件的基类，提供了选择行为等通用功能
         m_studentTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         // 输入区域
@@ -1364,9 +1384,11 @@ int main(int argc, char *argv[])
 **回答**：
 
 1. **使用视图控件**：使用 QListView、QTableView、QTreeView + 数据模型，而不是 Widget 控件
-2. **虚拟滚动**：使用 QAbstractItemView::setUniformItemSizes() 启用统一项大小
+2. **虚拟滚动**：使用 `QAbstractItemView::setUniformItemSizes()` 启用统一项大小（这是高级优化技术，将在后续文档中详细介绍）
 3. **延迟加载**：只加载可见区域的数据，滚动时再加载更多数据
 4. **分页显示**：将数据分页显示，每次只显示一页
+
+> **📌 说明**：`QAbstractItemView` 是所有视图控件的基类（QListView、QTableView、QTreeView 都继承自它），提供了选择模式、编辑模式、虚拟滚动等通用功能。虚拟滚动是高级优化技术，适合处理大量数据，将在后续文档中详细介绍。
 
 ### 4.5 如何自定义列表项/表格项的外观？
 
@@ -1375,8 +1397,10 @@ int main(int argc, char *argv[])
 **回答**：
 
 1. **使用 QListWidgetItem/QTableWidgetItem**：设置文本、图标、背景色等
-2. **使用委托（Delegate）**：创建自定义委托类，继承 QStyledItemDelegate，重写 paint() 方法
+2. **使用委托（Delegate）**：创建自定义委托类，继承 `QStyledItemDelegate`，重写 `paint()` 方法（这是高级内容，将在后续文档中详细介绍）
 3. **使用样式表（QSS）**：在后续文档（39-qt-widgets-styling.md）中学习
+
+> **📌 说明**：`QStyledItemDelegate` 是 Qt 提供的样式化项委托类，用于自定义列表项、表格项的外观。委托（Delegate）是模型-视图架构的一部分，负责绘制和编辑项。这是高级内容，当前文档主要介绍基础用法，委托的详细使用将在后续文档中介绍。
 
 ## 5. 练习题
 
@@ -1408,6 +1432,7 @@ int main(int argc, char *argv[])
    QListWidget *listWidget = new QListWidget();
    listWidget->addItem("项目1");
    listWidget->addItem("项目2");
+   // QAbstractItemView 是所有视图控件的基类，提供了选择模式等通用功能
    listWidget->setSelectionMode(QAbstractItemView::MultiSelection);
    QList<QListWidgetItem*> selectedItems = listWidget->selectedItems();
    ```
