@@ -1,8 +1,8 @@
 # C++ 技能树 - 知识点详细记录
 
-> **目的**：记录 01-36 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
+> **目的**：记录 01-37 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
 > **创建日期**：2025-10-26  
-> **更新记录**：基于 01-36 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件知识点）
+> **更新记录**：基于 01-37 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件知识点）
 
 ## 📊 文档进度
 
@@ -42,6 +42,7 @@
 - ✅ 34-qt-udp-programming.md - 已完成
 - ✅ 35-qt-tcp-programming.md - 已完成
 - ✅ 36-qt-widgets-basics.md - 已完成
+- ✅ 37-qt-widgets-advanced.md - 已完成
 
 ---
 
@@ -2808,6 +2809,81 @@
 
 ---
 
+### 37-qt-widgets-advanced.md - Qt Widgets 高级控件
+
+#### 🔑 核心知识点
+
+- **列表控件**
+  - QListWidget（列表控件）：用于显示和管理列表项，主要方法（addItem、insertItem、removeItemWidget、takeItem、item、currentItem、selectedItems、setSelectionMode、count、clear），主要信号（itemClicked、itemDoubleClicked、itemSelectionChanged、currentItemChanged），QListWidgetItem（列表项）主要方法（setText、text、setIcon、icon、setData、data）
+  - QListView（列表视图）：基于模型-视图架构的列表视图控件，更灵活但使用更复杂，使用 QStringListModel 作为数据模型，QAbstractItemView 是所有视图控件的基类，提供了选择模式等通用功能
+  - 模型-视图架构：将数据（模型）和显示（视图）分离，模型负责存储和管理数据（如 QStringListModel、QStandardItemModel），视图负责显示数据（如 QListView、QTableView、QTreeView），优势是数据与显示分离，一个模型可以被多个视图使用，性能更好
+  - QListWidget vs QListView：QListWidget 简单直接使用，QListView 需要数据模型但更灵活性能更好
+  - 类比：QListWidget 就像清单列表，可以列出多个项目，用户可以点击选择；QListView 就像可定制的清单列表，需要先准备数据模型，然后展示数据
+
+- **表格控件**
+  - QTableWidget（表格控件）：用于显示和管理表格数据，主要方法（setRowCount、setColumnCount、rowCount、columnCount、setItem、item、setHorizontalHeaderLabels、setVerticalHeaderLabels、setSelectionMode、selectedItems、clear），QTableWidgetItem（表格项）主要方法（setText、text、setData、data），支持单元格编辑、行选择、列选择、单元格选择、按列排序
+  - QTableView（表格视图）：基于模型-视图架构的表格视图控件，更灵活但使用更复杂，使用 QStandardItemModel 作为数据模型，QStandardItem 是标准项模型中的单元格项
+  - QTableWidget vs QTableView：QTableWidget 简单直接使用，QTableView 需要数据模型但更灵活性能更好
+  - 类比：QTableWidget 就像 Excel 表格，可以展示多行多列的数据，用户可以编辑和选择；QTableView 就像可定制的 Excel 表格，需要先准备数据模型，然后展示数据
+
+- **树形控件**
+  - QTreeWidget（树形控件）：用于显示和管理层级数据，主要方法（addTopLevelItem、insertTopLevelItem、topLevelItem、topLevelItemCount、setHeaderLabels、currentItem、selectedItems、clear），QTreeWidgetItem（树节点）主要方法（addChild、insertChild、removeChild、child、childCount、parent、setText、text、setExpanded、isExpanded），支持节点展开和折叠、单选和多选
+  - QTreeView（树形视图）：基于模型-视图架构的树形视图控件，更灵活但使用更复杂，需要数据模型
+  - QTreeWidget vs QTreeView：QTreeWidget 简单直接使用，QTreeView 需要数据模型但更灵活性能更好
+  - 类比：QTreeWidget 就像文件夹树，可以展示层级结构，用户可以展开和折叠节点
+
+- **进度和状态**
+  - QProgressBar（进度条）：用于显示任务进度，主要方法（setMinimum、setMaximum、setValue、value、setFormat、setOrientation），支持显示 0-100% 的进度、文本显示、水平/垂直方向、自定义样式
+  - QProgressDialog（进度对话框）：用于显示长时间运行的任务进度，主要方法（setMinimum、setMaximum、setValue、setLabelText、setCancelButton、wasCanceled），默认是模态对话框，进度完成后自动关闭，可以显示取消按钮
+  - QStatusBar（状态栏）：通常用于 QMainWindow，显示应用程序状态信息，主要方法（showMessage、clearMessage、addPermanentWidget），可以显示文本状态信息、永久消息、临时消息
+  - 类比：QProgressBar 就像进度条，可以显示任务完成的百分比；QProgressDialog 就像进度提示框，显示长时间运行的任务进度，用户可以取消；QStatusBar 就像状态栏，显示应用程序的当前状态信息
+
+- **组合框和菜单**
+  - QComboBox（组合框）：用于从多个选项中选择一个，主要方法（addItem、insertItem、removeItem、currentIndex、currentText、setCurrentIndex、setEditable、count），主要信号（currentIndexChanged、currentTextChanged、activated），支持下拉选择、可编辑模式、数据存储
+  - QMenu（菜单）：用于创建下拉菜单，主要方法（addAction、addMenu、addSeparator、exec），可以添加多个菜单项（QAction）、子菜单、分隔符、快捷键
+  - QMenuBar（菜单栏）：通常用于 QMainWindow，显示应用程序菜单，主要方法（addMenu），可以添加多个菜单（QMenu），通常位于窗口顶部，在不同平台上自动适配样式
+  - QAction：菜单项类，用于表示菜单中的操作项，主要信号（triggered）
+  - 类比：QComboBox 就像下拉菜单，可以从多个选项中选择一个；QMenu 就像下拉菜单，可以添加多个菜单项和子菜单；QMenuBar 就像菜单栏，可以添加多个菜单
+
+- **滚动区域**
+  - QScrollArea（滚动区域）：用于显示超出可见区域的内容，主要方法（setWidget、widget、setWidgetResizable、setHorizontalScrollBarPolicy、setVerticalScrollBarPolicy），自动显示滚动条，支持滚动查看内容，可以放置任何 QWidget 作为内容，可以控制滚动条的显示和隐藏
+  - QScrollBar（滚动条）：通常由 QScrollArea 自动创建，也可以单独使用，主要方法（setMinimum、setMaximum、setValue、value、setOrientation），主要信号（valueChanged），可以控制内容的滚动位置，支持水平、垂直方向，可以设置最小值和最大值
+  - 内存管理：contentWidget 应该设置为 scrollArea 的子对象，确保 Qt 对象树管理内存
+  - 类比：QScrollArea 就像滚动窗口，可以滚动查看超出可见区域的内容；QScrollBar 就像滚动条，可以控制内容的滚动位置
+
+- **模型-视图架构详解**
+  - QAbstractItemView：所有视图控件的基类（如 QListView、QTableView、QTreeView），提供了选择模式、编辑模式等通用功能
+  - QAbstractItemModel：所有数据模型的基类，负责存储和管理数据
+  - QAbstractItemDelegate：所有委托的基类，负责绘制和编辑项
+  - QStyledItemDelegate：Qt 提供的样式化项委托类，用于自定义列表项、表格项的外观，委托是模型-视图架构的一部分
+  - QStringListModel：Qt 提供的字符串列表模型，用于存储和管理字符串列表数据，用于 QListView
+  - QStandardItemModel：Qt 提供的标准项模型，用于存储和管理表格数据（多行多列），用于 QTableView 和 QTreeView
+  - QStandardItem：标准项模型中的单元格项，用于存储单元格数据（文本、图标等）
+
+- **完整的 GUI 应用示例**
+  - 学生管理系统界面：综合使用多个高级控件（QListWidget 显示学生列表、QTableWidget 显示学生详细信息、QLineEdit 输入学生信息、QProgressBar 显示数据加载进度），实现添加、删除学生功能，实现列表和表格的同步选择，使用 QHBoxLayout 和 QVBoxLayout 进行布局管理
+
+- **项目场景**
+  - 在 QtLanChat 项目中，Qt Widgets 高级控件用于：
+    1. 聊天软件界面：用户列表（QListWidget）、消息历史（QTableWidget）、文件列表（QTreeWidget）、传输进度（QProgressBar）、连接状态（QStatusBar）、消息类型选择（QComboBox）
+    2. 屏幕共享软件界面：连接列表（QListWidget）、共享设置（QComboBox）、传输进度（QProgressDialog）、状态显示（QStatusBar）、文件列表（QTreeWidget）
+  - Qt Widgets 高级控件在 QtLanChat 中的应用对照表：详细列出每个控件在聊天软件和屏幕共享软件中的应用场景
+
+- **常见问题**
+  - QListWidget vs QListView：数据量小使用 QListWidget，数据量大使用 QListView + 数据模型
+  - QTableWidget vs QTableView：数据量小使用 QTableWidget，数据量大使用 QTableView + 数据模型
+  - QTreeWidget vs QTreeView：数据量小使用 QTreeWidget，数据量大使用 QTreeView + 数据模型
+  - 性能优化：使用视图控件（QListView、QTableView、QTreeView）+ 数据模型，虚拟滚动，延迟加载，分页显示
+  - 自定义外观：使用 QListWidgetItem/QTableWidgetItem 设置文本、图标、背景色，使用委托（QStyledItemDelegate）创建自定义委托类
+
+#### 🎓 教学特色
+
+- **类比**：Qt Widgets 高级控件就像高级工具箱，QListWidget 就像清单列表，QTableWidget 就像表格，QTreeWidget 就像文件夹树，QProgressBar 就像进度条，QComboBox 就像下拉菜单
+- **类比**：模型-视图架构就像数据（模型）和显示（视图）分离，一个模型可以被多个视图使用
+- **类比**：QAbstractItemView 就像所有视图控件的基类，提供了选择模式等通用功能
+
+---
+
 ## 🔍 知识点跳跃检查
 
 ### ✅ 当前状态：未发现知识点跳跃
@@ -2855,6 +2931,7 @@
 39. **Qt UDP 编程** - 已在 34-qt-udp-programming.md 详细介绍（QUdpSocket 类详解、UDP 通信流程和时序图、UDP 单播/广播/多播实现、UDP 应用层确认机制（ACK）：消息序列号、ACK 确认、超时重传、去重处理、UDP 应用场景和最佳实践、完整的 UDP 聊天程序示例、QDataStream/QMap/QSet 的使用）
 40. **Qt TCP 编程** - 已在 35-qt-tcp-programming.md 详细介绍（TCP 连接建立流程（三次握手时序图）、TCP 连接断开流程（四次挥手时序图）、TCP 客户端/服务器通信流程（流程图和时序图）、QTcpSocket 类详解：主要方法、信号、状态枚举、QTcpServer 类详解：主要方法、信号、多客户端管理、TCP 文件传输实现：协议设计、分块传输、确认机制、TCP 应用场景和最佳实践：错误处理、连接超时、大文件传输、多客户端管理、项目场景：QtLanChat 中的 TCP 应用、完整的 TCP 聊天程序示例、QFile/QFileInfo/QStringList/QTimer/QAbstractSocket 的使用）
 41. **Qt Widgets 基础控件** - 已在 36-qt-widgets-basics.md 详细介绍（Qt Widgets 模块概述：QApplication、QWidget、QMainWindow、Qt Widgets 应用基本结构、基础控件：QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton、布局管理：QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout、窗口基础：QMainWindow、QWidget、窗口属性设置、事件处理基础：鼠标事件、键盘事件、完整的 GUI 应用示例：计算器、登录窗口、项目场景：QtLanChat 中的 Widgets 应用、QButtonGroup、QMouseEvent、QKeyEvent、Q_UNUSED、override 关键字、QMessageBox 前向引用）
+42. **Qt Widgets 高级控件** - 已在 37-qt-widgets-advanced.md 详细介绍（列表控件：QListWidget、QListView、QListWidgetItem、QStringListModel、QAbstractItemView、表格控件：QTableWidget、QTableView、QTableWidgetItem、QStandardItemModel、QStandardItem、树形控件：QTreeWidget、QTreeView、QTreeWidgetItem、进度和状态：QProgressBar、QProgressDialog、QStatusBar、组合框和菜单：QComboBox、QMenu、QMenuBar、QAction、滚动区域：QScrollArea、QScrollBar、模型-视图架构：QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate、完整应用示例：学生管理系统界面、项目场景：QtLanChat 中的高级控件应用）
 
 ### ⚠️ 需要注意的知识点
 
@@ -3219,7 +3296,7 @@
 ### 已完成的路径
 
 ```
-✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程 → 36-Qt Widgets 基础
+✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程 → 36-Qt Widgets 基础 → 37-Qt Widgets 高级
 ```
 
 ### 建议的后续路径
@@ -3237,6 +3314,7 @@
 ✅ 34-Qt UDP 编程
 ✅ 35-Qt TCP 编程
 ✅ 36-Qt Widgets 基础
+✅ 37-Qt Widgets 高级
 ```
 
 ---
@@ -3319,6 +3397,6 @@
 
 ---
 
-**文档状态**：`01-36 完成 ✅ | 37+ 待创建 ⏳ | 总体进度 99%`
+**文档状态**：`01-37 完成 ✅ | 38+ 待创建 ⏳ | 总体进度 99%`
 
 **更新建议**：每次完成新文档后，更新此技能树记录，确保知识点无遗漏、无跳跃。
