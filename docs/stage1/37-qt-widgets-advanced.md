@@ -1034,7 +1034,7 @@ int main(int argc, char *argv[])
     scrollArea->setWidgetResizable(true);  // 允许内容调整大小
 
     // 创建内容控件（一个很长的标签）
-    QWidget *contentWidget = new QWidget(&window);
+    QWidget *contentWidget = new QWidget(scrollArea);
     QVBoxLayout *contentLayout = new QVBoxLayout(contentWidget);
 
     for (int i = 0; i < 20; ++i) {
