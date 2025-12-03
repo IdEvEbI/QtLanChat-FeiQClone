@@ -1,6 +1,6 @@
 # QtLanChat-FeiQClone 项目开发 TODO
 
-> **项目周期**：3 周（21 天）| **当前阶段**：Stage 2 Qt 开发阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-37 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、网络编程概念、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件知识点），采用方案 C（混合路径）规划后续学习路径
+> **项目周期**：3 周（21 天）| **当前阶段**：Stage 2 Qt 开发阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-38 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、网络编程概念、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件、Qt Widgets 多窗口管理知识点），采用方案 C（混合路径）规划后续学习路径
 
 ## 📋 文档基础设施（已完成 ✅）
 
@@ -97,7 +97,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（73% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（80% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -164,14 +164,15 @@
   - ✅ 模型-视图架构（QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate）
   - ✅ 实践：创建一个数据展示应用（学生管理系统界面）
   - ✅ 配套代码：7 个示例程序（01-list-widget、02-table-widget、03-tree-widget、04-progress-bar、05-combo-box、06-scroll-area、07-student-management）
-- [ ] 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理：对话框、模态、窗口通信）- 1.5h ⚠️ **新增 - 多窗口应用**
-  - 对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）
-  - 模态与非模态对话框（exec() vs show()）
-  - 自定义对话框（继承 QDialog、信号槽通信）
-  - 多窗口应用架构（主窗口 + 子窗口、窗口管理器）
-  - 窗口间数据传递（信号槽、静态方法、单例模式）
-  - 窗口状态管理（显示/隐藏、最小化/最大化、关闭事件）
-  - 实践：创建一个多窗口应用（主窗口 + 设置窗口 + 关于窗口）
+- [x] 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理：对话框、模态、窗口通信）- 1.5h ✅ ⚠️ **新增 - 多窗口应用**
+  - ✅ 对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）
+  - ✅ 模态与非模态对话框（exec() vs show()）
+  - ✅ 自定义对话框（继承 QDialog、信号槽通信）
+  - ✅ 多窗口应用架构（主窗口 + 子窗口、窗口管理器）
+  - ✅ 窗口间数据传递（信号槽、静态方法、单例模式）
+  - ✅ 窗口状态管理（显示/隐藏、最小化/最大化、关闭事件）
+  - ✅ 实践：创建一个多窗口应用（主窗口 + 设置窗口 + 关于窗口）
+  - ✅ 配套代码：7 个示例程序（01-dialog-basic、02-message-box、03-input-dialog、04-file-dialog、05-modal-vs-modeless、06-custom-dialog、07-multi-window）
 - [ ] 39-qt-widgets-styling.md（Qt Widgets 界面美化：样式表、主题、图标、动画）- 2h ⚠️ **新增 - 界面美化**
   - Qt 样式表（QSS）基础语法（选择器、属性、伪状态）
   - 常用样式属性（颜色、字体、边框、背景、圆角）
@@ -329,10 +330,10 @@
 - ✅ 35-qt-tcp-programming.md（Qt TCP 编程，1582 行，3 题练习 + 3 题测试题）⚠️ **拆分 - TCP 编程**
 - ✅ 36-qt-widgets-basics.md（Qt Widgets 基础控件，1837 行，3 题练习 + 3 题测试题）⚠️ **新增 - 基础控件**
 - ✅ 37-qt-widgets-advanced.md（Qt Widgets 高级控件，1538 行，3 题练习 + 3 题测试题）⚠️ **新增 - 高级控件**
-- ✅ 配套代码文件（src/stage1/01-37/ 目录完整）
+- ✅ 配套代码文件（src/stage1/01-38/ 目录完整）
 - ✅ VSCode 调试环境配置
 - ✅ 技能树可视化和学习路径设计
-- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-37**
+- ✅ 技能树文档记录（docs/stage1/skills-tree.md）**已更新至 01-38**
 - ✅ 远程仓库备份（feature/stage1-cpp-basics 分支）
 
 ### 🔄 进行中
@@ -367,7 +368,7 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 1.5h，已完成 1.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：73% 完成（预计 15h，已完成 12.5h）**新增 - 方案 C：混合路径**（36-qt-widgets-basics.md、37-qt-widgets-advanced.md 已完成，38-39 待创建）
+**Stage 2 Qt 开发阶段**：80% 完成（预计 15h，已完成 12h）**新增 - 方案 C：混合路径**（36-qt-widgets-basics.md、37-qt-widgets-advanced.md、38-qt-widgets-multi-window.md 已完成，39 待创建）
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -393,8 +394,8 @@
 - **第 6-7 天**：✅ 34-qt-udp-programming.md（2h）- 已完成 ⚠️ **拆分 - UDP 编程**
 - **第 8-9 天**：✅ 35-qt-tcp-programming.md（2h）- 已完成 ⚠️ **拆分 - TCP 编程**
 - **第 11 天**：✅ 36-qt-widgets-basics.md（1.5h）- 已完成 ⚠️ **新增 - 基础控件**
-- **第 12-13 天**：37-qt-widgets-advanced.md（2h）⚠️ **新增 - 高级控件**
-- **第 14 天**：38-qt-widgets-multi-window.md（1.5h）⚠️ **新增 - 多窗口管理**
+- **第 12-13 天**：✅ 37-qt-widgets-advanced.md（2h）- 已完成 ⚠️ **新增 - 高级控件**
+- **第 14 天**：✅ 38-qt-widgets-multi-window.md（1.5h）- 已完成 ⚠️ **新增 - 多窗口管理**
 - **第 15-16 天**：39-qt-widgets-styling.md（2h）⚠️ **新增 - 界面美化**
 - **第 17 天**：40-chat-system-design.md（2h）
 - **第 18-19 天**：41-terminal-chat-project.md（2.5h）
@@ -457,7 +458,7 @@
 
 - ✅ 29-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 73% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 80% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 30-qt-environment-setup.md（Qt 环境搭建）
 - ✅ 31-qt-signals-slots.md（Qt 信号槽机制）
@@ -467,7 +468,7 @@
 - ✅ 35-qt-tcp-programming.md（Qt TCP 编程）⚠️ **拆分 - TCP 编程**
 - ✅ 36-qt-widgets-basics.md（Qt Widgets 基础控件）⚠️ **新增**
 - ✅ 37-qt-widgets-advanced.md（Qt Widgets 高级控件）⚠️ **新增**
-- ⏳ 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
+- ✅ 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
 - ⏳ 39-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
 
 **里程碑 10**：Stage 3 项目实战阶段（40-42）⏳ 0% 完成**新增 - 方案 C：混合路径**
@@ -521,7 +522,7 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）**最高优先级 - 方案 C**
+**立即任务**：开始编写 39-qt-widgets-styling.md（Qt Widgets 界面美化）**最高优先级 - 方案 C**
 **本周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-qt-widgets-basics.md 1.5h、37-qt-widgets-advanced.md 2h）- ✅ 已完成
 **下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）⚠️ **新增 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
 **中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
@@ -557,7 +558,7 @@
 - ⏳ 使用 Qt Network 模块实现 TCP 通信（QTcpSocket、QTcpServer、文件传输）
 - ✅ 使用 Qt Widgets 基础控件创建 GUI 应用（窗口、按钮、输入框、布局）- ✅ 已完成
 - ✅ 使用 Qt Widgets 高级控件展示复杂数据（列表、表格、树形、进度条）- ✅ 已完成
-- ⏳ 管理多窗口应用（对话框、模态窗口、窗口间通信）
+- ✅ 管理多窗口应用（对话框、模态窗口、窗口间通信）- ✅ 已完成
 - ⏳ 美化 Qt 应用界面（样式表、主题、图标、动画、现代化设计）
 
 **Stage 3 项目实战阶段完成后，学生应能够：**
@@ -612,7 +613,7 @@
 - ✅ **Qt TCP 编程**：QTcpSocket、QTcpServer 详解、TCP 连接建立流程（三次握手时序图）、TCP 连接断开流程（四次挥手时序图）、TCP 客户端/服务器通信流程（流程图和时序图）、TCP 文件传输（协议设计、分块传输、确认机制）、TCP 应用场景和最佳实践（错误处理、连接超时、大文件传输、多客户端管理）、项目场景（QtLanChat 中的 TCP 应用）- ✅ 已完成
 - ✅ **Qt Widgets 基础控件**：Qt Widgets 模块（QApplication、QWidget、QMainWindow）、基础组件（QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton）、布局管理（QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout）、窗口基础、事件处理基础 ⚠️ **新增** - ✅ 已完成
 - ✅ **Qt Widgets 高级控件**：列表控件（QListWidget、QListView、QListWidgetItem、QStringListModel、QAbstractItemView）、表格控件（QTableWidget、QTableView、QTableWidgetItem、QStandardItemModel、QStandardItem）、树形控件（QTreeWidget、QTreeView、QTreeWidgetItem）、进度和状态（QProgressBar、QProgressDialog、QStatusBar）、组合框和菜单（QComboBox、QMenu、QMenuBar、QAction）、滚动区域（QScrollArea、QScrollBar）、模型-视图架构（QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate）⚠️ **新增** - ✅ 已完成
-- ⏳ **Qt Widgets 多窗口管理**：对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）、模态与非模态对话框、自定义对话框、多窗口应用架构、窗口间数据传递、窗口状态管理 ⚠️ **新增**
+- ✅ **Qt Widgets 多窗口管理**：对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）、模态与非模态对话框（exec vs show）、自定义对话框（继承 QDialog、信号槽通信）、多窗口应用架构（主窗口+子窗口、窗口管理器）、窗口间数据传递（信号槽、静态方法、单例模式）、窗口状态管理（显示/隐藏、最小化/最大化、关闭事件 closeEvent）⚠️ **新增** - ✅ 已完成
 - ⏳ **Qt Widgets 界面美化**：Qt 样式表（QSS）语法、常用样式属性（颜色、字体、边框、背景、圆角）、主题和配色方案、图标和资源（QIcon、.qrc）、动画效果（QPropertyAnimation）、现代化界面设计 ⚠️ **新增**
 
 **可选补充（根据实际需要）：**
