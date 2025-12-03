@@ -128,15 +128,15 @@ graph TD
 
 **QDialog 主要方法**：
 
-| 方法              | 说明                     | 返回值 |
-| ----------------- | ------------------------ | ------ |
-| `exec()`          | 显示模态对话框（阻塞）   | int    |
-| `show()`          | 显示非模态对话框（非阻塞）| void   |
-| `accept()`        | 接受对话框（返回 Accepted）| void |
-| `reject()`        | 拒绝对话框（返回 Rejected）| void |
-| `result()`        | 获取对话框返回值         | int    |
-| `setModal()`      | 设置是否为模态对话框     | void   |
-| `setWindowTitle()`| 设置对话框标题           | void   |
+| 方法               | 说明                        | 返回值 |
+| ------------------ | --------------------------- | ------ |
+| `exec()`           | 显示模态对话框（阻塞）      | int    |
+| `show()`           | 显示非模态对话框（非阻塞）  | void   |
+| `accept()`         | 接受对话框（返回 Accepted） | void   |
+| `reject()`         | 拒绝对话框（返回 Rejected） | void   |
+| `result()`         | 获取对话框返回值            | int    |
+| `setModal()`       | 设置是否为模态对话框        | void   |
+| `setWindowTitle()` | 设置对话框标题              | void   |
 
 **QDialog 返回值**：
 
@@ -202,13 +202,13 @@ int main(int argc, char *argv[])
 
 **QMessageBox 主要静态方法**：
 
-| 方法                    | 说明                     | 返回值                    |
-| ----------------------- | ------------------------ | ------------------------- |
-| `information()`         | 显示信息对话框           | QMessageBox::StandardButton |
-| `warning()`             | 显示警告对话框           | QMessageBox::StandardButton |
-| `critical()`            | 显示错误对话框           | QMessageBox::StandardButton |
-| `question()`            | 显示问题对话框           | QMessageBox::StandardButton |
-| `about()`               | 显示关于对话框           | void                       |
+| 方法            | 说明           | 返回值                      |
+| --------------- | -------------- | --------------------------- |
+| `information()` | 显示信息对话框 | QMessageBox::StandardButton |
+| `warning()`     | 显示警告对话框 | QMessageBox::StandardButton |
+| `critical()`    | 显示错误对话框 | QMessageBox::StandardButton |
+| `question()`    | 显示问题对话框 | QMessageBox::StandardButton |
+| `about()`       | 显示关于对话框 | void                        |
 
 **QMessageBox::StandardButton 枚举**：
 
@@ -302,12 +302,12 @@ int main(int argc, char *argv[])
 
 **QInputDialog 主要静态方法**：
 
-| 方法                | 说明           | 返回值    |
-| ------------------- | -------------- | --------- |
-| `getText()`         | 获取文本输入   | QString   |
-| `getInt()`          | 获取整数输入   | int       |
-| `getDouble()`       | 获取浮点数输入 | double    |
-| `getItem()`         | 获取下拉选择   | QString   |
+| 方法          | 说明           | 返回值  |
+| ------------- | -------------- | ------- |
+| `getText()`   | 获取文本输入   | QString |
+| `getInt()`    | 获取整数输入   | int     |
+| `getDouble()` | 获取浮点数输入 | double  |
+| `getItem()`   | 获取下拉选择   | QString |
 
 **QInputDialog 使用示例**：
 
@@ -408,12 +408,12 @@ int main(int argc, char *argv[])
 
 **QFileDialog 主要静态方法**：
 
-| 方法                | 说明                 | 返回值              |
-| ------------------- | -------------------- | ------------------- |
-| `getOpenFileName()` | 获取打开文件路径     | QString             |
-| `getOpenFileNames()`| 获取多个打开文件路径 | QStringList         |
-| `getSaveFileName()` | 获取保存文件路径     | QString             |
-| `getExistingDirectory()` | 获取目录路径     | QString             |
+| 方法                     | 说明                 | 返回值      |
+| ------------------------ | -------------------- | ----------- |
+| `getOpenFileName()`      | 获取打开文件路径     | QString     |
+| `getOpenFileNames()`     | 获取多个打开文件路径 | QStringList |
+| `getSaveFileName()`      | 获取保存文件路径     | QString     |
+| `getExistingDirectory()` | 获取目录路径         | QString     |
 
 **QFileDialog 使用示例**：
 
@@ -625,13 +625,13 @@ int main(int argc, char *argv[])
 
 **exec() vs show() 对比**：
 
-| 特性           | exec()（模态）              | show()（非模态）            |
-| -------------- | --------------------------- | --------------------------- |
-| **阻塞性**     | 阻塞，直到对话框关闭        | 非阻塞，立即返回            |
-| **返回值**     | 返回用户选择（Accepted/Rejected） | 无返回值（void）            |
-| **主窗口操作** | 无法操作主窗口              | 可以同时操作主窗口          |
-| **使用场景**   | 确认操作、重要输入          | 设置窗口、工具窗口          |
-| **内存管理**   | 栈对象或智能指针            | 通常使用堆对象，需要管理内存 |
+| 特性           | exec()（模态）                    | show()（非模态）             |
+| -------------- | --------------------------------- | ---------------------------- |
+| **阻塞性**     | 阻塞，直到对话框关闭              | 非阻塞，立即返回             |
+| **返回值**     | 返回用户选择（Accepted/Rejected） | 无返回值（void）             |
+| **主窗口操作** | 无法操作主窗口                    | 可以同时操作主窗口           |
+| **使用场景**   | 确认操作、重要输入                | 设置窗口、工具窗口           |
+| **内存管理**   | 栈对象或智能指针                  | 通常使用堆对象，需要管理内存 |
 
 **选择原则**：
 
@@ -888,7 +888,7 @@ int main(int argc, char *argv[])
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QMenu>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtCore/QDebug>
 
 class SettingsWindow : public QDialog
@@ -1582,13 +1582,13 @@ int main(int argc, char *argv[])
 
 **窗口显示和隐藏的方法**：
 
-| 方法      | 说明           | 返回值 |
-| --------- | -------------- | ------ |
-| `show()`  | 显示窗口       | void   |
-| `hide()`  | 隐藏窗口       | void   |
-| `isVisible()` | 判断窗口是否可见 | bool |
-| `raise()` | 将窗口置于最前 | void   |
-| `activateWindow()` | 激活窗口 | void   |
+| 方法               | 说明             | 返回值 |
+| ------------------ | ---------------- | ------ |
+| `show()`           | 显示窗口         | void   |
+| `hide()`           | 隐藏窗口         | void   |
+| `isVisible()`      | 判断窗口是否可见 | bool   |
+| `raise()`          | 将窗口置于最前   | void   |
+| `activateWindow()` | 激活窗口         | void   |
 
 **窗口显示和隐藏示例**：
 
@@ -1814,7 +1814,9 @@ int main(int argc, char *argv[])
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QStatusBar>
+#include <QtGui/QAction>
 #include <QtWidgets/QMessageBox>
 #include <QtGui/QCloseEvent>
 #include <QtCore/QDebug>
@@ -2073,13 +2075,13 @@ int main(int argc, char *argv[])
 
 **Qt Widgets 多窗口管理在 QtLanChat 中的应用对照表**：
 
-| 窗口类型          | 在聊天软件中的应用               | 在屏幕共享软件中的应用         |
-| ----------------- | -------------------------------- | ------------------------------ |
-| **QMainWindow**   | 主窗口（聊天界面、用户列表）     | 主窗口（共享界面、控制面板）   |
-| **QDialog**       | 设置窗口、关于窗口               | 配置窗口、参数设置窗口         |
-| **QMessageBox**   | 确认对话框（发送文件、退出应用） | 确认对话框（开始/停止共享）    |
-| **QInputDialog**  | 输入对话框（用户名、服务器地址） | 输入对话框（共享参数）         |
-| **QFileDialog**   | 文件选择对话框（选择发送文件）   | 文件选择对话框（选择共享文件） |
+| 窗口类型         | 在聊天软件中的应用               | 在屏幕共享软件中的应用         |
+| ---------------- | -------------------------------- | ------------------------------ |
+| **QMainWindow**  | 主窗口（聊天界面、用户列表）     | 主窗口（共享界面、控制面板）   |
+| **QDialog**      | 设置窗口、关于窗口               | 配置窗口、参数设置窗口         |
+| **QMessageBox**  | 确认对话框（发送文件、退出应用） | 确认对话框（开始/停止共享）    |
+| **QInputDialog** | 输入对话框（用户名、服务器地址） | 输入对话框（共享参数）         |
+| **QFileDialog**  | 文件选择对话框（选择发送文件）   | 文件选择对话框（选择共享文件） |
 
 ## 4. 常见问题
 
@@ -2196,7 +2198,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
    // 模态对话框
    QDialog dialog;
    int result = dialog.exec();
-   
+
    // 非模态对话框
    QDialog *dialog = new QDialog(parent);
    dialog->show();
@@ -2207,7 +2209,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
    ```cpp
    // 信号槽传递
    connect(dialog, &SettingsDialog::settingsChanged, mainWindow, &MainWindow::onSettingsChanged);
-   
+
    // 静态方法传递
    DataManager::setData(data);
    QString data = DataManager::getData();
@@ -2331,4 +2333,3 @@ graph TD
     style A fill:#4caf50
     style B fill:#e0e0e0
 ```
-
