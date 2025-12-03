@@ -1,6 +1,6 @@
 # QtLanChat-FeiQClone 项目开发 TODO
 
-> **项目周期**：3 周（21 天）| **当前阶段**：Stage 2 Qt 开发阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-38 文档内容（已更新文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、网络编程概念、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件、Qt Widgets 多窗口管理知识点），采用方案 C（混合路径）规划后续学习路径
+> **项目周期**：3 周（21 天）| **当前阶段**：Stage 3 项目实战阶段（方案 C：混合路径）| **责任人**：IdevebI | **更新记录**：基于 01-39 文档内容（已更新 Qt Widgets 界面美化知识点），Stage 3 采用专题学习 + 项目迭代交替进行的策略，文档编号规则：顺序编号（40, 41, 42...），专题文章和项目迭代文章交替
 
 ## 📋 文档基础设施（已完成 ✅）
 
@@ -97,7 +97,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（87% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（100% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -186,21 +186,80 @@
 
 ### Stage 3：项目实战阶段（0% 完成）**新增 - 方案 C：混合路径**
 
-- [ ] 40-chat-system-design.md（系统设计：整合所有 C++ 和 Qt 知识，设计聊天系统架构）- 2h
-  - 设计聊天系统架构
-  - 整合所有 C++ 和 Qt 知识（信号槽、网络编程、Widgets 基础/高级/多窗口/美化）
-  - 设计类结构、模块划分
-  - UI 界面设计（聊天窗口布局、用户列表、消息展示区域）
-- [ ] 41-terminal-chat-project.md（终端版聊天程序：使用 Qt Network 实现无界面聊天系统）- 2.5h
-  - 实现无界面的聊天系统
-  - 使用 Qt Network 实现 UDP/TCP 通信
-  - 实现基本的消息收发功能
-- [ ] 42-qt-ui-chat-project.md（Qt UI 聊天程序：实现美观的 GUI 聊天系统）- 4h ⚠️ **时间增加 - 包含界面美化**
-  - 实现带 GUI 的聊天系统
-  - 使用 Qt Widgets 设计界面（应用 34-37 的所有知识）
-  - 实现文件传输、群组聊天等功能
-  - 应用界面美化（样式表、图标、动画、现代化设计）
+**文档编号规则**：顺序编号（40, 41, 42...），专题学习 + 项目迭代交替进行
+
+#### 阶段 1：系统设计（40）
+
+- [ ] 40-chat-system-design.md（系统架构设计 + 技术需求铺垫）- 2h
+  - 系统架构设计（UI Layer、Business Layer、Network Layer）
+  - 模块划分（ChatManager、UserManager、FileManager、NetworkManager）
+  - 类设计（Message、User、ChatWindow 等）
+  - 消息协议设计（详细设计消息格式）
+  - **技术需求铺垫**：明确后续需要的技术（JSON 序列化、多线程、设备发现等）
+
+#### 阶段 2：核心功能验证（41）
+
+- [ ] 41-terminal-chat-project.md（终端版聊天程序，验证核心功能）- 2.5h
+  - 终端版聊天程序（无 UI）
+  - UDP 消息收发
+  - 简单文本消息格式（临时方案，验证核心功能）
+  - 基础用户管理
+  - **聚焦**：验证核心网络通信功能
+
+#### 阶段 3：专题学习 + 项目迭代（42-43）
+
+- [ ] 42-json-serialization.md（JSON 序列化专题）- 1h ⚠️ **专题文章**
+  - Qt JSON 模块概述
+  - QJsonObject、QJsonArray 详解
+  - JSON 序列化/反序列化原理
+  - 消息格式设计
+  - 完整示例代码
+  - **目标**：独立介绍 JSON 序列化技术原理
+
+- [ ] 43-qt-ui-chat-project.md（Qt UI 聊天程序，应用 JSON 序列化）- 4h ⚠️ **项目迭代**
+  - Qt UI 聊天程序
+  - 主窗口设计（聊天区域、用户列表、输入框）
+  - 消息显示和发送（**应用 JSON 序列化**）
+  - 文件传输窗口（TCP）
+  - 基础界面美化
   - 多窗口管理（主窗口、设置窗口、文件传输窗口）
+  - **目标**：应用 42-json-serialization.md 的知识，替换简单文本格式为 JSON 格式
+
+#### 阶段 4：性能优化（44-45）
+
+- [ ] 44-qt-threading.md（多线程编程专题）- 1.5h ⚠️ **专题文章**
+  - QThread 基础
+  - QThreadPool 线程池
+  - QMutex 互斥锁
+  - QWaitCondition 条件变量
+  - 线程安全编程
+  - 完整示例代码
+  - **目标**：独立介绍多线程编程技术原理
+
+- [ ] 45-chat-project-threading.md（聊天程序多线程优化）- 2h ⚠️ **项目迭代**
+  - 聊天程序多线程优化
+  - 网络接收独立线程（**应用 QThread**）
+  - 文件传输独立线程（**应用 QThreadPool**）
+  - 线程安全实现（**应用 QMutex**）
+  - UI 线程不阻塞
+  - **目标**：应用 44-qt-threading.md 的知识，优化性能，支持 200 人并发
+
+#### 阶段 5：功能完善（46-47）
+
+- [ ] 46-lan-discovery.md（设备发现专题）- 1h ⚠️ **专题文章**
+  - mDNS/zeroconf 协议概述
+  - QNetworkServiceDiscovery 详解
+  - 设备发现原理
+  - 完整示例代码
+  - **目标**：独立介绍设备发现技术原理
+
+- [ ] 47-chat-project-discovery.md（聊天程序设备发现功能）- 1.5h ⚠️ **项目迭代**
+  - 聊天程序设备发现功能
+  - 自动发现局域网用户（**应用 mDNS**）
+  - 用户上线/下线通知
+  - 替换 UDP 广播心跳方案
+  - **目标**：应用 46-lan-discovery.md 的知识，完善设备发现功能，提升用户体验
+
 - [ ] 收集 C++回顾反馈（GitHub issue）- 0.5h
 
 ## 🛠️ 文档与代码开发（93% 完成）
@@ -370,8 +429,8 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 1.5h，已完成 1.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：87% 完成（预计 15h，已完成 13h）**新增 - 方案 C：混合路径**（36-qt-widgets-basics.md、37-qt-widgets-advanced.md、38-qt-widgets-multi-window.md、39-qt-widgets-styling.md 已完成）
-**Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
+**Stage 2 Qt 开发阶段**：100% 完成（预计 15h，已完成 15h）**新增 - 方案 C：混合路径**（30-39 全部完成）
+**Stage 3 项目实战阶段**：0% 完成（预计 15.5h）**新增 - 方案 C：混合路径**（专题学习 + 项目迭代交替进行）
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
 **文件 I/O 和综合实践**：100% 完成（22-file-io.md 和 23-oop-practice.md 已完成）
@@ -382,9 +441,9 @@
 
 ### 📈 时间规划
 
-**短期（1 周）**：✅ 完成 Stage 1 补充阶段（29-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 文档（30-qt-environment-setup.md 1h、31-qt-signals-slots.md 1.5h、32-network-programming-concepts.md 1h、33-qt-network-basics.md 1.5h）- 已完成
-**中期（2-3 周）**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
-**长期（3-4 周）**：完成 Stage 3 项目实战（40-42，8.5h）+ 配套代码 + 质量保证 + v0.1 发布
+**短期（1 周）**：✅ 完成 Stage 1 补充阶段（29-cmake-advanced.md，1.5h）- 已完成，✅ 完成 Stage 2 Qt 开发阶段（30-39，15h）- 已完成
+**中期（2-3 周）**：完成 Stage 3 项目实战阶段 1-3（40-43，9.5h：系统设计 + 核心功能验证 + JSON 序列化专题 + UI 聊天程序）
+**长期（3-4 周）**：完成 Stage 3 项目实战阶段 4-5（44-47，6h：多线程专题 + 性能优化 + 设备发现专题 + 功能完善）+ 配套代码 + 质量保证 + v0.1 发布
 
 **详细时间规划**：
 
@@ -401,7 +460,12 @@
 - **第 15-16 天**：✅ 39-qt-widgets-styling.md（2h）- 已完成 ⚠️ **新增 - 界面美化**
 - **第 17 天**：40-chat-system-design.md（2h）
 - **第 18-19 天**：41-terminal-chat-project.md（2.5h）
-- **第 20-23 天**：42-qt-ui-chat-project.md（4h）⚠️ **时间增加 - 包含界面美化**
+- **第 20 天**：42-json-serialization.md（1h）⚠️ **专题文章**
+- **第 21-24 天**：43-qt-ui-chat-project.md（4h）⚠️ **项目迭代**
+- **第 25-26 天**：44-qt-threading.md（1.5h）⚠️ **专题文章**
+- **第 27-28 天**：45-chat-project-threading.md（2h）⚠️ **项目迭代**
+- **第 29 天**：46-lan-discovery.md（1h）⚠️ **专题文章**
+- **第 30-31 天**：47-chat-project-discovery.md（1.5h）⚠️ **项目迭代**
 
 ### 🎯 当前里程碑
 
@@ -460,7 +524,7 @@
 
 - ✅ 29-cmake-advanced.md（CMake 进阶）
 
-**里程碑 9**：Stage 2 Qt 开发阶段（30-39）🔄 80% 完成**新增 - 方案 C：混合路径**
+**里程碑 9**：Stage 2 Qt 开发阶段（30-39）✅ 100% 完成**新增 - 方案 C：混合路径**
 
 - ✅ 30-qt-environment-setup.md（Qt 环境搭建）
 - ✅ 31-qt-signals-slots.md（Qt 信号槽机制）
@@ -473,11 +537,30 @@
 - ✅ 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
 - ✅ 39-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
 
-**里程碑 10**：Stage 3 项目实战阶段（40-42）⏳ 0% 完成**新增 - 方案 C：混合路径**
+**里程碑 10**：Stage 3 项目实战阶段（40-47）⏳ 0% 完成**新增 - 方案 C：混合路径**
 
-- ⏳ 40-chat-system-design.md（系统设计）
-- ⏳ 41-terminal-chat-project.md（终端版聊天程序）
-- ⏳ 42-qt-ui-chat-project.md（Qt UI 聊天程序 - 美观界面）⚠️ **时间增加**
+**阶段 1：系统设计**
+
+- ⏳ 40-chat-system-design.md（系统架构设计 + 技术需求铺垫）
+
+**阶段 2：核心功能验证**
+
+- ⏳ 41-terminal-chat-project.md（终端版聊天程序，验证核心功能）
+
+**阶段 3：专题学习 + 项目迭代**
+
+- ⏳ 42-json-serialization.md（JSON 序列化专题）⚠️ **专题文章**
+- ⏳ 43-qt-ui-chat-project.md（Qt UI 聊天程序，应用 JSON 序列化）⚠️ **项目迭代**
+
+**阶段 4：性能优化**
+
+- ⏳ 44-qt-threading.md（多线程编程专题）⚠️ **专题文章**
+- ⏳ 45-chat-project-threading.md（聊天程序多线程优化）⚠️ **项目迭代**
+
+**阶段 5：功能完善**
+
+- ⏳ 46-lan-discovery.md（设备发现专题）⚠️ **专题文章**
+- ⏳ 47-chat-project-discovery.md（聊天程序设备发现功能）⚠️ **项目迭代**
 
 ### ⚠️ 潜在风险
 
@@ -524,13 +607,19 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 40-chat-system-design.md（系统设计）**最高优先级 - 方案 C**
-**本周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-qt-widgets-basics.md 1.5h、37-qt-widgets-advanced.md 2h）- ✅ 已完成
-**下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）✅ **已完成 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
-**中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
-**重点文档**：36-39 Qt Widgets 系列（GUI 开发完整知识体系：36-qt-widgets-basics.md 基础控件、37-qt-widgets-advanced.md 高级控件、38-qt-widgets-multi-window.md 多窗口管理、39-qt-widgets-styling.md 界面美化）⚠️ **新增**
-**质量目标**：保持 90+ 分标准，建立文档质量标杆
-**学习路径**：采用方案 C（混合路径），平衡学习深度和速度
+**立即任务**：开始编写 40-chat-system-design.md（系统架构设计 + 技术需求铺垫）**最高优先级 - 方案 C**
+**本周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）✅ **已完成 - 完整的 GUI 开发知识体系**
+**下周目标**：完成 Stage 3 阶段 1-2（40-chat-system-design.md 2h + 41-terminal-chat-project.md 2.5h）
+**中期目标**：完成 Stage 3 项目实战阶段（40-47，15.5h），采用专题学习 + 项目迭代交替进行
+**重点文档**：
+
+- **40-chat-system-design.md**：系统架构设计 + 技术需求铺垫（2h）
+- **42-json-serialization.md**：JSON 序列化专题（1h）⚠️ **专题文章**
+- **44-qt-threading.md**：多线程编程专题（1.5h）⚠️ **专题文章**
+- **46-lan-discovery.md**：设备发现专题（1h）⚠️ **专题文章**
+  **文档编号规则**：顺序编号（40, 41, 42...），专题文章和项目迭代文章交替进行
+  **质量目标**：保持 90+ 分标准，建立文档质量标杆
+  **学习路径**：采用方案 C（混合路径），专题学习 + 项目迭代交替进行
 
 ### 📋 阶 段1完成标准
 
@@ -565,9 +654,25 @@
 
 **Stage 3 项目实战阶段完成后，学生应能够：**
 
+**阶段 1-2 完成后**：
+
 - ⏳ 设计聊天系统架构（整合所有 C++ 和 Qt 知识，包括网络编程、Widgets 基础/高级/多窗口/美化）
-- ⏳ 实现终端版聊天程序（无界面，使用 Qt Network UDP/TCP）
-- ⏳ 实现美观的 Qt UI 聊天程序（带 GUI，应用所有 Widgets 知识，界面美化，文件传输、群组聊天、多窗口管理）
+- ⏳ 实现终端版聊天程序（无界面，使用 Qt Network UDP/TCP，验证核心功能）
+
+**阶段 3 完成后**：
+
+- ⏳ 掌握 JSON 序列化技术（Qt JSON 模块、QJsonObject、QJsonArray）
+- ⏳ 实现美观的 Qt UI 聊天程序（带 GUI，应用所有 Widgets 知识，界面美化，文件传输、群组聊天、多窗口管理，使用 JSON 序列化）
+
+**阶段 4 完成后**：
+
+- ⏳ 掌握多线程编程技术（QThread、QThreadPool、QMutex、线程安全）
+- ⏳ 优化聊天程序性能（支持 200 人并发，延迟 <200ms，UI 不阻塞）
+
+**阶段 5 完成后**：
+
+- ⏳ 掌握设备发现技术（mDNS/zeroconf、QNetworkServiceDiscovery）
+- ⏳ 完善聊天程序功能（自动设备发现、用户上线/下线通知、消息历史保存）
 
 ### 🔍 知识点完整性检查清单
 
@@ -617,6 +722,13 @@
 - ✅ **Qt Widgets 高级控件**：列表控件（QListWidget、QListView、QListWidgetItem、QStringListModel、QAbstractItemView）、表格控件（QTableWidget、QTableView、QTableWidgetItem、QStandardItemModel、QStandardItem）、树形控件（QTreeWidget、QTreeView、QTreeWidgetItem）、进度和状态（QProgressBar、QProgressDialog、QStatusBar）、组合框和菜单（QComboBox、QMenu、QMenuBar、QAction）、滚动区域（QScrollArea、QScrollBar）、模型-视图架构（QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate）⚠️ **新增** - ✅ 已完成
 - ✅ **Qt Widgets 多窗口管理**：对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）、模态与非模态对话框（exec vs show）、自定义对话框（继承 QDialog、信号槽通信）、多窗口应用架构（主窗口+子窗口、窗口管理器）、窗口间数据传递（信号槽、静态方法、单例模式）、窗口状态管理（显示/隐藏、最小化/最大化、关闭事件 closeEvent）⚠️ **新增** - ✅ 已完成
 - ✅ **Qt Widgets 界面美化**：Qt 样式表（QSS）语法、常用样式属性（颜色、字体、边框、背景、圆角）、主题和配色方案、图标和资源（QIcon、.qrc、Qt 内置标准图标）、动画效果（QPropertyAnimation、动画组、过渡动画）、现代化界面设计（Material Design、Fluent Design）、macOS 警告抑制 ⚠️ **新增** - ✅ 已完成
+
+**Stage 3 项目实战阶段将补充的知识点：**
+
+- ⏳ **系统架构设计**：系统架构设计（UI Layer、Business Layer、Network Layer）、模块划分（ChatManager、UserManager、FileManager、NetworkManager）、类设计（Message、User、ChatWindow 等）、消息协议设计、技术需求铺垫 ⚠️ **新增 - 阶段 1**
+- ⏳ **JSON 序列化**：Qt JSON 模块概述、QJsonObject、QJsonArray 详解、JSON 序列化/反序列化原理、消息格式设计 ⚠️ **新增 - 专题文章（阶段 3）**
+- ⏳ **多线程编程**：QThread 基础、QThreadPool 线程池、QMutex 互斥锁、QWaitCondition 条件变量、线程安全编程 ⚠️ **新增 - 专题文章（阶段 4）**
+- ⏳ **设备发现**：mDNS/zeroconf 协议概述、QNetworkServiceDiscovery 详解、设备发现原理 ⚠️ **新增 - 专题文章（阶段 5）**
 
 **可选补充（根据实际需要）：**
 
