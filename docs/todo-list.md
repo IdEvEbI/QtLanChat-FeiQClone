@@ -97,7 +97,7 @@
   - ✅ 在 Cursor 中调试 CMake 项目（build-smart、launch.json）
   - ✅ 实践：配置一个简单的 Qt 项目（01-quick-start）
 
-### Stage 2：Qt 开发阶段（80% 完成）**新增 - 方案 C：混合路径**
+### Stage 2：Qt 开发阶段（87% 完成）**新增 - 方案 C：混合路径**
 
 - [x] 30-qt-environment-setup.md（Qt 环境搭建：Qt 6.9+（推荐 6.12+）安装、CMake 配置、Qt Creator 使用）- 1h ✅
   - ✅ Qt 6.9+（推荐 6.12+）安装和配置（macOS/Windows/Linux 三平台）
@@ -173,14 +173,16 @@
   - ✅ 窗口状态管理（显示/隐藏、最小化/最大化、关闭事件）
   - ✅ 实践：创建一个多窗口应用（主窗口 + 设置窗口 + 关于窗口）
   - ✅ 配套代码：7 个示例程序（01-dialog-basic、02-message-box、03-input-dialog、04-file-dialog、05-modal-vs-modeless、06-custom-dialog、07-multi-window）
-- [ ] 39-qt-widgets-styling.md（Qt Widgets 界面美化：样式表、主题、图标、动画）- 2h ⚠️ **新增 - 界面美化**
-  - Qt 样式表（QSS）基础语法（选择器、属性、伪状态）
-  - 常用样式属性（颜色、字体、边框、背景、圆角）
-  - 主题和配色方案（浅色/深色主题、自定义调色板）
-  - 图标和资源（QIcon、资源文件 .qrc、图标主题）
-  - 动画效果（QPropertyAnimation、QParallelAnimationGroup、过渡动画）
-  - 现代化界面设计（Material Design、Fluent Design 风格参考）
-  - 实践：美化之前的应用（应用样式表、添加图标、实现动画效果）
+- [x] 39-qt-widgets-styling.md（Qt Widgets 界面美化：样式表、主题、图标、动画）- 2h ✅ ⚠️ **新增 - 界面美化**
+  - ✅ Qt 样式表（QSS）基础语法（选择器、属性、伪状态）
+  - ✅ 常用样式属性（颜色、字体、边框、背景、圆角）
+  - ✅ 主题和配色方案（浅色/深色主题、自定义调色板）
+  - ✅ 图标和资源（QIcon、资源文件 .qrc、Qt 内置标准图标）
+  - ✅ 动画效果（QPropertyAnimation、QParallelAnimationGroup、过渡动画）
+  - ✅ 现代化界面设计（Material Design、Fluent Design 风格参考）
+  - ✅ 实践：美化之前的应用（应用样式表、添加图标、实现动画效果）
+  - ✅ 配套代码：8 个示例程序（01-qss-basic、02-qss-selectors、03-qss-pseudo-states、04-theme-switching、05-color-palette、06-icons-resources、07-animations、08-chat-styled）
+  - ✅ 修复：所有示例添加 macOS IMK 警告抑制，06 示例使用 Qt 内置标准图标
 
 ### Stage 3：项目实战阶段（0% 完成）**新增 - 方案 C：混合路径**
 
@@ -368,7 +370,7 @@
 **C++ 进阶语法**：100% 完成（25-27 已完成）**新增 - 阶段 1 扩展**
 **多文件开发进阶**：100% 完成（28-multi-file-advanced.md 已完成）**新增 - 阶段 1 扩展**
 **Stage 1 补充阶段**：100% 完成（预计 1.5h，已完成 1.5h）**新增 - 方案 C：混合路径**
-**Stage 2 Qt 开发阶段**：80% 完成（预计 15h，已完成 12h）**新增 - 方案 C：混合路径**（36-qt-widgets-basics.md、37-qt-widgets-advanced.md、38-qt-widgets-multi-window.md 已完成，39 待创建）
+**Stage 2 Qt 开发阶段**：87% 完成（预计 15h，已完成 13h）**新增 - 方案 C：混合路径**（36-qt-widgets-basics.md、37-qt-widgets-advanced.md、38-qt-widgets-multi-window.md、39-qt-widgets-styling.md 已完成）
 **Stage 3 项目实战阶段**：0% 完成（预计 7.5h）**新增 - 方案 C：混合路径**
 **自定义类型文档**：100% 完成（16-struct.md 和 17-enum.md 已完成）
 **面向对象文档**：100% 完成（18-21 已完成）
@@ -396,7 +398,7 @@
 - **第 11 天**：✅ 36-qt-widgets-basics.md（1.5h）- 已完成 ⚠️ **新增 - 基础控件**
 - **第 12-13 天**：✅ 37-qt-widgets-advanced.md（2h）- 已完成 ⚠️ **新增 - 高级控件**
 - **第 14 天**：✅ 38-qt-widgets-multi-window.md（1.5h）- 已完成 ⚠️ **新增 - 多窗口管理**
-- **第 15-16 天**：39-qt-widgets-styling.md（2h）⚠️ **新增 - 界面美化**
+- **第 15-16 天**：✅ 39-qt-widgets-styling.md（2h）- 已完成 ⚠️ **新增 - 界面美化**
 - **第 17 天**：40-chat-system-design.md（2h）
 - **第 18-19 天**：41-terminal-chat-project.md（2.5h）
 - **第 20-23 天**：42-qt-ui-chat-project.md（4h）⚠️ **时间增加 - 包含界面美化**
@@ -469,7 +471,7 @@
 - ✅ 36-qt-widgets-basics.md（Qt Widgets 基础控件）⚠️ **新增**
 - ✅ 37-qt-widgets-advanced.md（Qt Widgets 高级控件）⚠️ **新增**
 - ✅ 38-qt-widgets-multi-window.md（Qt Widgets 多窗口管理）⚠️ **新增**
-- ⏳ 39-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
+- ✅ 39-qt-widgets-styling.md（Qt Widgets 界面美化）⚠️ **新增**
 
 **里程碑 10**：Stage 3 项目实战阶段（40-42）⏳ 0% 完成**新增 - 方案 C：混合路径**
 
@@ -522,9 +524,9 @@
 
 ### 🎯 下一步目标
 
-**立即任务**：开始编写 39-qt-widgets-styling.md（Qt Widgets 界面美化）**最高优先级 - 方案 C**
+**立即任务**：开始编写 40-chat-system-design.md（系统设计）**最高优先级 - 方案 C**
 **本周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-qt-widgets-basics.md 1.5h、37-qt-widgets-advanced.md 2h）- ✅ 已完成
-**下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）⚠️ **新增 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
+**下周目标**：完成 Stage 2 Qt 开发阶段 Widgets 系列文档（36-39，7h）✅ **已完成 - 完整的 GUI 开发知识体系**（36-qt-widgets-basics.md 基础控件 1.5h、37-qt-widgets-advanced.md 高级控件 2h、38-qt-widgets-multi-window.md 多窗口管理 1.5h、39-qt-widgets-styling.md 界面美化 2h）
 **中期目标**：完成 Stage 2 Qt 开发阶段剩余文档（34-39，9h）+ 开始 Stage 3 项目实战
 **重点文档**：36-39 Qt Widgets 系列（GUI 开发完整知识体系：36-qt-widgets-basics.md 基础控件、37-qt-widgets-advanced.md 高级控件、38-qt-widgets-multi-window.md 多窗口管理、39-qt-widgets-styling.md 界面美化）⚠️ **新增**
 **质量目标**：保持 90+ 分标准，建立文档质量标杆
@@ -614,7 +616,7 @@
 - ✅ **Qt Widgets 基础控件**：Qt Widgets 模块（QApplication、QWidget、QMainWindow）、基础组件（QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton）、布局管理（QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout）、窗口基础、事件处理基础 ⚠️ **新增** - ✅ 已完成
 - ✅ **Qt Widgets 高级控件**：列表控件（QListWidget、QListView、QListWidgetItem、QStringListModel、QAbstractItemView）、表格控件（QTableWidget、QTableView、QTableWidgetItem、QStandardItemModel、QStandardItem）、树形控件（QTreeWidget、QTreeView、QTreeWidgetItem）、进度和状态（QProgressBar、QProgressDialog、QStatusBar）、组合框和菜单（QComboBox、QMenu、QMenuBar、QAction）、滚动区域（QScrollArea、QScrollBar）、模型-视图架构（QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate）⚠️ **新增** - ✅ 已完成
 - ✅ **Qt Widgets 多窗口管理**：对话框基础（QDialog、QMessageBox、QInputDialog、QFileDialog）、模态与非模态对话框（exec vs show）、自定义对话框（继承 QDialog、信号槽通信）、多窗口应用架构（主窗口+子窗口、窗口管理器）、窗口间数据传递（信号槽、静态方法、单例模式）、窗口状态管理（显示/隐藏、最小化/最大化、关闭事件 closeEvent）⚠️ **新增** - ✅ 已完成
-- ⏳ **Qt Widgets 界面美化**：Qt 样式表（QSS）语法、常用样式属性（颜色、字体、边框、背景、圆角）、主题和配色方案、图标和资源（QIcon、.qrc）、动画效果（QPropertyAnimation）、现代化界面设计 ⚠️ **新增**
+- ✅ **Qt Widgets 界面美化**：Qt 样式表（QSS）语法、常用样式属性（颜色、字体、边框、背景、圆角）、主题和配色方案、图标和资源（QIcon、.qrc、Qt 内置标准图标）、动画效果（QPropertyAnimation、动画组、过渡动画）、现代化界面设计（Material Design、Fluent Design）、macOS 警告抑制 ⚠️ **新增** - ✅ 已完成
 
 **可选补充（根据实际需要）：**
 

@@ -2,7 +2,7 @@
 
 > **目的**：记录 01-38 文档中讲解的所有知识点，用于检查教程完整性、避免知识点跳跃、设计综合案例  
 > **创建日期**：2025-10-26  
-> **更新记录**：基于 01-38 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件、Qt Widgets 多窗口管理知识点）
+> **更新记录**：基于 01-39 文档内容（已更新指针、引用、内存管理、结构体、枚举、类和对象、封装、继承、多态、文件 I/O、OOP 综合练习、多文件开发基础、STL 容器进阶、Lambda 表达式、异常处理、多文件开发进阶、网络编程概念、CMake 进阶、Qt 环境搭建、Qt 信号槽机制、Qt 网络基础、Qt UDP 编程、Qt TCP 编程、Qt Widgets 基础控件、Qt Widgets 高级控件、Qt Widgets 多窗口管理、Qt Widgets 界面美化知识点）
 
 ## 📊 文档进度
 
@@ -44,6 +44,7 @@
 - ✅ 36-qt-widgets-basics.md - 已完成
 - ✅ 37-qt-widgets-advanced.md - 已完成
 - ✅ 38-qt-widgets-multi-window.md - 已完成
+- ✅ 39-qt-widgets-styling.md - 已完成
 
 ---
 
@@ -2993,6 +2994,7 @@
 40. **Qt TCP 编程** - 已在 35-qt-tcp-programming.md 详细介绍（TCP 连接建立流程（三次握手时序图）、TCP 连接断开流程（四次挥手时序图）、TCP 客户端/服务器通信流程（流程图和时序图）、QTcpSocket 类详解：主要方法、信号、状态枚举、QTcpServer 类详解：主要方法、信号、多客户端管理、TCP 文件传输实现：协议设计、分块传输、确认机制、TCP 应用场景和最佳实践：错误处理、连接超时、大文件传输、多客户端管理、项目场景：QtLanChat 中的 TCP 应用、完整的 TCP 聊天程序示例、QFile/QFileInfo/QStringList/QTimer/QAbstractSocket 的使用）
 41. **Qt Widgets 基础控件** - 已在 36-qt-widgets-basics.md 详细介绍（Qt Widgets 模块概述：QApplication、QWidget、QMainWindow、Qt Widgets 应用基本结构、基础控件：QPushButton、QLineEdit、QTextEdit、QLabel、QCheckBox、QRadioButton、布局管理：QVBoxLayout、QHBoxLayout、QGridLayout、QFormLayout、窗口基础：QMainWindow、QWidget、窗口属性设置、事件处理基础：鼠标事件、键盘事件、完整的 GUI 应用示例：计算器、登录窗口、项目场景：QtLanChat 中的 Widgets 应用、QButtonGroup、QMouseEvent、QKeyEvent、Q_UNUSED、override 关键字、QMessageBox 前向引用）
 42. **Qt Widgets 高级控件** - 已在 37-qt-widgets-advanced.md 详细介绍（列表控件：QListWidget、QListView、QListWidgetItem、QStringListModel、QAbstractItemView、表格控件：QTableWidget、QTableView、QTableWidgetItem、QStandardItemModel、QStandardItem、树形控件：QTreeWidget、QTreeView、QTreeWidgetItem、进度和状态：QProgressBar、QProgressDialog、QStatusBar、组合框和菜单：QComboBox、QMenu、QMenuBar、QAction、滚动区域：QScrollArea、QScrollBar、模型-视图架构：QAbstractItemView、QAbstractItemModel、QAbstractItemDelegate、QStyledItemDelegate、完整应用示例：学生管理系统界面、项目场景：QtLanChat 中的高级控件应用）
+43. **Qt Widgets 界面美化** - 已在 39-qt-widgets-styling.md 详细介绍（QSS 样式表基础、选择器、伪状态、常用样式属性、主题和配色方案、图标和资源、资源文件.qrc、动画效果 QPropertyAnimation、动画组、过渡动画、现代化界面设计 Material Design 风格 Fluent Design 风格、完整应用示例美化聊天应用界面、项目场景 QtLanChat 中的界面美化应用、macOS 警告抑制 QLoggingCategory）⚠️ **新增** - ✅ 已完成
 
 ### ⚠️ 需要注意的知识点
 
@@ -3357,7 +3359,7 @@
 ### 已完成的路径
 
 ```
-✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程 → 36-Qt Widgets 基础 → 37-Qt Widgets 高级
+✅ 01-基础 → 02-变量 → 03-类型 → 04-运算符 → 05-分支 → 06-while循环 → 07-for循环 → 08-switch → 09-数组 → 10-vector → 11-字符串进阶 → 12-函数基础 → 13-指针 → 14-引用 → 15-内存管理 → 16-结构体 → 17-枚举类型 → 18-类和对象 → 19-封装 → 20-继承 → 21-多态 → 22-文件 I/O → 23-OOP 综合练习 → 24-多文件开发基础 → 25-STL 容器进阶 → 26-Lambda 表达式 → 27-异常处理 → 28-多文件开发进阶 → 29-CMake 进阶 → 30-Qt 环境搭建 → 31-Qt 信号槽 → 32-网络编程概念 → 33-Qt 网络基础 → 34-Qt UDP 编程 → 35-Qt TCP 编程 → 36-Qt Widgets 基础 → 37-Qt Widgets 高级 → 38-Qt Widgets 多窗口 → 39-Qt Widgets 界面美化
 ```
 
 ### 建议的后续路径
@@ -3377,6 +3379,7 @@
 ✅ 36-Qt Widgets 基础
 ✅ 37-Qt Widgets 高级
 ✅ 38-Qt Widgets 多窗口
+✅ 39-Qt Widgets 界面美化
 ```
 
 ---
@@ -3459,6 +3462,6 @@
 
 ---
 
-**文档状态**：`01-38 完成 ✅ | 39+ 待创建 ⏳ | 总体进度 99%`
+**文档状态**：`01-39 完成 ✅ | 40+ 待创建 ⏳ | 总体进度 99%`
 
 **更新建议**：每次完成新文档后，更新此技能树记录，确保知识点无遗漏、无跳跃。
