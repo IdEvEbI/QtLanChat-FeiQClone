@@ -275,15 +275,15 @@ int main(int argc, char *argv[])
 
 **QSS 常用伪状态**：
 
-| 伪状态          | 说明                     |
-| --------------- | ------------------------ |
-| `:hover`        | 鼠标悬停时               |
-| `:pressed`      | 按下时                   |
-| `:checked`      | 选中时（复选框、单选按钮）|
-| `:disabled`     | 禁用时                   |
-| `:enabled`      | 启用时                   |
-| `:focus`        | 获得焦点时               |
-| `:selected`     | 选中时（列表项、表格项）  |
+| 伪状态      | 说明                       |
+| ----------- | -------------------------- |
+| `:hover`    | 鼠标悬停时                 |
+| `:pressed`  | 按下时                     |
+| `:checked`  | 选中时（复选框、单选按钮） |
+| `:disabled` | 禁用时                     |
+| `:enabled`  | 启用时                     |
+| `:focus`    | 获得焦点时                 |
+| `:selected` | 选中时（列表项、表格项）   |
 
 **QSS 伪状态示例**：
 
@@ -351,13 +351,13 @@ int main(int argc, char *argv[])
 
 **常用颜色属性**：
 
-| 属性                | 说明           |
-| ------------------- | -------------- |
-| `color`             | 前景色（文字） |
-| `background-color`  | 背景色         |
-| `border-color`      | 边框颜色       |
-| `selection-color`   | 选中文字颜色   |
-| `selection-background-color` | 选中背景颜色 |
+| 属性                         | 说明           |
+| ---------------------------- | -------------- |
+| `color`                      | 前景色（文字） |
+| `background-color`           | 背景色         |
+| `border-color`               | 边框颜色       |
+| `selection-color`            | 选中文字颜色   |
+| `selection-background-color` | 选中背景颜色   |
 
 **颜色值格式**：
 
@@ -423,12 +423,12 @@ int main(int argc, char *argv[])
 
 **常用字体属性**：
 
-| 属性         | 说明     |
-| ------------ | -------- |
+| 属性          | 说明     |
+| ------------- | -------- |
 | `font-family` | 字体族   |
-| `font-size`    | 字体大小 |
-| `font-weight`  | 字体粗细 |
-| `font-style`   | 字体样式 |
+| `font-size`   | 字体大小 |
+| `font-weight` | 字体粗细 |
+| `font-style`  | 字体样式 |
 
 **字体值格式**：
 
@@ -498,13 +498,13 @@ int main(int argc, char *argv[])
 
 **常用边框属性**：
 
-| 属性           | 说明     |
-| -------------- | -------- |
-| `border`       | 边框（简写） |
-| `border-width` | 边框宽度 |
-| `border-style` | 边框样式 |
-| `border-color` | 边框颜色 |
-| `border-radius` | 圆角半径 |
+| 属性            | 说明         |
+| --------------- | ------------ |
+| `border`        | 边框（简写） |
+| `border-width`  | 边框宽度     |
+| `border-style`  | 边框样式     |
+| `border-color`  | 边框颜色     |
+| `border-radius` | 圆角半径     |
 
 **边框值格式**：
 
@@ -533,7 +533,9 @@ int main(int argc, char *argv[])
     QVBoxLayout *layout = new QVBoxLayout(&window);
 
     QPushButton *button1 = new QPushButton("圆角按钮", &window);
+    button1->setObjectName("roundedButton");
     QPushButton *button2 = new QPushButton("带边框按钮", &window);
+    button2->setObjectName("borderedButton");
     QLineEdit *lineEdit = new QLineEdit(&window);
     lineEdit->setPlaceholderText("圆角输入框...");
 
@@ -543,11 +545,11 @@ int main(int argc, char *argv[])
         "    background-color: #4CAF50;"
         "    color: white;"
         "}"
-        "QPushButton:nth-child(1) {"
+        "QPushButton#roundedButton {"
         "    border-radius: 10px;"
         "    border: none;"
         "}"
-        "QPushButton:nth-child(2) {"
+        "QPushButton#borderedButton {"
         "    border-radius: 5px;"
         "    border: 2px solid #388E3C;"
         "}"
@@ -856,15 +858,20 @@ int main(int argc, char *argv[])
 **QIcon 示例**：
 
 ```cpp
+#include <QtCore/QLoggingCategory>
+#include <QtCore/QString>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QWidget>
+#include <QtWidgets/QStyle>
 #include <QtWidgets/QVBoxLayout>
-#include <QtGui/QIcon>
-#include <QtCore/QString>
+#include <QtWidgets/QWidget>
 
 int main(int argc, char *argv[])
 {
+    // 抑制 macOS 上的 IMK 相关警告消息
+    QLoggingCategory::setFilterRules("qt.qpa.input*.debug=false");
+
     QApplication app(argc, argv);
 
     QWidget window;
@@ -873,22 +880,25 @@ int main(int argc, char *argv[])
 
     QVBoxLayout *layout = new QVBoxLayout(&window);
 
-    // 创建图标（使用文本作为占位符，实际应用中应使用图标文件）
-    QPushButton *button1 = new QPushButton("带图标按钮 1", &window);
-    // 注意：实际应用中应使用图标文件路径
-    // QIcon icon1(":/icons/icon1.png");
-    // button1->setIcon(icon1);
-
-    QPushButton *button2 = new QPushButton("带图标按钮 2", &window);
-    // QIcon icon2(":/icons/icon2.png");
-    // button2->setIcon(icon2);
-
-    // 设置图标大小
+    // 使用 Qt 内置的标准图标
+    QPushButton *button1 = new QPushButton("打开文件", &window);
+    QIcon icon1 = window.style()->standardIcon(QStyle::SP_DirOpenIcon);
+    button1->setIcon(icon1);
     button1->setIconSize(QSize(24, 24));
+
+    QPushButton *button2 = new QPushButton("保存文件", &window);
+    QIcon icon2 = window.style()->standardIcon(QStyle::SP_DriveHDIcon);
+    button2->setIcon(icon2);
     button2->setIconSize(QSize(32, 32));
+
+    QPushButton *button3 = new QPushButton("关于", &window);
+    QIcon icon3 = window.style()->standardIcon(QStyle::SP_MessageBoxInformation);
+    button3->setIcon(icon3);
+    button3->setIconSize(QSize(24, 24));
 
     layout->addWidget(button1);
     layout->addWidget(button2);
+    layout->addWidget(button3);
 
     window.show();
     return app.exec();
@@ -1777,13 +1787,13 @@ int main(int argc, char *argv[])
 
 **Qt Widgets 界面美化在 QtLanChat 中的应用对照表**：
 
-| 美化技术         | 在聊天软件中的应用                     | 在屏幕共享软件中的应用           |
-| ---------------- | -------------------------------------- | -------------------------------- |
-| **QSS 样式表**   | 统一应用样式、主题切换、控件美化       | 统一应用样式、主题切换、控件美化 |
-| **主题**         | 浅色/深色主题切换                     | 浅色/深色主题切换               |
-| **图标**         | 功能图标（发送、文件、设置等）         | 状态图标（连接、断开、共享中等） |
-| **动画**         | 消息发送动画、连接动画                 | 连接动画、传输进度动画           |
-| **现代化设计**   | Material Design 或 Fluent Design 风格 | Material Design 或 Fluent Design 风格 |
+| 美化技术       | 在聊天软件中的应用                    | 在屏幕共享软件中的应用                |
+| -------------- | ------------------------------------- | ------------------------------------- |
+| **QSS 样式表** | 统一应用样式、主题切换、控件美化      | 统一应用样式、主题切换、控件美化      |
+| **主题**       | 浅色/深色主题切换                     | 浅色/深色主题切换                     |
+| **图标**       | 功能图标（发送、文件、设置等）        | 状态图标（连接、断开、共享中等）      |
+| **动画**       | 消息发送动画、连接动画                | 连接动画、传输进度动画                |
+| **现代化设计** | Material Design 或 Fluent Design 风格 | Material Design 或 Fluent Design 风格 |
 
 ## 4. 常见问题
 
@@ -1853,6 +1863,31 @@ int main(int argc, char *argv[])
 2. **统一管理**：使用统一的样式表管理，避免局部样式覆盖
 3. **强制更新**：切换主题后强制更新样式表
 
+### 4.5 macOS 控制台警告消息
+
+**问题**：在 macOS 上运行 Qt GUI 应用时，控制台会输出 "error messaging the mach port for IMKCFRunLoopWakeUpReliable" 等警告消息。
+
+**原因**：这是 macOS 上运行 Qt GUI 应用时的常见警告，与输入法（IMK - Input Method Kit）相关，不影响程序功能。
+
+**解决方法**：
+
+在 `main()` 函数开头添加以下代码来抑制这些警告消息：
+
+```cpp
+#include <QtCore/QLoggingCategory>
+
+int main(int argc, char *argv[])
+{
+    // 抑制 macOS 上的 IMK 相关警告消息
+    QLoggingCategory::setFilterRules("qt.qpa.input*.debug=false");
+
+    QApplication app(argc, argv);
+    // ...
+}
+```
+
+**注意**：这些警告消息不影响程序功能，但会在控制台输出，影响用户体验。建议在所有示例中添加此代码。
+
 ## 5. 练习题
 
 ### 5.1 基础概念题
@@ -1881,14 +1916,14 @@ int main(int argc, char *argv[])
 
    ```css
    QPushButton {
-       background-color: #4CAF50;
-       color: white;
-       padding: 10px;
-       border-radius: 5px;
-       border: none;
+     background-color: #4caf50;
+     color: white;
+     padding: 10px;
+     border-radius: 5px;
+     border: none;
    }
    QPushButton:hover {
-       background-color: #66BB6A;
+     background-color: #66bb6a;
    }
    ```
 
@@ -1943,7 +1978,7 @@ int main(int argc, char *argv[])
 - `04-theme-switching/`：主题切换示例
 - `05-color-palette/`：自定义调色板示例
 - `06-icons-resources/`：图标和资源文件示例
-- `07-animations/`：动画效果示例
+- `07-animations/`：动画效果示例（包含 QPropertyAnimation、动画组和过渡动画的综合示例）
 - `08-chat-styled/`：美化后的聊天应用示例
 
 ### 6.2 编译和运行
@@ -1969,7 +2004,12 @@ cmake --build .
 
 - `CMakeLists.txt`：CMake 配置文件
 - `main.cpp`：主程序文件（部分示例包含资源文件）
-- `README.md`：示例说明文档
+
+**注意事项**：
+
+1. **macOS 警告抑制**：所有示例都包含了 `QLoggingCategory::setFilterRules("qt.qpa.input*.debug=false");` 来抑制 macOS 上的 IMK（Input Method Kit）相关警告消息。这些警告不影响程序功能，但会在控制台输出，影响用户体验。
+
+2. **图标使用**：`06-icons-resources` 示例使用 Qt 内置的标准图标（`QStyle::standardIcon()`），无需额外的资源文件即可运行。实际项目中可以使用资源文件（.qrc）来管理自定义图标。
 
 ## 7. 学习检查
 
@@ -2012,4 +2052,3 @@ graph TD
     style A fill:#4caf50
     style B fill:#e0e0e0
 ```
-
